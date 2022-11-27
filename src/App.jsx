@@ -1,9 +1,12 @@
+import React from "react";
+import AdminPage from "./views/AdminPage";
+
 function App() {
-  return (
-    <div className="App">
-      <div className="bg-black">테스트</div>
-    </div>
-  );
+    return (
+        <>
+            <AdminPage />
+        </>
+    );
 }
 
 export default App;
