@@ -1,5 +1,5 @@
 import React from "react";
-import AdminPage from "./views/AdminPage";
+import AdminPage from "@pages/Admin/AdminPage";
 
 function App() {
     return (
