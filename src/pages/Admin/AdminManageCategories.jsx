@@ -59,8 +59,6 @@ function AdminManageCategories() {
         fetchData();
     }, []);
 
-    const addCategory = () => {};
-
     if (loading) return <div>로딩 중...</div>;
     if (!data) return null;
 
@@ -85,7 +83,6 @@ function AdminManageCategories() {
                 >
                     추가하기
                 </button>
-                <AddModal visible={showModal} />
             </SearchContainer>
 
             {/* 테이블 */}
@@ -132,6 +129,7 @@ function AdminManageCategories() {
                         ))}
                 </tbody>
             </Table>
+            <AddModal visible={showModal} onClose={() => setShowModal(false)} />
         </>
     );
 }
