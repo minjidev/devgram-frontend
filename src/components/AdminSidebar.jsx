@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeftCircleIcon } from "@heroicons/react/24/solid";
 import { TagIcon, ArchiveBoxIcon, FlagIcon } from "@heroicons/react/24/outline";
 
-function AdminSidebar() {
-    const [open, setOpen] = useState(false);
+function AdminSidebar({ open, setOpen }) {
     const NavMenus = [
         {
             title: "카테고리 관리",
@@ -28,10 +27,10 @@ function AdminSidebar() {
             <div
                 className={`${
                     open ? "w-64" : "w-20"
-                } duration-300 h-screen bg-gray-100 relative pt-8 flex flex-col justify-between`}
+                } duration-300 bg-gray-100 fixed pt-8 flex flex-col justify-between h-full`}
             >
                 <ArrowLeftCircleIcon
-                    className={`h-8 w-8 absolute top-9 -right-3 cursor-pointer ${
+                    className={`hidden sm:block h-8 w-8 absolute top-9 -right-3 cursor-pointer ${
                         !open && "rotate-180"
                     }`}
                     onClick={() => setOpen(!open)}

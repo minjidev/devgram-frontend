@@ -4,9 +4,9 @@ import AdminManageCategories from "@pages/Admin/AdminManageCategories";
 import AdminManageProducts from "@pages/Admin/AdminManageProducts";
 import AdminManageReports from "@pages/Admin/AdminManageCategories";
 
-function AdminDashBoard() {
+function AdminDashBoard({ open }) {
     return (
-        <div className="p-3">
+        <div className={`p-3 duration-300 ${open ? "ml-64" : "ml-20"}`}>
             <Routes>
                 <Route
                     path="/admin/categories"

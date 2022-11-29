@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import tw from "tailwind-styled-components";
+import AddModal from "@components/AddModal";
 
-const API_URL = "http://dummy.restapiexample.com/api/v1/employees";
 const SearchContainer = tw.div`
 flex 
 items-center 
@@ -41,6 +41,7 @@ function AdminManageCategories() {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [query, setQuery] = useState("");
+    const [showModal, setShowModal] = useState(false);
     // api data 받아오기
     useEffect(() => {
         const fetchData = async () => {
@@ -67,7 +68,7 @@ function AdminManageCategories() {
         <>
             <h1 className="text-3xl font-bold mb-3">카테고리 관리</h1>
             <SearchContainer>
-                {/* 서치바  */}
+                {/* 서치바 */}
                 <div className="relative w-full mr-6 flex items-center">
                     <MagnifyingGlassIcon className="h-5 w-5 absolute ml-3 pointer-events-none" />
                     <Input
@@ -77,17 +78,17 @@ function AdminManageCategories() {
                         onChange={(e) => setQuery(e.target.value)}
                     />
                 </div>
-
                 {/* 추가 버튼 */}
                 <button
-                    className="btn text-white text-base"
-                    onClick={addCategory}
+                    className="btn cursor-pointer text-white text-base"
+                    onClick={() => setShowModal(true)}
                 >
                     추가하기
                 </button>
+                <AddModal visible={showModal} />
             </SearchContainer>
 
-            {/* 테이블  */}
+            {/* 테이블 */}
             <Table>
                 <thead>
                     <tr>
