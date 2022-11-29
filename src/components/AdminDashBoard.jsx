@@ -6,7 +6,7 @@ import AdminManageReports from "@pages/Admin/AdminManageCategories";
 
 function AdminDashBoard() {
     return (
-        <div>
+        <div className="p-3">
             <Routes>
                 <Route
                     path="/admin/categories"
