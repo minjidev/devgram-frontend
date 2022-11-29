@@ -48,7 +48,7 @@ function AdminManageCategories() {
             try {
                 setLoading(true);
                 const response = await axios.get(
-                    "https://jsonplaceholder.typicode.com/users"
+                    "http://localhost:3000/category"
                 );
                 setData(response.data);
             } catch (error) {
@@ -114,7 +114,7 @@ function AdminManageCategories() {
                         .map((data) => (
                             <tr key={data.id}>
                                 <td>{data.name}</td>
-                                <td>{data.username}</td>
+                                <td>{data.color}</td>
                                 <td>
                                     <button className="btn btn-outline btn-ghost">
                                         수정

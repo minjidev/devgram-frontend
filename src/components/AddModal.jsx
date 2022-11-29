@@ -4,7 +4,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 
 function AddModal({ visible, onClose }) {
     if (!visible) return null;
-    const API_URL = "";
+    const API_URL = "http://localhost:3000/category";
     const [data, setData] = useState({
         category: "",
         color: "",
@@ -19,13 +19,32 @@ function AddModal({ visible, onClose }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        e.target.reset();
         axios
             .post(API_URL, {
-                category: data.category,
+                name: data.category,
                 color: data.color,
             })
             .then((response) => {
                 console.log(response.data);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+        setData({
+            category: "",
+            color: "",
+        });
+    };
+
+    const handleEdit = (e) => {
+        axios
+            .put(`${API_URL}${id}`, {})
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.error(error);
             });
     };
 
@@ -40,7 +59,7 @@ function AddModal({ visible, onClose }) {
         backdrop-blur-xs items-center bg-black bg-opacity-25 z-50"
             onClick={handleClose}
         >
-            <div className="w-1/2 h-1/2 bg-white p-2 rounded-[5px] flex flex-col">
+            <div className="w-1/2 min-h-1/2 bg-white p-2 rounded-[5px] flex flex-col">
                 <button
                     className="place-self-end p-1"
                     onClick={() => onClose()}

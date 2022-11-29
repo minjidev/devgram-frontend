@@ -1,0 +1,91 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "category": [
+    {
+      "id": 1,
+      "name": "monitor",
+      "color": "yellow"
+    },
+    {
+      "id": 2,
+      "name": "mouse",
+      "color": "green"
+    },
+    {
+      "id": 3,
+      "name": "laptop",
+      "color": "blue"
+    },
+    {
+      "name": "모니터",
+      "color": "노란색",
+      "id": 4
+    },
+    {
+      "name": "마우스",
+      "color": "갈색",
+      "id": 5
+    },
+    {
+      "name": "노트북 거치대",
+      "color": "흰색",
+      "id": 6
+    },
+    {
+      "name": "모니터",
+      "color": "aa",
+      "id": 7
+    },
+    {
+      "name": "aa",
+      "color": "aa",
+      "id": 8
+    },
+    {
+      "name": "aa",
+      "color": "aa",
+      "id": 9
+    },
+    {
+      "name": "aa",
+      "color": "aas",
+      "id": 10
+    },
+    {
+      "name": "aa",
+      "color": "aas",
+      "id": 11
+    },
+    {
+      "name": "aa",
+      "color": "aas",
+      "id": 12
+    },
+    {
+      "name": "aa",
+      "color": "aas",
+      "id": 13
+    },
+    {
+      "name": "aa",
+      "color": "aas",
+      "id": 14
+    }
+  ]
+}
