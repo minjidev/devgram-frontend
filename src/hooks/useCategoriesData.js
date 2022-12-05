@@ -13,6 +13,19 @@ const addCategory = (data) => {
     return axios.post(API_URL, { name: data.category, color: data.color });
 };
 
+// 카테고리 put : 수정할 내용만 보내기
+const updateCategory = ({ id, editedData }) => {
+    return axios.put(`${API_URL}/${id}`, {
+        name: editedData.category,
+        color: editedData.color,
+    });
+};
+
+// 카테고리 delete
+const deleteCategory = (data) => {
+    return axios.delete(`${API_URL}/${data.id}`, data);
+};
+
 /* custom hooks */
 export const useCategoriesData = () => {
     return useQuery(["categories"], fetchCategories);
@@ -28,6 +41,23 @@ export const useAddCategoryData = () => {
             // queryClient.setQueryData("categories", (prevData) => {
             //     return [...prevData, data];
             // });
+        },
+    });
+};
+
+export const useEditCategoryData = () => {
+    const queryClient = useQueryClient();
+    return useMutation(updateCategory, {
+        onSuccess: (data) => {
+            queryClient.invalidateQueries("categories");
+        },
+    });
+};
+export const useDeletecategoryData = () => {
+    const queryClient = useQueryClient();
+    return useMutation(deleteCategory, {
+        onSuccess: (data) => {
+            queryClient.invalidateQueries("categories");
         },
     });
 };

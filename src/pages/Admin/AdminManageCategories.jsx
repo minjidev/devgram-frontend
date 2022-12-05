@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import React, { Fragment, useEffect, useState } from "react";
+import { MagnifyingGlassIcon, PlusIcon } from "@heroicons/react/24/outline";
 import tw from "tailwind-styled-components";
 import AddModal from "@components/Admin/AddModal";
 import Pagination from "@components/Admin/Pagination";
 import { useCategoriesData } from "@hooks/useCategoriesData";
+import ReadOnlyRow from "@components/Admin/ReadOnlyRow";
+import EditableRow from "@components/Admin/EditableRow";
 
 const SearchContainer = tw.div`
 flex 
@@ -20,7 +22,9 @@ const Input = tw.input`
     p-3 
     pl-10 
     h-10 
-    text-base 
+    text-sm
+    font-normal
+    sm:text-base 
     rounded-xl 
     flex-1 
     w-full 
@@ -30,7 +34,7 @@ const Input = tw.input`
 
 const Table = tw.table`
     table 
-    table-auto 
+    table-auto
     w-full 
     max-w-lg 
     my-3 
@@ -47,6 +51,7 @@ function AdminManageCategories() {
     const [itemsPerPage, setItemsPerPage] = useState(5);
     const lastIndex = currentPage * itemsPerPage;
     const firstIndex = lastIndex - itemsPerPage;
+    const [editID, setEditID] = useState(null);
     // api get
     const { data, isLoading, error } = useCategoriesData();
     if (isLoading) return <h2>Loading...</h2>;
@@ -77,6 +82,10 @@ function AdminManageCategories() {
         lastIndex
     );
 
+    const onEditClick = (data) => {
+        setEditID(data.id);
+    };
+
     return (
         <div>
             <h1 className="text-3xl font-bold mb-3">카테고리 관리</h1>
@@ -93,45 +102,66 @@ function AdminManageCategories() {
                 </div>
                 {/* 추가 버튼 */}
                 <button
-                    className="btn cursor-pointer text-white text-base"
+                    className="hidden sm:block btn cursor-pointer text-white text-base"
                     onClick={() => setShowModal(true)}
                 >
                     추가하기
                 </button>
+                <button
+                    className="btn btn-square btn-xs sm:hidden"
+                    onClick={() => setShowModal(true)}
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-6 h-6"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M12 4.5v15m7.5-7.5h-15"
+                        />
+                    </svg>
+                </button>
             </SearchContainer>
             {/* 테이블 */}
 
-            <Table>
-                <thead>
-                    <tr>
-                        <th>카테고리</th>
-                        <th>색상</th>
-                        <th>수정</th>
-                        <th>삭제</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {currentCategoriesData.map((data) => (
-                        <tr key={data.id}>
-                            <td>{data.name}</td>
-                            <td>{data.color}</td>
-                            <td>
-                                <button className="btn btn-outline btn-ghost">
-                                    수정
-                                </button>
-                            </td>
-                            <td>
-                                <button className="btn btn-outline btn-error">
-                                    삭제
-                                </button>
-                            </td>
+            <form className="overflow-auto">
+                <Table>
+                    <thead>
+                        <tr>
+                            <th>카테고리</th>
+                            <th>색상</th>
+                            <th>수정</th>
+                            <th>{editID > 0 ? "취소" : "삭제"}</th>
                         </tr>
-                    ))}
-                </tbody>
-            </Table>
+                    </thead>
+                    <tbody>
+                        {currentCategoriesData.map((data) => (
+                            <Fragment key={data.id}>
+                                {editID === data.id ? (
+                                    <EditableRow
+                                        editID={editID}
+                                        onEditClick={onEditClick}
+                                    />
+                                ) : (
+                                    <ReadOnlyRow
+                                        data={data}
+                                        onEditClick={onEditClick}
+                                    />
+                                )}
+                            </Fragment>
+                        ))}
+                    </tbody>
+                </Table>
+            </form>
             <Pagination
                 totalPosts={data.length}
                 itemsPerPage={itemsPerPage}
+                currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
             />
 
