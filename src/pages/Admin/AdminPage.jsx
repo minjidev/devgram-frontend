@@ -7,9 +7,9 @@ function AdminPage(props) {
     const [open, setOpen] = useState(false);
 
     return (
-        <div className="flex overflow-x-hidden">
+        <div className="flex">
             <AdminSidebar open={open} setOpen={setOpen} />
-            <div className="p-7 text-2xl font-semibold flex-1 h-full">
+            <div className="p-7 text-2xl font-semibold flex-1 h-full w-full">
                 <AdminDashboard open={open} />
             </div>
         </div>

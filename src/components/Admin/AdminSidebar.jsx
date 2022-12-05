@@ -25,34 +25,38 @@ function AdminSidebar({ open, setOpen }) {
     return (
         <>
             <div
-                className={`${
-                    open ? "w-64" : "w-20"
+                className={`w-20 ${
+                    open ? "sm:w-64" : "sm:w-20"
                 } duration-300 bg-gray-100 fixed pt-8 flex flex-col justify-between h-full`}
             >
                 <ArrowLeftCircleIcon
                     className={`hidden sm:block h-8 w-8 absolute top-9 -right-3 cursor-pointer ${
                         !open && "rotate-180"
                     }`}
-                    onClick={() => setOpen(!open)}
+                    onClick={() => {
+                        setOpen(!open);
+                        console.log("open:", open);
+                    }}
                 />
 
                 <ul>
                     {NavMenus.map((menu, index) => (
-                        <Link
-                            key={index}
-                            to={menu.path}
-                            className="text-gray-800 text-sm items-center flex mx-5 gap-x-4 items-center cursor-pointer p-2 pt-3
-                            hover:bg-gray-200 rounded-md"
-                        >
-                            {menu.icon}
-                            <span
-                                className={`${
-                                    !open && "hidden"
-                                } origin-left duration-200`}
+                        <li key={index}>
+                            <Link
+                                to={menu.path}
+                                className="text-gray-800 text-sm items-center flex mx-5 gap-x-4 cursor-pointer p-2 pt-3
+                                hover:bg-gray-200 rounded-md"
                             >
-                                {menu.title}
-                            </span>
-                        </Link>
+                                {menu.icon}
+                                <span
+                                    className={`hidden ${
+                                        !open ? "sm:hidden" : "sm:block"
+                                    } origin-left duration-200`}
+                                >
+                                    {menu.title}
+                                </span>
+                            </Link>
+                        </li>
                     ))}
                 </ul>
                 <div>
@@ -65,8 +69,8 @@ function AdminSidebar({ open, setOpen }) {
                             }
                         />
                         <h1
-                            className={`font-medium text-gray-800 origin-left duration-200 dark:text-white
-                        ${!open && "scale-0"}`}
+                            className={`hidden sm:font-medium sm:text-gray-800 origin-left duration-200 dark:text-white
+                        ${!open ? "sm:scale-0" : "sm:block"}`}
                         >
                             Jese Leos
                         </h1>

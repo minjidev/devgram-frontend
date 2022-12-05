@@ -18,18 +18,18 @@
   },
   "category": [
     {
-      "id": 1,
-      "name": "monitor",
-      "color": "yellow"
+      "name": "rrr",
+      "color": "eee",
+      "id": 1
     },
     {
-      "id": 2,
-      "name": "mouse",
-      "color": "green"
+      "name": "ㅁㅁㅁ",
+      "color": "ㅁㅁㅁ",
+      "id": 2
     },
     {
-      "name": "모니터",
-      "color": "bbb",
+      "name": "update",
+      "color": "yes",
       "id": 3
     },
     {
@@ -71,6 +71,61 @@
       "name": "gf",
       "color": "sss",
       "id": 11
+    },
+    {
+      "name": "aa",
+      "color": "aaa",
+      "id": 12
+    },
+    {
+      "name": "aab",
+      "color": "aaab",
+      "id": 13
+    },
+    {
+      "name": "aabb",
+      "color": "aaab",
+      "id": 14
+    },
+    {
+      "name": "aabb",
+      "color": "aaab",
+      "id": 15
+    },
+    {
+      "name": "aabb",
+      "color": "aaab",
+      "id": 16
+    },
+    {
+      "name": "aabb",
+      "color": "aaab",
+      "id": 17
+    },
+    {
+      "name": "aabb",
+      "color": "aaab",
+      "id": 18
+    },
+    {
+      "name": "aabb",
+      "color": "aaab",
+      "id": 19
+    },
+    {
+      "name": "aabb",
+      "color": "aaab",
+      "id": 20
+    },
+    {
+      "name": "aabbaa",
+      "color": "aaabb",
+      "id": 21
+    },
+    {
+      "name": "dd",
+      "color": "dd",
+      "id": 22
     }
   ]
 }
