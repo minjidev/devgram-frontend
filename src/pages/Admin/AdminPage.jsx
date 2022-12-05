@@ -1,6 +1,6 @@
 import React from "react";
-import AdminSidebar from "@components/AdminSidebar";
-import AdminDashboard from "@components/AdminDashBoard";
+import AdminSidebar from "@components/Admin/AdminSidebar";
+import AdminDashboard from "@components/Admin/AdminDashBoard";
 import { useState } from "react";
 
 function AdminPage(props) {

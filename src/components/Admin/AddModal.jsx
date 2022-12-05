@@ -1,40 +1,27 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { useAddCategoryData } from "@hooks/useCategoriesData";
 
 function AddModal({ visible, onClose }) {
-    if (!visible) return null;
-    const API_URL = "http://localhost:3000/category";
     const [data, setData] = useState({
         category: "",
         color: "",
     });
 
+    const { mutate } = useAddCategoryData();
+    if (!visible) return null;
+
     const getInputData = (e) => {
         const newData = { ...data };
         newData[e.target.id] = e.target.value;
         setData(newData);
-        console.log(data);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        e.target.reset();
-        axios
-            .post(API_URL, {
-                name: data.category,
-                color: data.color,
-            })
-            .then((response) => {
-                console.log(response.data);
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-        setData({
-            category: "",
-            color: "",
-        });
+        console.log(data.category, data.color);
+        mutate(data);
     };
 
     const handleEdit = (e) => {
@@ -70,7 +57,7 @@ function AddModal({ visible, onClose }) {
                     <h2 className="text-xl font-semibold text-gray-900 mb-5">
                         카테고리 추가
                     </h2>
-                    <form className="pb-6" onSubmit={(e) => handleSubmit(e)}>
+                    <form className="pb-6" onSubmit={handleSubmit}>
                         <div className="mb-4">
                             <label
                                 className="block text-gray-700 text-base font-bold"
@@ -108,7 +95,7 @@ function AddModal({ visible, onClose }) {
                             />
                         </div>
                         <div className="flex justify-end">
-                            <button className="btn">확인</button>
+                            <button className="btn submit">확인</button>
                         </div>
                     </form>
                 </div>

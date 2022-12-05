@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import tw from "tailwind-styled-components";
-import AddModal from "@components/AddModal";
+import AddModal from "@components/Admin/AddModal";
+import Pagination from "@components/Admin/Pagination";
+import { useCategoriesData } from "@hooks/useCategoriesData";
 
 const SearchContainer = tw.div`
 flex 
@@ -38,32 +39,46 @@ const Table = tw.table`
 `;
 
 function AdminManageCategories() {
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(false);
     const [query, setQuery] = useState("");
     const [showModal, setShowModal] = useState(false);
-    // api data 받아오기
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                setLoading(true);
-                const response = await axios.get(
-                    "http://localhost:3000/category"
-                );
-                setData(response.data);
-            } catch (error) {
-                console.error(error);
-            }
-            setLoading(false);
-        };
-        fetchData();
-    }, []);
+    const engPattern = /[a-zA-Z]/;
+    const korPattern = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage, setItemsPerPage] = useState(5);
+    const lastIndex = currentPage * itemsPerPage;
+    const firstIndex = lastIndex - itemsPerPage;
+    // api get
+    const { data, isLoading, error } = useCategoriesData();
+    if (isLoading) return <h2>Loading...</h2>;
+    if (error) return <h2>{error.message}</h2>;
 
-    if (loading) return <div>로딩 중...</div>;
-    if (!data) return null;
+    const filterComponent = (data) => {
+        data = data?.filter((cat) => {
+            if (query === "") {
+                return cat;
+            } else if (
+                (korPattern.test(query) && cat.name.includes(query)) ||
+                cat.color.includes(query)
+            ) {
+                return cat;
+            } else if (
+                (engPattern.test(query) &&
+                    cat.name.toLowerCase().includes(query.toLowerCase())) ||
+                cat.color.toLowerCase().includes(query.toLowerCase())
+            ) {
+                return cat;
+            }
+        });
+        return data;
+    };
+
+    const currentCategoriesData = filterComponent(data).slice(
+        firstIndex,
+        lastIndex
+    );
 
     return (
-        <>
+        <div>
             <h1 className="text-3xl font-bold mb-3">카테고리 관리</h1>
             <SearchContainer>
                 {/* 서치바 */}
@@ -84,8 +99,8 @@ function AdminManageCategories() {
                     추가하기
                 </button>
             </SearchContainer>
-
             {/* 테이블 */}
+
             <Table>
                 <thead>
                     <tr>
@@ -96,41 +111,32 @@ function AdminManageCategories() {
                     </tr>
                 </thead>
                 <tbody>
-                    {data
-                        .filter((cat) => {
-                            if (query === "") {
-                                return cat;
-                            } else if (
-                                cat.name
-                                    .toLowerCase()
-                                    .includes(query.toLowerCase()) ||
-                                cat.username
-                                    .toLowerCase()
-                                    .includes(query.toLowerCase())
-                            ) {
-                                return cat;
-                            }
-                        })
-                        .map((data) => (
-                            <tr key={data.id}>
-                                <td>{data.name}</td>
-                                <td>{data.color}</td>
-                                <td>
-                                    <button className="btn btn-outline btn-ghost">
-                                        수정
-                                    </button>
-                                </td>
-                                <td>
-                                    <button className="btn btn-outline btn-error">
-                                        삭제
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
+                    {currentCategoriesData.map((data) => (
+                        <tr key={data.id}>
+                            <td>{data.name}</td>
+                            <td>{data.color}</td>
+                            <td>
+                                <button className="btn btn-outline btn-ghost">
+                                    수정
+                                </button>
+                            </td>
+                            <td>
+                                <button className="btn btn-outline btn-error">
+                                    삭제
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
                 </tbody>
             </Table>
+            <Pagination
+                totalPosts={data.length}
+                itemsPerPage={itemsPerPage}
+                setCurrentPage={setCurrentPage}
+            />
+
             <AddModal visible={showModal} onClose={() => setShowModal(false)} />
-        </>
+        </div>
     );
 }
 

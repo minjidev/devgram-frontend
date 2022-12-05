@@ -28,64 +28,49 @@
       "color": "green"
     },
     {
-      "id": 3,
-      "name": "laptop",
-      "color": "blue"
+      "name": "모니터",
+      "color": "bbb",
+      "id": 3
     },
     {
-      "name": "모니터",
-      "color": "노란색",
+      "name": "aa",
+      "color": "vvv",
       "id": 4
     },
     {
-      "name": "마우스",
-      "color": "갈색",
+      "name": "aa",
+      "color": "vvv",
       "id": 5
     },
     {
-      "name": "노트북 거치대",
-      "color": "흰색",
+      "name": "bbbb",
+      "color": "ccc",
       "id": 6
     },
     {
-      "name": "모니터",
-      "color": "aa",
+      "name": "aa",
+      "color": "vvv",
       "id": 7
     },
     {
       "name": "aa",
-      "color": "aa",
+      "color": "vvv",
       "id": 8
     },
     {
       "name": "aa",
-      "color": "aa",
+      "color": "vvv",
       "id": 9
     },
     {
       "name": "aa",
-      "color": "aas",
+      "color": "vvv",
       "id": 10
     },
     {
-      "name": "aa",
-      "color": "aas",
+      "name": "gf",
+      "color": "sss",
       "id": 11
-    },
-    {
-      "name": "aa",
-      "color": "aas",
-      "id": 12
-    },
-    {
-      "name": "aa",
-      "color": "aas",
-      "id": 13
-    },
-    {
-      "name": "aa",
-      "color": "aas",
-      "id": 14
     }
   ]
 }
