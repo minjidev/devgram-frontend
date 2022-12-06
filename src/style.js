@@ -10,7 +10,7 @@ text-normal
 focus-within:text-gray-800
 `;
 
-export const Input = tw.input`
+export const SearchInput = tw.input`
     bg-gray-100 
     p-3 
     pl-10 
@@ -25,7 +25,7 @@ export const Input = tw.input`
     outfocus:outline-0 focus:outline-gray-300
 `;
 
-export const Table = tw.table`
+export const TableContainer = tw.table`
     table 
     table-auto
     w-full 
@@ -33,4 +33,17 @@ export const Table = tw.table`
     my-3 
     text-base 
     font-normal
+`;
+
+export const TextInput = tw.input`
+    h-10 
+    text-thin 
+    text-sm 
+    border 
+    rounded 
+    w-full 
+    p-3 
+    mt-2 
+    outfocus:outline-0 
+    focus:outline-gray-300
 `;

@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { useEditCategoryData } from "@hooks/useCategoriesData";
 import { CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { TextInput } from "@style";
 
-function EditableRow({ data, onEditClick }) {
+function EditableRow({ data, columns, handleEditClick }) {
     const { mutate } = useEditCategoryData();
     const [editedData, setEditedData] = useState({
         id: data.id,
-        category: data.name,
-        color: data.color,
+        name: data.name || "",
+        color: data.color || "",
     });
-
+    console.log("editedData: ", editedData);
     const getInputData = (e) => {
         const newData = { ...editedData };
         newData[e.target.id] = e.target.value;
@@ -17,38 +18,28 @@ function EditableRow({ data, onEditClick }) {
     };
 
     const handleEdit = () => {
-        mutate({ id: data.id, editedData: editedData });
-        onEditClick(-1);
+        mutate({ id: editedData.id, editedData: editedData });
+        handleEditClick(-1);
     };
 
     const handleCancel = () => {
-        onEditClick(-1);
+        handleEditClick(-1);
     };
 
     return (
         <tr>
-            <td>
-                <input
-                    type="text"
-                    id="category"
-                    name="category"
-                    placeholder="카테고리 입력"
-                    className="h-10 text-thin text-sm border rounded w-full p-3 mt-2 outfocus:outline-0 focus:outline-gray-300"
-                    onChange={(e) => getInputData(e)}
-                    value={editedData.category}
-                />
-            </td>
-            <td>
-                <input
-                    type="text"
-                    id="color"
-                    name="color"
-                    placeholder="색상 입력"
-                    className="h-10 text-thin text-sm border rounded w-full p-3 mt-2 outfocus:outline-0 focus:outline-gray-300"
-                    onChange={(e) => getInputData(e)}
-                    value={editedData.color}
-                />
-            </td>
+            {columns.map((col, index) => (
+                <td key={index}>
+                    <TextInput
+                        type="text"
+                        id={col.field}
+                        name={col.header}
+                        placeholder={`${col.header} 입력`}
+                        onChange={(e) => getInputData(e)}
+                        value={editedData[col.field]}
+                    />
+                </td>
+            ))}
             <td>
                 <button
                     type="button"

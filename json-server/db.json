@@ -18,17 +18,7 @@
   },
   "category": [
     {
-      "name": "aa",
-      "color": "vvv",
-      "id": 5
-    },
-    {
-      "name": "bbbb",
-      "color": "ccc",
-      "id": 6
-    },
-    {
-      "name": "aa",
+      "name": "ddddaa",
       "color": "vvv",
       "id": 7
     },
@@ -111,6 +101,16 @@
       "name": "new",
       "color": "newcolor",
       "id": 23
+    },
+    {
+      "name": "ggg",
+      "color": "ggg",
+      "id": 24
+    },
+    {
+      "name": "dd",
+      "color": "ddddd",
+      "id": 25
     }
   ]
 }

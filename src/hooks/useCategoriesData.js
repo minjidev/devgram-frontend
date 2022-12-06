@@ -16,7 +16,7 @@ const addCategory = (data) => {
 // 카테고리 put : 수정할 내용만 보내기
 const updateCategory = ({ id, editedData }) => {
     return axios.put(`${API_URL}/${id}`, {
-        name: editedData.category,
+        name: editedData.name,
         color: editedData.color,
     });
 };

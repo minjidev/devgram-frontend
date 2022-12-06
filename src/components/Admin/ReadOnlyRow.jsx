@@ -2,18 +2,20 @@ import React from "react";
 import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { useDeletecategoryData } from "@hooks/useCategoriesData";
 
-function ReadOnlyRow({ data, handleEdit }) {
+function ReadOnlyRow({ data, columns, handleEditClick }) {
     const { mutate } = useDeletecategoryData();
     const handleDelete = (id) => {
-        console.log("data.id : ", data.id);
         mutate({ id: id });
     };
     return (
         <tr key={data.id}>
-            <td>{data.name}</td>
-            <td>{data.color}</td>
+            {/* <td>{data.name}</td>
+            <td>{data.color}</td> */}
+            {columns.map((col, index) => (
+                <td key={index}>{data[col.field]}</td>
+            ))}
             <td>
-                <button type="button" onClick={() => handleEdit(data)}>
+                <button type="button" onClick={() => handleEditClick(data)}>
                     <PencilSquareIcon className="w-5 h-5 hover:text-gray-500" />
                 </button>
             </td>
