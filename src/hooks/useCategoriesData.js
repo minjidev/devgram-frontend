@@ -22,8 +22,8 @@ const updateCategory = ({ id, editedData }) => {
 };
 
 // 카테고리 delete
-const deleteCategory = (data) => {
-    return axios.delete(`${API_URL}/${data.id}`, data);
+const deleteCategory = ({ id }) => {
+    return axios.delete(`${API_URL}/${id}`, id);
 };
 
 /* custom hooks */
@@ -35,7 +35,7 @@ export const useAddCategoryData = () => {
     const queryClient = useQueryClient();
     return useMutation(addCategory, {
         // mutation 이 성공하면 실행
-        onSuccess: (data) => {
+        onSuccess: () => {
             queryClient.invalidateQueries("categories");
             // update query cache
             // queryClient.setQueryData("categories", (prevData) => {
@@ -48,7 +48,7 @@ export const useAddCategoryData = () => {
 export const useEditCategoryData = () => {
     const queryClient = useQueryClient();
     return useMutation(updateCategory, {
-        onSuccess: (data) => {
+        onSuccess: () => {
             queryClient.invalidateQueries("categories");
         },
     });
@@ -56,7 +56,7 @@ export const useEditCategoryData = () => {
 export const useDeletecategoryData = () => {
     const queryClient = useQueryClient();
     return useMutation(deleteCategory, {
-        onSuccess: (data) => {
+        onSuccess: () => {
             queryClient.invalidateQueries("categories");
         },
     });

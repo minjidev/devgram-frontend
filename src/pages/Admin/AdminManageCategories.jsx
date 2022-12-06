@@ -1,46 +1,11 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { MagnifyingGlassIcon, PlusIcon } from "@heroicons/react/24/outline";
-import tw from "tailwind-styled-components";
 import AddModal from "@components/Admin/AddModal";
-import Pagination from "@components/Admin/Pagination";
-import { useCategoriesData } from "@hooks/useCategoriesData";
 import ReadOnlyRow from "@components/Admin/ReadOnlyRow";
 import EditableRow from "@components/Admin/EditableRow";
-
-const SearchContainer = tw.div`
-flex 
-items-center 
-justify-between 
-w-full max-w-lg 
-text-base 
-text-normal 
-focus-within:text-gray-800
-`;
-
-const Input = tw.input`
-    bg-gray-100 
-    p-3 
-    pl-10 
-    h-10 
-    text-sm
-    font-normal
-    sm:text-base 
-    rounded-xl 
-    flex-1 
-    w-full 
-    text-black
-    outfocus:outline-0 focus:outline-gray-300
-`;
-
-const Table = tw.table`
-    table 
-    table-auto
-    w-full 
-    max-w-lg 
-    my-3 
-    text-base 
-    font-normal
-`;
+import Pagination from "@components/Admin/Pagination";
+import { useCategoriesData } from "@hooks/useCategoriesData";
+import { SearchContainer, Input, Table } from "@style";
 
 function AdminManageCategories() {
     const [query, setQuery] = useState("");
@@ -52,9 +17,8 @@ function AdminManageCategories() {
     const lastIndex = currentPage * itemsPerPage;
     const firstIndex = lastIndex - itemsPerPage;
     const [editID, setEditID] = useState(null);
-    // api get
     const { data, isLoading, error } = useCategoriesData();
-    if (isLoading) return <h2>Loading...</h2>;
+    if (isLoading) return <h2>Loading...</h2>; // skeleton으로 변경
     if (error) return <h2>{error.message}</h2>;
 
     const filterComponent = (data) => {
@@ -82,7 +46,7 @@ function AdminManageCategories() {
         lastIndex
     );
 
-    const onEditClick = (data) => {
+    const handleEdit = (data) => {
         setEditID(data.id);
     };
 
@@ -128,7 +92,6 @@ function AdminManageCategories() {
                 </button>
             </SearchContainer>
             {/* 테이블 */}
-
             <form className="overflow-auto">
                 <Table>
                     <thead>
@@ -144,13 +107,13 @@ function AdminManageCategories() {
                             <Fragment key={data.id}>
                                 {editID === data.id ? (
                                     <EditableRow
-                                        editID={editID}
-                                        onEditClick={onEditClick}
+                                        data={data}
+                                        handleEdit={handleEdit}
                                     />
                                 ) : (
                                     <ReadOnlyRow
                                         data={data}
-                                        onEditClick={onEditClick}
+                                        handleEdit={handleEdit}
                                     />
                                 )}
                             </Fragment>

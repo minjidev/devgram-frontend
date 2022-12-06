@@ -5,7 +5,6 @@ import AdminManageProducts from "@pages/Admin/AdminManageProducts";
 import AdminManageReports from "@pages/Admin/AdminManageReports";
 
 function AdminDashBoard({ open }) {
-    console.log("open in dashboard: ", open);
     return (
         <div
             className={`p-3 duration-300 ml-20 ${
