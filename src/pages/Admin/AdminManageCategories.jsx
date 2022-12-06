@@ -16,7 +16,6 @@ function AdminManageCategories() {
     const [itemsPerPage, setItemsPerPage] = useState(5);
     const lastIndex = currentPage * itemsPerPage;
     const firstIndex = lastIndex - itemsPerPage;
-    // const [editID, setEditID] = useState(null);
     const { data, isLoading, error } = useCategoriesData();
     const columns = [
         { field: "name", header: "카테고리" },
@@ -27,24 +26,24 @@ function AdminManageCategories() {
     if (error) return <h2>{error.message}</h2>;
 
     const filterComponent = (data) => {
-        data = data?.filter((cat) => {
+        data = data?.filter((row) => {
             if (query === "") {
-                return cat;
+                return row;
             }
 
             if (
-                (korPattern.test(query) && cat.name.includes(query)) ||
-                cat.color.includes(query)
+                korPattern.test(query) &&
+                columns.some((col) => row[col.field].includes(query))
             ) {
-                return cat;
+                return row;
             }
 
             if (
                 (engPattern.test(query) &&
-                    cat.name.toLowerCase().includes(query.toLowerCase())) ||
-                cat.color.toLowerCase().includes(query.toLowerCase())
+                    row.name.toLowerCase().includes(query.toLowerCase())) ||
+                row.color.toLowerCase().includes(query.toLowerCase())
             ) {
-                return cat;
+                return row;
             }
         });
         return data;
