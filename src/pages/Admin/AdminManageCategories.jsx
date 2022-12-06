@@ -4,7 +4,10 @@ import AddModal from "@components/Admin/AddModal";
 import Pagination from "@components/Admin/Pagination";
 import Table from "@components/Admin/Table";
 import SearchBar from "@components/Admin/SearchBar";
-import { useCategoriesData } from "@hooks/useCategoriesData";
+import {
+    useCategoriesData,
+    useAddCategoryData,
+} from "@hooks/useCategoriesData";
 import { SearchContainer } from "@style";
 
 function AdminManageCategories() {
@@ -85,7 +88,12 @@ function AdminManageCategories() {
                 setCurrentPage={setCurrentPage}
             />
 
-            <AddModal visible={showModal} onClose={() => setShowModal(false)} />
+            <AddModal
+                visible={showModal}
+                onClose={() => setShowModal(false)}
+                columns={columns}
+                useAddData={useAddCategoryData}
+            />
         </div>
     );
 }

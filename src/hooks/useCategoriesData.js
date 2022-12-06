@@ -10,7 +10,7 @@ const fetchCategories = () => {
 
 // 카테고리 Post
 const addCategory = (data) => {
-    return axios.post(API_URL, { name: data.category, color: data.color });
+    return axios.post(API_URL, { name: data.name, color: data.color });
 };
 
 // 카테고리 put : 수정할 내용만 보내기

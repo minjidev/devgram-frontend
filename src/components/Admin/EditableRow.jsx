@@ -10,7 +10,7 @@ function EditableRow({ data, columns, handleEditClick }) {
         name: data.name || "",
         color: data.color || "",
     });
-    console.log("editedData: ", editedData);
+
     const getInputData = (e) => {
         const newData = { ...editedData };
         newData[e.target.id] = e.target.value;
@@ -33,7 +33,7 @@ function EditableRow({ data, columns, handleEditClick }) {
                     <TextInput
                         type="text"
                         id={col.field}
-                        name={col.header}
+                        name={col.field}
                         placeholder={`${col.header} 입력`}
                         onChange={(e) => getInputData(e)}
                         value={editedData[col.field]}

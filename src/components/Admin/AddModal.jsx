@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { useAddCategoryData } from "@hooks/useCategoriesData";
+import { TextInput } from "@style";
 
-function AddModal({ visible, onClose }) {
+function AddModal({ visible, onClose, columns, useAddData }) {
     const [data, setData] = useState({
-        category: "",
+        name: "",
         color: "",
     });
 
-    const { mutate } = useAddCategoryData();
+    const { mutate } = useAddData();
     if (!visible) return null;
 
     const getInputData = (e) => {
@@ -21,6 +21,10 @@ function AddModal({ visible, onClose }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         mutate(data);
+        setData({
+            name: "",
+            color: "",
+        });
     };
 
     const handleClose = (e) => {
@@ -43,10 +47,28 @@ function AddModal({ visible, onClose }) {
                 </button>
                 <div className="px-3 pt-1">
                     <h2 className="text-xl font-semibold text-gray-900 mb-5">
-                        카테고리 추가
+                        {columns[0].header} 추가
                     </h2>
                     <form className="pb-6" onSubmit={handleSubmit}>
-                        <div className="mb-4">
+                        {columns.map((col, index) => (
+                            <div key={index} className="mb-4">
+                                <label
+                                    className="block text-gray-700 text-base font-bold"
+                                    htmlFor="category"
+                                >
+                                    {col.header}
+                                </label>
+                                <TextInput
+                                    type="text"
+                                    id={col.field}
+                                    name={col.field}
+                                    placeholder={`${col.header} 입력`}
+                                    onChange={(e) => getInputData(e)}
+                                    value={data[col.field]}
+                                />
+                            </div>
+                        ))}
+                        {/* <div className="mb-4">
                             <label
                                 className="block text-gray-700 text-base font-bold"
                                 htmlFor="category"
@@ -81,7 +103,7 @@ function AddModal({ visible, onClose }) {
                                 onChange={(e) => getInputData(e)}
                                 value={data.color}
                             />
-                        </div>
+                        </div> */}
                         <div className="flex justify-end">
                             <button type="submit" className="btn">
                                 확인
