@@ -5,6 +5,7 @@ import EditableTable from "@components/Admin/EditableTable";
 import SearchBar from "@components/Admin/SearchBar";
 import { SearchContainer } from "@style";
 import AddButton from "@components/Admin/AddButton";
+import Table from "@components/Admin/Table";
 
 function AdminManage({
     title,
@@ -13,7 +14,8 @@ function AdminManage({
     useAddData,
     useEditData,
     useDeleteData,
-    IsAddButton = true,
+    hasAddButton = true,
+    isEditable = true,
 }) {
     const [query, setQuery] = useState("");
     const [showModal, setShowModal] = useState(false);
@@ -61,30 +63,37 @@ function AdminManage({
                 {/* 서치바 */}
                 <SearchBar setQuery={setQuery} />
                 {/* 추가 버튼 */}
-                {IsAddButton && <AddButton setShowModal={setShowModal} />}
+                {hasAddButton && <AddButton setShowModal={setShowModal} />}
             </SearchContainer>
             {/* 테이블 */}
-            <form className="overflow-auto">
-                <EditableTable
-                    currentData={currentData}
-                    columns={columns}
-                    useEditData={useEditData}
-                    useDeleteData={useDeleteData}
-                />
-            </form>
+            {isEditable ? (
+                <form className="overflow-auto">
+                    <EditableTable
+                        currentData={currentData}
+                        columns={columns}
+                        useEditData={useEditData}
+                        useDeleteData={useDeleteData}
+                    />
+                </form>
+            ) : (
+                <div className="overflow-auto sm:overflow-visible">
+                    <Table currentData={currentData} columns={columns} />
+                </div>
+            )}
             <Pagination
                 totalPosts={data.length}
                 itemsPerPage={itemsPerPage}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
             />
-
-            <AddModal
-                visible={showModal}
-                onClose={() => setShowModal(false)}
-                columns={columns}
-                useAddData={useAddData}
-            />
+            {hasAddButton && (
+                <AddModal
+                    visible={showModal}
+                    onClose={() => setShowModal(false)}
+                    columns={columns}
+                    useAddData={useAddData}
+                />
+            )}
         </div>
     );
 }

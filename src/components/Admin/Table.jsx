@@ -1,14 +1,8 @@
-import React, { useState, Fragment } from "react";
+import React from "react";
 import { TableContainer } from "@style";
-import ReadOnlyRow from "@components/Admin/ReadOnlyRow";
-import EditableRow from "@components/Admin/EditableRow";
+import SelectStatus from "./SelectStatus";
 
 function Table({ currentData, columns }) {
-    const [editID, setEditID] = useState(null);
-    const handleEditClick = (data) => {
-        setEditID(data.id);
-    };
-
     return (
         <TableContainer>
             <thead>
@@ -16,27 +10,19 @@ function Table({ currentData, columns }) {
                     {columns.map((col, index) => (
                         <th key={index}>{col.header}</th>
                     ))}
-                    <th>수정</th>
-                    <th>{editID > 0 ? "취소" : "삭제"}</th>
+                    <th>상태</th>
                 </tr>
             </thead>
             <tbody>
                 {currentData.map((data) => (
-                    <Fragment key={data.id}>
-                        {editID === data.id ? (
-                            <EditableRow
-                                data={data}
-                                columns={columns}
-                                handleEditClick={handleEditClick}
-                            />
-                        ) : (
-                            <ReadOnlyRow
-                                data={data}
-                                columns={columns}
-                                handleEditClick={handleEditClick}
-                            />
-                        )}
-                    </Fragment>
+                    <tr key={data.id}>
+                        {columns.map((col, index) => (
+                            <td key={index}>{data[col.field]}</td>
+                        ))}
+                        <td>
+                            <SelectStatus />
+                        </td>
+                    </tr>
                 ))}
             </tbody>
         </TableContainer>

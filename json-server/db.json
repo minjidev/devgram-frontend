@@ -1,141 +1,168 @@
 {
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  },
-  "category": [
-    {
-      "name": "ddddaa",
-      "color": "vvv",
-      "id": 7
+    "posts": [
+        {
+            "id": 1,
+            "title": "json-server",
+            "author": "typicode"
+        }
+    ],
+    "comments": [
+        {
+            "id": 1,
+            "body": "some comment",
+            "postId": 1
+        }
+    ],
+    "profile": {
+        "name": "typicode"
     },
-    {
-      "name": "aa",
-      "color": "vvv",
-      "id": 8
-    },
-    {
-      "name": "aa",
-      "color": "vvv",
-      "id": 9
-    },
-    {
-      "name": "aa",
-      "color": "vvv",
-      "id": 10
-    },
-    {
-      "name": "gf",
-      "color": "sss",
-      "id": 11
-    },
-    {
-      "name": "aa",
-      "color": "aaa",
-      "id": 12
-    },
-    {
-      "name": "aab",
-      "color": "aaab",
-      "id": 13
-    },
-    {
-      "name": "aabb",
-      "color": "aaab",
-      "id": 14
-    },
-    {
-      "name": "aabb",
-      "color": "aaab",
-      "id": 15
-    },
-    {
-      "name": "aabb",
-      "color": "aaab",
-      "id": 16
-    },
-    {
-      "name": "aabb",
-      "color": "aaab",
-      "id": 17
-    },
-    {
-      "name": "aabb",
-      "color": "aaab",
-      "id": 18
-    },
-    {
-      "name": "aabb",
-      "color": "aaab",
-      "id": 19
-    },
-    {
-      "name": "aabb",
-      "color": "aaab",
-      "id": 20
-    },
-    {
-      "name": "aabbaa",
-      "color": "aaabb",
-      "id": 21
-    },
-    {
-      "name": "dd",
-      "color": "dd",
-      "id": 22
-    },
-    {
-      "name": "new",
-      "color": "newcolor",
-      "id": 23
-    },
-    {
-      "name": "ggg",
-      "color": "ggg",
-      "id": 24
-    },
-    {
-      "name": "dd",
-      "color": "ddddd",
-      "id": 25
-    },
-    {
-      "name": "모니터",
-      "color": "갈색",
-      "id": 26
-    },
-    {
-      "name": "마우스",
-      "color": "노랑색",
-      "id": 27
-    },
-    {
-      "name": "키보드",
-      "color": "초록색",
-      "id": 28
-    },
-    {
-      "name": "ㅁㅁㅁ",
-      "color": "ㅇㅇㅇ",
-      "id": 29
-    },
-    {
-      "name": "aa",
-      "color": "aaa",
-      "id": 30
-    }
-  ]
+    "category": [
+        {
+            "name": "aab",
+            "color": "aaab",
+            "id": 13
+        },
+        {
+            "name": "aabb",
+            "color": "aaab",
+            "id": 14
+        },
+        {
+            "name": "aabb",
+            "color": "aaab",
+            "id": 15
+        },
+        {
+            "name": "aabb",
+            "color": "aaab",
+            "id": 16
+        },
+        {
+            "name": "aabb",
+            "color": "aaab",
+            "id": 17
+        },
+        {
+            "name": "aabb",
+            "color": "aaab",
+            "id": 18
+        },
+        {
+            "name": "aabb",
+            "color": "aaab",
+            "id": 19
+        },
+        {
+            "name": "aabb",
+            "color": "aaab",
+            "id": 20
+        },
+        {
+            "name": "aabbaa",
+            "color": "aaabb",
+            "id": 21
+        },
+        {
+            "name": "dd",
+            "color": "dd",
+            "id": 22
+        },
+        {
+            "name": "new",
+            "color": "newcolor",
+            "id": 23
+        },
+        {
+            "name": "ggg",
+            "color": "ggg",
+            "id": 24
+        },
+        {
+            "name": "dd",
+            "color": "ddddd",
+            "id": 25
+        },
+        {
+            "name": "모니터",
+            "color": "갈색",
+            "id": 26
+        },
+        {
+            "name": "키보드",
+            "color": "초록색",
+            "id": 28
+        },
+        {
+            "name": "dd",
+            "color": "dd",
+            "id": 29
+        },
+        {
+            "name": "aa",
+            "color": "aa",
+            "id": 30
+        }
+    ],
+    "product": [
+        {
+            "id": 1,
+            "title": "상품 이름",
+            "content": "상품 설명상품 설명상품 설명상품 설명상품 설명상품 설명상품",
+            "hits": 0,
+            "rating": 0,
+            "like_count": 0,
+            "price": 12000
+        },
+        {
+            "id": 2,
+            "title": "asdfasdf",
+            "content": "qweruiopqweruiopqweruiopqweruiopqweruiopqweruiopqweruiop",
+            "hits": 0,
+            "rating": 0,
+            "like_count": 0,
+            "price": 13000
+        }
+    ],
+    "report": [
+        {
+            "id": 1,
+            "comment": "blahblahblah",
+            "created_by": "someone",
+            "content": "IdontlikeitIdontlikeitIdontlikeitIdontlikeitIdontlikeitIdontlikeit",
+            "created_at": "2022/10/22",
+            "status": "등록 상태"
+        },
+        {
+            "id": 2,
+            "comment": "blahblahblah",
+            "created_by": "someone",
+            "content": "IdontlikeitIdontlikeitIdontlikeitIdontlikeitIdontlikeitIdontlikeit",
+            "created_at": "2022/10/22",
+            "status": "등록 상태"
+        },
+        {
+            "id": 3,
+            "comment": "blahblahblah",
+            "created_by": "someone",
+            "content": "IdontlikeitIdontlikeitIdontlikeitIdontlikeitIdontlikeitIdontlikeit",
+            "created_at": "2022/10/22",
+            "status": "등록 상태"
+        },
+        {
+            "id": 4,
+            "comment": "blahblahblah",
+            "created_by": "someone",
+            "content": "IdontlikeitIdontlikeitIdontlikeitIdontlikeitIdontlikeitIdontlikeit",
+            "created_at": "2022/10/22",
+            "status": "등록 상태"
+        },
+        {
+            "id": 5,
+            "comment": "blahblahblah",
+            "created_by": "someone",
+            "content": "IdontlikeitIdontlikeitIdontlikeitIdontlikeitIdontlikeitIdontlikeit",
+            "created_at": "2022/10/22",
+            "status": "등록 상태"
+        }
+    ]
 }
