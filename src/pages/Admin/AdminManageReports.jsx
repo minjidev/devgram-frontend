@@ -9,7 +9,6 @@ function AdminManageReports(props) {
         { field: "created_by", header: "신고자", initialVal: "" },
         { field: "content", header: "신고 내용", initialVal: "" },
         { field: "created_at", header: "신고 일자", initialVal: "" },
-        { field: "status", header: "상태", initialVal: "" },
     ];
     return (
         <AdminManage
