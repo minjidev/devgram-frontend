@@ -1,16 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
-import { useDeletecategoryData } from "@hooks/useCategoriesData";
+import SelectStatus from "./SelectStatus";
 
-function ReadOnlyRow({ data, columns, handleEditClick }) {
-    const { mutate } = useDeletecategoryData();
+function ReadOnlyRow({ data, columns, handleEditClick, useDeleteData }) {
+    const { mutate } = useDeleteData();
     const handleDelete = (id) => {
         mutate({ id: id });
     };
+
     return (
-        <tr key={data.id}>
-            {/* <td>{data.name}</td>
-            <td>{data.color}</td> */}
+        <tr>
             {columns.map((col, index) => (
                 <td key={index}>{data[col.field]}</td>
             ))}

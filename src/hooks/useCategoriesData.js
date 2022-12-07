@@ -1,34 +1,67 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
-const API_URL = "http://localhost:3000/category";
+const API_URL_CATEGORY = "http://localhost:3000/category";
+const API_URL_PRODUCT = "http://localhost:3000/product";
+const API_URL_REPORT = "http://localhost:3000/report";
 
-// 카테고리 Get
-const fetchCategories = () => {
+/** 카테고리 추가,수정,삭제 **/
+const fetchData = (API_URL) => {
     return axios.get(API_URL).then((res) => res.data);
 };
 
-// 카테고리 Post
-const addCategory = (data) => {
-    return axios.post(API_URL, { name: data.name, color: data.color });
+const addCategory = ({ data }) => {
+    return axios.post(API_URL_CATEGORY, { name: data.name, color: data.color });
 };
 
-// 카테고리 put : 수정할 내용만 보내기
 const updateCategory = ({ id, editedData }) => {
-    return axios.put(`${API_URL}/${id}`, {
+    return axios.put(`${API_URL_CATEGORY}/${id}`, {
         name: editedData.name,
         color: editedData.color,
     });
 };
 
-// 카테고리 delete
 const deleteCategory = ({ id }) => {
-    return axios.delete(`${API_URL}/${id}`, id);
+    return axios.delete(`${API_URL_CATEGORY}/${id}`, id);
+};
+
+/** 상품 추가,수정,삭제 **/
+const addProduct = ({ data }) => {
+    return axios.post(API_URL_PRODUCT, {
+        title: data.title,
+        content: data.content,
+        hits: data.hits,
+        rating: data.rating,
+        like_count: data.like_count,
+        price: data.price,
+    });
+};
+
+const updateProduct = ({ id, editedData }) => {
+    return axios.put(`${API_URL_PRODUCT}/${id}`, {
+        title: editedData.title,
+        content: editedData.content,
+        hits: editedData.hits,
+        rating: editedData.rating,
+        like_count: editedData.like_count,
+        price: editedData.price,
+    });
+};
+
+const deleteProduct = ({ id }) => {
+    return axios.delete(`${API_URL_PRODUCT}/${id}`, id);
+};
+
+/** 신고 수정 **/
+const updateReportedComment = ({ id, status }) => {
+    return axios.put(`${API_URL_CATEGORY}/${id}`, {
+        status: status,
+    });
 };
 
 /* custom hooks */
-export const useCategoriesData = () => {
-    return useQuery(["categories"], fetchCategories);
+export const useCategoriesData = (API_URL) => {
+    return useQuery(["categories"], () => fetchData(API_URL));
 };
 
 export const useAddCategoryData = () => {
@@ -58,6 +91,49 @@ export const useDeletecategoryData = () => {
     return useMutation(deleteCategory, {
         onSuccess: () => {
             queryClient.invalidateQueries("categories");
+        },
+    });
+};
+
+export const useProductsData = (API_URL) => {
+    return useQuery(["products"], () => fetchData(API_URL));
+};
+
+export const useAddProductData = () => {
+    const queryClient = useQueryClient();
+    return useMutation(addProduct, {
+        onSuccess: () => {
+            queryClient.invalidateQueries("products");
+        },
+    });
+};
+
+export const useEditProductData = () => {
+    const queryClient = useQueryClient();
+    return useMutation(updateProduct, {
+        onSuccess: () => {
+            queryClient.invalidateQueries("products");
+        },
+    });
+};
+export const useDeleteProductData = () => {
+    const queryClient = useQueryClient();
+    return useMutation(deleteProduct, {
+        onSuccess: () => {
+            queryClient.invalidateQueries("products");
+        },
+    });
+};
+
+export const useReportedCommentsData = (API_URL) => {
+    return useQuery(["reported-comments"], () => fetchData(API_URL));
+};
+
+export const useEditReportedCommentsData = () => {
+    const queryClient = useQueryClient();
+    return useMutation(updateReportedComment, {
+        onSuccess: () => {
+            queryClient.invalidateQueries("reported-comments");
         },
     });
 };

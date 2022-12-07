@@ -13,3 +13,6 @@ body {
     position: relative;
     z-index: 1;
 }
+.table td {
+    min-width: 100px;
+}

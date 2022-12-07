@@ -28,6 +28,7 @@ export const SearchInput = tw.input`
 export const TableContainer = tw.table`
     table 
     table-auto
+    whitespace-wrap
     w-full 
     max-w-lg 
     my-3 
@@ -41,6 +42,7 @@ export const TextInput = tw.input`
     text-sm 
     border 
     rounded 
+    min-w-[100px]
     w-full 
     p-3 
     mt-2 
