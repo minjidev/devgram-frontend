@@ -54,7 +54,7 @@ const deleteProduct = ({ id }) => {
 
 /** 신고 수정 **/
 const updateReportedComment = ({ id, status }) => {
-    return axios.put(`${API_URL_CATEGORY}/${id}`, {
+    return axios.patch(`${API_URL_REPORT}/${id}`, {
         status: status,
     });
 };

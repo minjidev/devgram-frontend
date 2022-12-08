@@ -6,6 +6,7 @@ import SearchBar from "@components/Admin/SearchBar";
 import { SearchContainer } from "@style";
 import AddButton from "@components/Admin/AddButton";
 import Table from "@components/Admin/Table";
+import Tabs from "@components/Admin/Tabs";
 
 function AdminManage({
     title,
@@ -44,9 +45,10 @@ function AdminManage({
             }
 
             if (
-                (engPattern.test(query) &&
-                    row.name.toLowerCase().includes(query.toLowerCase())) ||
-                row.color.toLowerCase().includes(query.toLowerCase())
+                engPattern.test(query) &&
+                columns.some((col) =>
+                    row[col.field].toLowerCase().includes(query.toLowerCase())
+                )
             ) {
                 return row;
             }
@@ -59,6 +61,7 @@ function AdminManage({
     return (
         <div>
             <h1 className="text-3xl font-bold mb-3">{title} 관리</h1>
+            {!hasAddButton && <Tabs />}
             <SearchContainer>
                 {/* 서치바 */}
                 <SearchBar setQuery={setQuery} />

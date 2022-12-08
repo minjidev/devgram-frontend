@@ -1,6 +1,7 @@
 import React from "react";
 import AdminManage from "@components/Admin/AdminManage";
 import { useReportedCommentsData } from "@hooks/useCategoriesData";
+import { Link, NavLink } from "react-router-dom";
 
 function AdminManageReports(props) {
     const API_URL_REPORT = "http://localhost:3000/report";
@@ -11,13 +12,15 @@ function AdminManageReports(props) {
         { field: "created_at", header: "신고 일자", initialVal: "" },
     ];
     return (
-        <AdminManage
-            title={"신고"}
-            columns={reportColumns}
-            useData={() => useReportedCommentsData(API_URL_REPORT)}
-            hasAddButton={false}
-            isEditable={false}
-        />
+        <>
+            <AdminManage
+                title={"신고"}
+                columns={reportColumns}
+                useData={() => useReportedCommentsData(API_URL_REPORT)}
+                hasAddButton={false}
+                isEditable={false}
+            />
+        </>
     );
 }
 

@@ -1,10 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import { useEditReportedCommentsData } from "@hooks/useCategoriesData";
 
-function SelectStatus() {
+function SelectStatus({ currentStatus, id }) {
     const [selected, setSelected] = useState("");
+
     const [openOptions, setOpenOptions] = useState(false);
     const status = ["등록", "신고", "삭제"];
+    const { mutate } = useEditReportedCommentsData();
+    const isInitialMount = useRef(true);
+    useEffect(() => {
+        if (isInitialMount.current) {
+            isInitialMount.current = false;
+        } else {
+            mutate({ id: id, status: selected });
+        }
+    }, [selected]);
+
     return (
         <>
             <div className="max-w-[150px] font-medium h-10 p-2">
@@ -14,7 +26,7 @@ function SelectStatus() {
                     }`}
                     onClick={() => setOpenOptions(!openOptions)}
                 >
-                    {selected ? selected : "상태 선택"}
+                    {selected ? selected : currentStatus}
                     <ChevronDownIcon className="w-4 h-4 mx-2" />
                 </div>
                 <ul

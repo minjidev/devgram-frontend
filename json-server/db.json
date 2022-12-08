@@ -126,19 +126,19 @@
     "report": [
         {
             "id": 1,
-            "comment": "blahblahblah",
+            "comment": "blahblahbzzzz",
             "created_by": "someone",
             "content": "IdontlikeitIdontlikeitIdontlikeitIdontlikeitIdontlikeitIdontlikeit",
             "created_at": "2022/10/22",
-            "status": "등록 상태"
+            "status": "신고"
         },
         {
             "id": 2,
-            "comment": "blahblahblah",
+            "comment": "blahblahbzzzz",
             "created_by": "someone",
             "content": "IdontlikeitIdontlikeitIdontlikeitIdontlikeitIdontlikeitIdontlikeit",
             "created_at": "2022/10/22",
-            "status": "등록 상태"
+            "status": "신고"
         },
         {
             "id": 3,
@@ -146,23 +146,23 @@
             "created_by": "someone",
             "content": "IdontlikeitIdontlikeitIdontlikeitIdontlikeitIdontlikeitIdontlikeit",
             "created_at": "2022/10/22",
-            "status": "등록 상태"
+            "status": "신고"
         },
         {
             "id": 4,
             "comment": "blahblahblah",
-            "created_by": "someone",
+            "created_by": "someone1",
             "content": "IdontlikeitIdontlikeitIdontlikeitIdontlikeitIdontlikeitIdontlikeit",
             "created_at": "2022/10/22",
-            "status": "등록 상태"
+            "status": ""
         },
         {
             "id": 5,
             "comment": "blahblahblah",
             "created_by": "someone",
-            "content": "IdontlikeitIdontlikeitIdontlikeitIdontlikeitIdontlikeitIdontlikeit",
+            "content": "IdontlikeitIdontlikeitIdontlikeitIdontlikeitIdontlikeitIdontlikeityou",
             "created_at": "2022/10/22",
-            "status": "등록 상태"
+            "status": ""
         }
     ]
 }

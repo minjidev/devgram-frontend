@@ -20,7 +20,10 @@ function Table({ currentData, columns }) {
                             <td key={index}>{data[col.field]}</td>
                         ))}
                         <td>
-                            <SelectStatus />
+                            <SelectStatus
+                                currentStatus={data.status}
+                                id={data.id}
+                            />
                         </td>
                     </tr>
                 ))}

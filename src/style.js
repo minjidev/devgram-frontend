@@ -49,3 +49,13 @@ export const TextInput = tw.input`
     outfocus:outline-0 
     focus:outline-gray-300
 `;
+
+export const TabButton = tw.button`
+    inline-block 
+    px-4 
+    py-3
+    text-gray-700
+    rounded-t
+    hover:text-gray-600 
+    hover:bg-gray-100
+`;
