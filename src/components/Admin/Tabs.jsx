@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { TabButton } from "@style";
 
-function Tabs(props) {
-    const [toggledTab, setToggledTab] = useState(1);
+function Tabs({ toggledTab, setToggledTab }) {
+    // const [toggledTab, setToggledTab] = useState(1);
     return (
         <ul className="flex flex-wrap text-sm font-medium text-center items-center max-h-12 mb-6 text-gray-500 border-b border-gray-200">
             <li>

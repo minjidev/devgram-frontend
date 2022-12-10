@@ -4,13 +4,9 @@ import { CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { TextInput } from "@style";
 
 function EditableRow({ data, columns, handleEditClick, useEditData }) {
-    console.log("fn: ", useEditData);
     const { mutate } = useEditData();
     const init = {};
     const [editedData, setEditedData] = useState(() => {
-        // id: data.id,
-        // name: data.name || "",
-        // color: data.color || "",
         columns.map((col) => (init[col.field] = data[col.field]));
         return init;
     });

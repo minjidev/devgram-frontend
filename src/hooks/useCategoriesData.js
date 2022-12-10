@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
 const API_URL_CATEGORY = "http://localhost:3000/category";
 const API_URL_PRODUCT = "http://localhost:3000/product";
 const API_URL_REPORT = "http://localhost:3000/report";
+const API_URL_COMMENTS = "http://localhost:3000/comments";
 
 /** 카테고리 추가,수정,삭제 **/
 const fetchData = (API_URL) => {
@@ -136,4 +138,12 @@ export const useEditReportedCommentsData = () => {
             queryClient.invalidateQueries("reported-comments");
         },
     });
+};
+
+export const useReportedCommentsDataDetail = (API_URL) => {
+    return useQuery(["reported-comments-detail"], () => fetchData(API_URL));
+};
+
+export const useReportedReivewsData = (API_URL) => {
+    return useQuery(["reported-reviews-detail"], () => fetchData(API_URL));
 };

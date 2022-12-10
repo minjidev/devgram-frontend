@@ -1,25 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import AdminManage from "@components/Admin/AdminManage";
-import { useReportedCommentsData } from "@hooks/useCategoriesData";
-import { Link, NavLink } from "react-router-dom";
+import {
+    useReportedCommentsData,
+    useReportedReivewsData,
+} from "@hooks/useCategoriesData";
 
 function AdminManageReports(props) {
-    const API_URL_REPORT = "http://localhost:3000/report";
-    const reportColumns = [
+    const [toggledTab, setToggledTab] = useState(1);
+    const API_URL_REPORT_COMMENTS = "http://localhost:3000/report";
+    const API_URL_REPORT_REVIEWS = "http://localhost:3000/reportreivews";
+    const reportCommentsColumns = [
+        { field: "id", header: "번호", initialVal: 0 },
         { field: "comment", header: "댓글 내용", initialVal: "" },
-        { field: "created_by", header: "신고자", initialVal: "" },
-        { field: "content", header: "신고 내용", initialVal: "" },
-        { field: "created_at", header: "신고 일자", initialVal: "" },
+        { field: "created_by", header: "댓글 작성자", initialVal: "" },
+        { field: "created_at", header: "댓글 작성일", initialVal: "" },
     ];
+    const reportReviewsColumns = [
+        { field: "id", header: "번호", initialVal: 0 },
+        { field: "review", header: "리뷰 내용", initialVal: "" },
+        { field: "created_by", header: "리뷰 작성자", initialVal: "" },
+        { field: "created_at", header: "리뷰 작성일", initialVal: "" },
+    ];
+
     return (
         <>
-            <AdminManage
-                title={"신고"}
-                columns={reportColumns}
-                useData={() => useReportedCommentsData(API_URL_REPORT)}
-                hasAddButton={false}
-                isEditable={false}
-            />
+            {toggledTab === 1 ? (
+                <AdminManage
+                    title={"신고"}
+                    columns={reportReviewsColumns}
+                    useData={() =>
+                        useReportedReivewsData(API_URL_REPORT_REVIEWS)
+                    }
+                    hasAddButton={false}
+                    isEditable={false}
+                    toggledTab={toggledTab}
+                    setToggledTab={setToggledTab}
+                />
+            ) : (
+                <AdminManage
+                    title={"신고"}
+                    columns={reportCommentsColumns}
+                    useData={() =>
+                        useReportedCommentsData(API_URL_REPORT_COMMENTS)
+                    }
+                    hasAddButton={false}
+                    isEditable={false}
+                    toggledTab={toggledTab}
+                    setToggledTab={setToggledTab}
+                />
+            )}
         </>
     );
 }

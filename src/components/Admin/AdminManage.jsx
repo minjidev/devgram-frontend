@@ -17,6 +17,8 @@ function AdminManage({
     useDeleteData,
     hasAddButton = true,
     isEditable = true,
+    toggledTab,
+    setToggledTab,
 }) {
     const [query, setQuery] = useState("");
     const [showModal, setShowModal] = useState(false);
@@ -27,6 +29,7 @@ function AdminManage({
     const lastIndex = currentPage * itemsPerPage;
     const firstIndex = lastIndex - itemsPerPage;
     const { data, isLoading, error } = useData();
+    // const [toggledTab, setToggledTab] = useState(1);
 
     if (isLoading) return <h2>Loading...</h2>; // skeleton으로 변경
     if (error) return <h2>{error.message}</h2>;
@@ -61,7 +64,9 @@ function AdminManage({
     return (
         <div>
             <h1 className="text-3xl font-bold mb-3">{title} 관리</h1>
-            {!hasAddButton && <Tabs />}
+            {!hasAddButton && (
+                <Tabs toggledTab={toggledTab} setToggledTab={setToggledTab} />
+            )}
             <SearchContainer>
                 {/* 서치바 */}
                 <SearchBar setQuery={setQuery} />
@@ -80,9 +85,14 @@ function AdminManage({
                 </form>
             ) : (
                 <div className="overflow-auto sm:overflow-visible">
-                    <Table currentData={currentData} columns={columns} />
+                    <Table
+                        currentData={currentData}
+                        columns={columns}
+                        toggledTab={toggledTab}
+                    />
                 </div>
             )}
+            {console.log("toggledtab in AdminManage: ", toggledTab)}
             <Pagination
                 totalPosts={data.length}
                 itemsPerPage={itemsPerPage}

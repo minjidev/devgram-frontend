@@ -59,3 +59,15 @@ export const TabButton = tw.button`
     hover:text-gray-600 
     hover:bg-gray-100
 `;
+
+export const ModalContainer = tw.div`
+    fixed 
+    inset-0 
+    flex 
+    justify-center 
+    backdrop-blur-xs 
+    items-center 
+    bg-black 
+    bg-opacity-25 
+    z-50
+`;

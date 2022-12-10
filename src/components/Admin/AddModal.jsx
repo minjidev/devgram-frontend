@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { TextInput } from "@style";
+import { ModalContainer } from "@style";
 
 function AddModal({ visible, onClose, columns, useAddData }) {
     const init = {};
@@ -21,20 +22,12 @@ function AddModal({ visible, onClose, columns, useAddData }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("before submit: ", data);
         mutate({ data: data });
         isSuccess &&
-            setData(
-                // Object.keys(data).map((key, index) => {
-                //     console.log("key, index: ", key, index);
-                //     console.log("columns[index]: ", columns[index].initialVal);
-                //     data[key] = columns[index].initialVal;
-                // })
-                (prev) => {
-                    columns.map((col) => (prev[col.field] = col.initialVal));
-                    return data;
-                }
-            );
+            setData((prev) => {
+                columns.map((col) => (prev[col.field] = col.initialVal));
+                return data;
+            });
     };
 
     const handleClose = (e) => {
@@ -42,12 +35,7 @@ function AddModal({ visible, onClose, columns, useAddData }) {
     };
 
     return (
-        <div
-            id="wrapper"
-            className="fixed inset-0 flex justify-center 
-        backdrop-blur-xs items-center bg-black bg-opacity-25 z-50"
-            onClick={handleClose}
-        >
+        <ModalContainer id="wrapper" onClick={handleClose}>
             <div className="w-5/6 sm:max-w-sm min-h-1/4 bg-white p-2 rounded-[5px] flex flex-col">
                 <button
                     className="place-self-end p-1"
@@ -87,7 +75,7 @@ function AddModal({ visible, onClose, columns, useAddData }) {
                     </form>
                 </div>
             </div>
-        </div>
+        </ModalContainer>
     );
 }
 
