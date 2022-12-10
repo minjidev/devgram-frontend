@@ -5,7 +5,7 @@ import axios from "axios";
 const API_URL_CATEGORY = "http://localhost:3000/category";
 const API_URL_PRODUCT = "http://localhost:3000/product";
 const API_URL_REPORT = "http://localhost:3000/report";
-const API_URL_COMMENTS = "http://localhost:3000/comments";
+const API_URL_REPORT_REVIEWS = "http://localhost:3000/reportreivews";
 
 /** 카테고리 추가,수정,삭제 **/
 const fetchData = (API_URL) => {
@@ -57,6 +57,11 @@ const deleteProduct = ({ id }) => {
 /** 신고 수정 **/
 const updateReportedComment = ({ id, status }) => {
     return axios.patch(`${API_URL_REPORT}/${id}`, {
+        status: status,
+    });
+};
+const updateReportedReviews = ({ id, status }) => {
+    return axios.patch(`${API_URL_REPORT_REVIEWS}/${id}`, {
         status: status,
     });
 };
@@ -146,4 +151,13 @@ export const useReportedCommentsDataDetail = (API_URL) => {
 
 export const useReportedReivewsData = (API_URL) => {
     return useQuery(["reported-reviews-detail"], () => fetchData(API_URL));
+};
+
+export const useEditReportedReviewsData = () => {
+    const queryClient = useQueryClient();
+    return useMutation(updateReportedReviews, {
+        onSuccess: () => {
+            queryClient.invalidateQueries("reported-comments");
+        },
+    });
 };

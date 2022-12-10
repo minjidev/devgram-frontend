@@ -1,13 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
-import { useEditReportedCommentsData } from "@hooks/useCategoriesData";
+import {
+    useEditReportedCommentsData,
+    useEditReportedReviewsData,
+} from "@hooks/useCategoriesData";
 
-function SelectStatus({ currentStatus, id }) {
+function SelectStatus({ currentStatus, id, toggledTab }) {
     const [selected, setSelected] = useState("");
 
     const [openOptions, setOpenOptions] = useState(false);
     const status = ["등록", "신고", "삭제"];
-    const { mutate } = useEditReportedCommentsData();
+
+    const { mutate } =
+        toggledTab === 1
+            ? useEditReportedReviewsData()
+            : useEditReportedCommentsData();
     const isInitialMount = useRef(true);
     useEffect(() => {
         if (isInitialMount.current) {

@@ -42,6 +42,7 @@ function Table({ currentData, columns, toggledTab }) {
                                 <SelectStatus
                                     currentStatus={data.status}
                                     id={data.id}
+                                    toggledTab={toggledTab}
                                 />
                             </td>
                             <td>

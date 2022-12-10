@@ -29,7 +29,6 @@ function AdminManage({
     const lastIndex = currentPage * itemsPerPage;
     const firstIndex = lastIndex - itemsPerPage;
     const { data, isLoading, error } = useData();
-    // const [toggledTab, setToggledTab] = useState(1);
 
     if (isLoading) return <h2>Loading...</h2>; // skeleton으로 변경
     if (error) return <h2>{error.message}</h2>;
