@@ -1,29 +1,28 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useProductsCarouselData } from "@hooks/useAdminData";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
-import tw from "tailwind-styled-components";
 
-const Container = tw(Slider)`
-    .slick-list {
-        p-0
-    }
-`;
-
-function PrevBtn() {
+function PrevBtn({ slickPrev }) {
     return (
-        <button className="slick-prev slick-arrow absolute top-1/2 -translate-y-2/4 -left-8 px-10">
-            <ChevronLeftIcon className="w-10 h-10" />
+        <button
+            className="slick-prev slick-arrow absolute top-1/2 -translate-y-2/4 -left-8 px-10"
+            onClick={slickPrev}
+        >
+            <ChevronLeftIcon className="w-6 h-6 sm:w-10 sm:h-10" />
         </button>
     );
 }
 
-function NextBtn() {
+function NextBtn({ slickNext }) {
     return (
-        <button className="slick-next slick-arrow absolute bottom-1/2 translate-y-2/4 -right-8 px-10">
-            <ChevronRightIcon className="w-10 h-10" />
+        <button
+            className="slick-next slick-arrow absolute bottom-1/2 translate-y-2/4 -right-8 px-10"
+            onClick={slickNext}
+        >
+            <ChevronRightIcon className="w-6 h-6 sm:w-10 sm:h-10" />
         </button>
     );
 }
@@ -32,6 +31,13 @@ function CarouselRanking() {
     const API_URL_CAROUSEL = "http://localhost:3000/best";
     const { data, isLoading, error } =
         useProductsCarouselData(API_URL_CAROUSEL);
+    const slider = useRef(null);
+    const next = () => {
+        slider.current.slickNext();
+    };
+    const previous = () => {
+        slider.current.slickPrev();
+    };
 
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;
@@ -46,39 +52,35 @@ function CarouselRanking() {
         autoplay: true,
         autoplaySpeed: 5000,
         swipeToSlide: true,
-        arrows: true,
-        className: "slider",
-        centerMode: true,
+        arrows: false,
         touchMove: true,
-        prevArrow: <PrevBtn />,
-        nextArrow: <NextBtn />,
     };
+
     return (
-        <div>
-            <Slider {...settings}>
+        <div className="relative">
+            <PrevBtn slickPrev={previous} />
+            <Slider ref={slider} {...settings}>
                 {data.map((d) => (
-                    <div
-                        key={d.id}
-                        className="flex justify-center items-center overflow-hidden"
-                    >
+                    <div key={d.id} className="h-[80vw] md:h-[30vw]">
                         <img
                             src={d.img_url}
                             alt={d.name}
-                            className="relative opacity-80 min-w-full min-h-full shrink-0"
+                            className="relative opacity-80 min-w-full min-h-full object-cover"
                         />
-                        <h3 className="absolute top-20 p-10">
-                            <span className="text-4xl text-black font-bold">
+                        <div className="px-20">
+                            <h3 className="absolute top-28 md:top-24 text-2xl sm:text-4xl text-black font-bold">
                                 {d.name}
-                            </span>
-                        </h3>
-                        <h4 className="absolute top-44 px-10">
-                            <span className="text-xl text-black">
-                                {d.description}
-                            </span>
-                        </h4>
+                            </h3>
+                            <div className="w-1/2 h-[80vw] mr-auto">
+                                <h4 className="absolute top-40 md:top-40 text-lg sm:text-xl text-black break-all">
+                                    {d.description}
+                                </h4>
+                            </div>
+                        </div>
                     </div>
                 ))}
             </Slider>
+            <NextBtn slickNext={next} />
         </div>
     );
 }
