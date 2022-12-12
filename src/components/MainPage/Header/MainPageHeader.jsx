@@ -3,6 +3,7 @@ import { useCategoriesData } from "@hooks/useAdminData";
 import Navigation from "./Navigation";
 import Drawer from "./Drawer";
 import NavigationSub from "./NavigationSub";
+import SimpleSlider from "../Main/CarouselRanking";
 
 function MainPageHeader() {
     const API_URL_CAT = "http://localhost:3000/categories";
