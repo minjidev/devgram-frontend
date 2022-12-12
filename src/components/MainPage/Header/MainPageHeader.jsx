@@ -3,6 +3,7 @@ import { useCategoriesData } from "@hooks/useAdminData";
 import Navigation from "./Navigation";
 import Drawer from "./Drawer";
 import NavigationSub from "./NavigationSub";
+import CarouselRanking from "@components/MainPage/Main/CarouselRanking";
 
 function MainPageHeader() {
     const API_URL_CAT = "http://localhost:3000/categories";
@@ -19,6 +20,7 @@ function MainPageHeader() {
                 {/* 메인 콘텐츠 */}
                 <div className="w-full">
                     <NavigationSub />
+                    <CarouselRanking />
                 </div>
             </div>
             <Drawer data={data} />

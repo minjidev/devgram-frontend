@@ -24,7 +24,7 @@ function App() {
                         {/* <Route path="/social/feed" element={<FeedPage />} /> */}
                         {/* <Route path="/login" element={<LogIn />} /> */}
 
-                        {/* <Route path="/my" element={<MyPage />} /> */}
+                        {/* <Route path="/my" element={<Mypage />} /> */}
                         <Route path="/search" element={<Search />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>

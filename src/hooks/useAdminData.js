@@ -161,3 +161,8 @@ export const useEditReportedReviewsData = () => {
         },
     });
 };
+
+/** 캐러셀  **/
+export const useProductsCarouselData = (API_URL) => {
+    return useQuery(["products-carousel"], () => fetchData(API_URL));
+};
