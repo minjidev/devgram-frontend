@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 
-import MypageSubFeed from '@components/mypage/SubFeed'
-import MypageProfile from '@components/mypage/Profile'
-import MypageTitle from '@components/mypage/Title'
+import MypageSubFeed from '@components/mypage/MyPageSubFeed'
+import MypageProfile from '@components/mypage/MyPageProfile'
+import MypageTitle from '@components/mypage/MyPageTitle'
 
 export default function MypageUserFeed() {
   const [feeds, setFeeds] = useState([]) 

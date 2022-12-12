@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import { Link, Route, Routes, Router } from "react-router-dom";
 
-import MypageProfile from '@components/mypage/Profile'
-import MypageTitle from '@components/mypage/Title'
-import MypageGoods from '@components/mypage/Goods'
-import MainReview from '@components/mypage/MainReview'
-import MypageFeed from '@components/mypage/SubFeed'
+import MypageProfile from '@components/mypage/MyPageProfile'
+import MypageTitle from '@components/mypage/MyPageTitle'
+import MypageGoods from '@components/mypage/MyPageGoods'
+import MainReview from '@components/mypage/MyPageMainReview'
+import MypageFeed from '@components/mypage/MyPageSubFeed'
 
 import bird from '@image/bird.jpg'
 import styles from '../../index.css'

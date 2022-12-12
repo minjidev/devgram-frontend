@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import MypageReview from '@components/mypage/Review'
-import MypageTitle from '@components/mypage/Title'
+import MypageReview from '@components/mypage/MyPageReview'
+import MypageTitle from '@components/mypage/MyPageTitle'
 
 import Load from '@image/Load.png'
 

@@ -2,9 +2,9 @@ import { useRef, useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
 
 import tw from "tailwind-styled-components"
-import MypageSubFeed from '@components/mypage/SubFeed'
+import MypageSubFeed from '@components/mypage/MyPageSubFeed'
 import Load from '@image/Load.png'
-import MypageTitle from '@components/mypage/Title';
+import MypageTitle from '@components/mypage/MyPageTitle';
 
 export default function MypageMyFeed() {
   const [feed, setFeed] = useState([])

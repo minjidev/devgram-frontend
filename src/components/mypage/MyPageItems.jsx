@@ -1,4 +1,4 @@
-import Title from "@components/mypage/Title"
+import Title from "@components/mypage/MyPageTitle"
 
 /* 테스트용 컴포넌트 (나중 제거)*/
 export default function MypageItems({title, count, button = null}) {
