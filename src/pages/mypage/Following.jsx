@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import MypageFollow from '@components/mypage/Mypage_Follow'
-import MypageProfile from '@components/mypage/Mypage_profile'
+import MypageFollow from '@components/mypage/Follow'
+import MypageProfile from '@components/mypage/Profile'
 
 import Load from '@image/Load.png'
 

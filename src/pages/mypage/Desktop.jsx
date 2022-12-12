@@ -1,4 +1,4 @@
-function MypageDesktop() {
+export default function MypageDesktop() {
   return (
     <div className='flex justify-between w-10/12 m-auto mt-12 text-black'>
       <div className='w-3/12'>

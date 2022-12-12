@@ -2,9 +2,9 @@ import { useRef, useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
 
 import tw from "tailwind-styled-components"
-import MypageSubFeed from '@components/mypage/Mypage_SubFeed'
+import MypageSubFeed from '@components/mypage/SubFeed'
 import Load from '@image/Load.png'
-import MypageTitle from '@components/mypage/Mypage_title';
+import MypageTitle from '@components/mypage/Title';
 
 export default function MypageMyFeed() {
   const [feed, setFeed] = useState([])
@@ -24,7 +24,6 @@ export default function MypageMyFeed() {
   `
 
   let deleteArr = []
-
   const button1 = <Btn onClick={handlerBtn}>선택하기</Btn>
   const button2 = [
   <Btn onClick={handlerDeleteBtn} className="mr-3">삭제</Btn>,
@@ -96,14 +95,11 @@ export default function MypageMyFeed() {
             deleteArr = deleteArr.filter((element) => element !== liFeeds[i].id)
             liFeeds[i].classList.remove('border')
             liFeeds[i].classList.remove('border-sky-500')
-            console.log(deleteArr, "deleteArr2")
           } else {
             liFeeds[i].classList.add('border')
             liFeeds[i].classList.add('border-sky-500')
             deleteArr.push(liFeeds[i].id)
-            console.log(deleteArr, "deleteArr")
           }
-          console.log(liFeeds[i], "liFeeds[i]")
         })
       }
     }, [feed, btnClick])
@@ -112,13 +108,12 @@ export default function MypageMyFeed() {
     function handlerDeleteBtn() {
       console.log("12")
     for (let i = 0; i < deleteArr.length; i++) {
-      fetch(`http://localhost:3000/board/${deleteArr[i]}`, {
+      document.getElementById(deleteArr[i]).remove()
+      fetch(`http://localhost:3001/board/${deleteArr[i]}`, {
       method: "DELETE",
     })
       .then((response) => response.json())
       .then((json) => console.log(json))
-
-      document.getElementById(deleteArr[i]).remove();
     }
       handlerBtn()
     }
@@ -136,12 +131,12 @@ export default function MypageMyFeed() {
         </div>
       </div>
       <hr></hr>
+
       <div className='bg-white'>
         <ul className='flex justify-between flex-wrap gap-[1em] mt-6'>
           {feed.map(f => (
             <MypageSubFeed
-            /* key={f.id}  */
-            id={f.id}
+/*             key={f.id}  */
             feed={f.feed}
             on={btnClick}
             ></MypageSubFeed>

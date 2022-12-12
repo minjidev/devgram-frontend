@@ -1,12 +1,11 @@
 import { Router, Routes, Route, Link } from 'react-router-dom';
 /* import Example from "@mypage/responsive"; */
 import Mypage from "@mypage/Mypage";
-import MypageLike from "@mypage/Mypage_like";
-import MypageMyFeed from "@mypage/Mypage_MyFeed";
-import MypageUserFeed from "@mypage/Mypage_UserFeed";
-import MypageFollowing from "@mypage/Mypage_Following";
-import MypageMyReview from "@mypage/Mypage_MyReview"
-import MypageProfile from "@components/mypage/Mypage_profile"
+import MypageLike from "@mypage/Like";
+import MypageMyFeed from "@mypage/MyFeed";
+import MypageUserFeed from "@mypage/UserFeed";
+import MypageFollowing from "@mypage/Following";
+import MypageMyReview from "@mypage/MyReview"
 import styles from './index.css'
 
 function App() {

@@ -1,5 +1,6 @@
-import Title from "@components/mypage/mypage_title"
+import Title from "@components/mypage/Title"
 
+/* 테스트용 컴포넌트 (나중 제거)*/
 export default function MypageItems({title, count, button = null}) {
   const itemStyle = 'basis-[30%] grow bg-red-800 min-h-[150px] rounded-[5px] flex-1'
   const item = <li className={itemStyle}>아이템</li>

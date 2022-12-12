@@ -3,6 +3,6 @@ import tw from "tailwind-styled-components"
 
 export default function MypageLink({address}) {
   return (
-    <Link to={address}/>
+    <Link to="/">Home</Link>
   )
 }

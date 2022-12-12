@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import MypageGoods from '@components/mypage/Mypage_goods'
-import MypageProfile from '@components/mypage/mypage_profile'
-import MypageTitle from '@components/mypage/Mypage_title'
+import MypageGoods from '@components/mypage/Goods'
+import MypageProfile from '@components/mypage/Profile'
+import MypageTitle from '@components/mypage/Title'
 
 import Load from '@image/Load.png'
 

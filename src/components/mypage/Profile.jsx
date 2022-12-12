@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import bird from "../../image/bird.jpg"
+import bird from "@image/bird.jpg"
 
 export default function MypageProfile() {
   const [followerNum, setFollowerNum] = useState(0);

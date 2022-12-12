@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import MypageReview from '@components/mypage/Mypage_review'
-import MypageTitle from '@components/mypage/mypage_title'
+import MypageReview from '@components/mypage/Review'
+import MypageTitle from '@components/mypage/Title'
 
 import Load from '@image/Load.png'
 
@@ -9,16 +9,6 @@ export default function MypageMyReview() {
   const [target, setTarget] = useState(null);
   /* 나중에 삭제(이미지스타일) */
   const imgStyle = "w-24 h-24 bg-gray-200 text-center mr-6"
-
-/*   useEffect(() => {
-		const fetchData = async() => {
-          const res = await fetch('http://localhost:3001/review');
-          const result = res.json();
-          return result;
-        }	
-        
-        fetchData().then(res => setReviews(res));
-    }, []); */
 
   // 데이터 페칭 함수
   // const page = 1;
