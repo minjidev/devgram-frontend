@@ -63,19 +63,19 @@ function CarouselRanking() {
                 {data.map((d) => (
                     <div
                         key={d.id}
-                        className="h-[80vw] md:h-[30vw] overflow-hidden"
+                        className="h-[65vw] md:h-[35vw] lg:h-[25vw] overflow-hidden"
                     >
                         <img
                             src={d.img_url}
                             alt={d.name}
-                            className="relative opacity-80 min-w-full min-h-full object-cover bottom-60"
+                            className="relative opacity-80 min-w-full min-h-full object-cover"
                         />
-                        <div className="absolute px-14 bottom-16 sm:px-20 sm:bottom-20 left-0">
-                            <h3 className="text-2xl mb-2 sm:text-4xl text-black font-bold break-all">
+                        <div className="absolute px-14 top-10 sm:px-20 sm:top-20 left-0">
+                            <h3 className="text-2xl mb-2 sm:text-2xl md:text-4xl text-black font-bold break-all">
                                 {d.name}
                             </h3>
 
-                            <h4 className="text-md sm:text-xl text-black break-all">
+                            <h4 className="text-md sm:text-md md:text-xl text-black break-all">
                                 {d.description}
                             </h4>
                         </div>

@@ -4,6 +4,7 @@ import Navigation from "./Navigation";
 import Drawer from "./Drawer";
 import NavigationSub from "./NavigationSub";
 import CarouselRanking from "@components/MainPage/Main/CarouselRanking";
+import ReviewsRecent from "@components/MainPage/Main/ReviewsRecent";
 
 function MainPageHeader() {
     const API_URL_CAT = "http://localhost:3000/categories";
@@ -14,13 +15,14 @@ function MainPageHeader() {
     return (
         <div className="drawer">
             <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content flex flex-col">
+            <div className="drawer-content flex flex-col overflow-hidden">
                 {/* 네비게이션 */}
                 <Navigation />
                 {/* 메인 콘텐츠 */}
                 <div className="w-full">
                     <NavigationSub />
                     <CarouselRanking />
+                    <ReviewsRecent />
                 </div>
             </div>
             <Drawer data={data} />
