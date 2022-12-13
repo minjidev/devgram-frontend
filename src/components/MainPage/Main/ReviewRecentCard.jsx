@@ -2,7 +2,7 @@ import React from "react";
 
 function ReviewRecentCard({ card }) {
     return (
-        <div className="w-full rounded overflow-hidden shadow-lg">
+        <div className="min-w-[200px] sm:min-w-0 sm:w-full rounded overflow-hidden shadow-lg grow shrink basis-auto">
             <img className="w-full" src={card.img_url} alt={card.title} />
             <div className="px-3 py-4">
                 <p className="text-sm font-bold md:text-lg mb-2 text-ellipsis overflow-hidden">

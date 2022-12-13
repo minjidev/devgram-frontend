@@ -12,13 +12,11 @@ function ReviewsRecent(props) {
     if (error) return <div>{error}</div>;
 
     return (
-        <div className="flex flex-col py-3 px-10">
+        <div className="flex flex-col py-3 px-10 lg:px-32">
             <h2 className="text-lg font-bold">NEW 리뷰</h2>
-            <div className="py-3 flex justify-between w-screen gap-x-2 overflow-x-auto">
+            <div className="py-3 flex justify-between w-full gap-x-2 overflow-x-auto">
                 {data.map((card) => (
-                    <div key={card.id} className="max-w-[200px] sm:w-[18%] ">
-                        <ReviewRecentCard card={card} />
-                    </div>
+                    <ReviewRecentCard card={card} key={card.id} />
                 ))}
             </div>
         </div>
