@@ -5,6 +5,7 @@ import Drawer from "./Drawer";
 import NavigationSub from "./NavigationSub";
 import CarouselRanking from "@components/MainPage/Main/CarouselRanking";
 import ReviewsRecent from "@components/MainPage/Main/ReviewsRecent";
+import ProductsBest from "@components/MainPage/Main/ProductsBest";
 
 function MainPageHeader() {
     const API_URL_CAT = "http://localhost:3000/categories";
@@ -23,6 +24,7 @@ function MainPageHeader() {
                     <NavigationSub />
                     <CarouselRanking />
                     <ReviewsRecent />
+                    <ProductsBest />
                 </div>
             </div>
             <Drawer data={data} />

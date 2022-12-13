@@ -68,7 +68,7 @@ function CarouselRanking() {
                         <img
                             src={d.img_url}
                             alt={d.name}
-                            className="relative opacity-80 min-w-full min-h-full object-cover"
+                            className="relative opacity-80 min-w-full min-h-full object-cover ㅡㅇ:-top-64"
                         />
                         <div className="absolute px-14 top-10 sm:px-20 sm:top-20 left-0">
                             <h3 className="text-2xl mb-2 sm:text-2xl md:text-4xl text-black font-bold break-all">

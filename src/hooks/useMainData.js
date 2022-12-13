@@ -10,3 +10,7 @@ const fetchData = (API_URL) => {
 export const useNewReviewsData = (API_URL) => {
     return useQuery(["reviews-new"], () => fetchData(API_URL));
 };
+
+export const useProductsBestData = (API_URL) => {
+    return useQuery(["products-best"], () => fetchData(API_URL));
+};

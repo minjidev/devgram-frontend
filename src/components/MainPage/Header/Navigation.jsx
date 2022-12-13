@@ -52,7 +52,7 @@ function Navigation(props) {
                     </button>
                 </div>
             </nav>
-            <hr className="h-px bg-gray-200 border-0 dark:bg-gray-700" />
+            <hr className="bg-gray-200"></hr>
         </>
     );
 }
