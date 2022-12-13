@@ -6,5 +6,25 @@
         { "id": 1, "name": "노트북", "color": "blue" },
         { "id": 2, "name": "마우스", "color": "green" },
         { "id": 3, "name": "키보드", "color": "yellow" }
+    ],
+    "best": [
+        {
+            "id": 1,
+            "img_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+            "name": "headset",
+            "description": "someheadsetsomeheadsetsomeheadsetsomeheadsetsomeheadsetsomeheadset"
+        },
+        {
+            "id": 2,
+            "img_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1099&q=80",
+            "name": "galaxy watch",
+            "description": "galaxywatchgalaxywatchgalaxywatchgalaxywatchgalaxywatchgalaxywatch"
+        },
+        {
+            "id": 3,
+            "img_url": "https://images.unsplash.com/photo-1627483262268-9c2b5b2834b5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+            "name": "boxed water",
+            "description": "boxedwaterboxedwaterboxedwaterboxedwaterboxedwaterboxedwaterboxedwater"
+        }
     ]
 }
