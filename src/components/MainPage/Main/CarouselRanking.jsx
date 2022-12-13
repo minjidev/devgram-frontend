@@ -61,13 +61,16 @@ function CarouselRanking() {
             <PrevBtn slickPrev={previous} />
             <Slider ref={slider} {...settings}>
                 {data.map((d) => (
-                    <div key={d.id} className="h-[80vw] md:h-[30vw]">
+                    <div
+                        key={d.id}
+                        className="h-[80vw] md:h-[30vw] overflow-hidden"
+                    >
                         <img
                             src={d.img_url}
                             alt={d.name}
-                            className="relative opacity-80 min-w-full min-h-full object-cover"
+                            className="relative opacity-80 min-w-full min-h-full object-cover bottom-60"
                         />
-                        <div className="absolute px-14 bottom-10 sm:px-20 sm:bottom-20 left-0">
+                        <div className="absolute px-14 bottom-16 sm:px-20 sm:bottom-20 left-0">
                             <h3 className="text-2xl mb-2 sm:text-4xl text-black font-bold break-all">
                                 {d.name}
                             </h3>
