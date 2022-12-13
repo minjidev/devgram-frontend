@@ -67,15 +67,14 @@ function CarouselRanking() {
                             alt={d.name}
                             className="relative opacity-80 min-w-full min-h-full object-cover"
                         />
-                        <div className="px-20">
-                            <h3 className="absolute top-28 md:top-24 text-2xl sm:text-4xl text-black font-bold">
+                        <div className="absolute px-14 bottom-10 sm:px-20 sm:bottom-20 left-0">
+                            <h3 className="text-2xl mb-2 sm:text-4xl text-black font-bold break-all">
                                 {d.name}
                             </h3>
-                            <div className="w-1/2 h-[80vw] mr-auto">
-                                <h4 className="absolute top-40 md:top-40 text-lg sm:text-xl text-black break-all">
-                                    {d.description}
-                                </h4>
-                            </div>
+
+                            <h4 className="text-md sm:text-xl text-black break-all">
+                                {d.description}
+                            </h4>
                         </div>
                     </div>
                 ))}
