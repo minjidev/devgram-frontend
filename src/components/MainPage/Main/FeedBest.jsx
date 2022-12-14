@@ -85,7 +85,7 @@ function FeedBest(props) {
                             key={d.id}
                             className="overflow-hidden rounded pr-3"
                         >
-                            <Link to={`/feed/${d.id}`}>
+                            <Link to={`/social/feed/${d.id}`}>
                                 {" "}
                                 {/*  api에서 구분 id 아닌 고유한 feed_id 사용 필요 */}
                                 <img
