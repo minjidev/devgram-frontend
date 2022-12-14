@@ -14,3 +14,7 @@ export const useNewReviewsData = (API_URL) => {
 export const useProductsBestData = (API_URL) => {
     return useQuery(["products-best"], () => fetchData(API_URL));
 };
+
+export const useFeedBestData = (API_URL) => {
+    return useQuery(["feed-best"], () => fetchData(API_URL));
+};

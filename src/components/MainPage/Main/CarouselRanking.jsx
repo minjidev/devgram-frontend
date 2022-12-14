@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -65,11 +66,14 @@ function CarouselRanking() {
                         key={d.id}
                         className="h-[65vw] md:h-[35vw] lg:h-[25vw] overflow-hidden"
                     >
-                        <img
-                            src={d.img_url}
-                            alt={d.name}
-                            className="relative opacity-80 min-w-full min-h-full object-cover ㅡㅇ:-top-64"
-                        />
+                        {/* api에서 구분 id 아닌 고유한 product_id 사용 필요 */}
+                        <Link to={`products/${d.id}`}>
+                            <img
+                                src={d.img_url}
+                                alt={d.name}
+                                className="relative opacity-80 min-w-full min-h-full object-cover ㅡㅇ:-top-64"
+                            />
+                        </Link>
                         <div className="absolute px-14 top-10 sm:px-20 sm:top-20 left-0">
                             <h3 className="text-2xl mb-2 sm:text-2xl md:text-4xl text-black font-bold break-all">
                                 {d.name}
