@@ -2,7 +2,7 @@ import React from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 
-function Navigation(props) {
+function Navigation() {
     return (
         <>
             <nav className="w-full navbar bg-white">
@@ -27,7 +27,7 @@ function Navigation(props) {
                     </label>
                 </div>
                 {/* 네비 오른쪽 */}
-                <div className="sm:px-10 flex-auto">
+                <div className="sm:px-10 lg:px-32 flex-auto">
                     <h1 className="flex-1 text-xl sm:px-2 sm:text-2xl font-bold italic">
                         <Link to="/home">DEVGRAM</Link>
                     </h1>
