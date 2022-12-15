@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
-import FeedWriteList from '@components/Feed/Write/FeedWriteList'
-import FeedWriteQue from '@components/Feed/Write/FeedWriteQue'
-import FeedWriteFile from '@components/Feed/Write/FeedWriteFile'
+import FeedWriteList from '@components/FeedPage/Write/FeedWriteList'
+import FeedWriteQue from '@components/FeedPage/Write/FeedWriteQue'
+import FeedWriteFile from '@components/FeedPage/Write/FeedWriteFile'
 
 /* 피드 작성페이지 뷰 */
 export default function FeedWriteView() {
