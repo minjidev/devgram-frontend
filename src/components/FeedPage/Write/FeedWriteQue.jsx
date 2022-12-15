@@ -5,14 +5,14 @@ export default function FeedWriteQue({title, mandatory = false, guide, name, val
   const [open, setOpen] = useState(false);
 
   return (
-    <>
+    <dlv>
         <div className="flex justify-between title">
             <h2>{title}
             {mandatory === true ? <span className='text-gray-500'>*필수질문</span>
             : null}
             </h2>
-            <button type="button" className="btn btn-sm block" onClick={() => setOpen(!open)}>
-                <ChevronDownIcon className={`w-6 h-6 text-white
+            <button type="button" className="btn btn-sm block bg-white hover:bg-gray-100 border-none" onClick={() => setOpen(!open)}>
+                <ChevronDownIcon className={`w-6 h-6 text-black
                 ${open === true ? 'rotate-0' : 'rotate-180'}
               `}/>
             </button>
@@ -38,6 +38,6 @@ export default function FeedWriteQue({title, mandatory = false, guide, name, val
             id={name + "Input"}
             />
           </div>
-        </>
+        </dlv>
   )
 }

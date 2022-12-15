@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import Navigation from '@components/MainPage/Header/Navigation'
+
 import FeedWriteList from '@components/FeedPage/Write/FeedWriteList'
 import FeedWriteQue from '@components/FeedPage/Write/FeedWriteQue'
 import FeedWriteFile from '@components/FeedPage/Write/FeedWriteFile'
@@ -7,9 +9,10 @@ import FeedWriteFile from '@components/FeedPage/Write/FeedWriteFile'
 /* 피드 작성페이지 뷰 */
 export default function FeedWriteView() {
   return (
-    <div className='bg-white h-[3000px] text-black'>
-      <div className="m-auto w-[700px] bg-red-200">
-
+    <>
+    <Navigation />
+    <div className='text-black mt-12'>
+      <div className="m-auto w-[700px]">
       <form action="http://localhost:3001/board" method="post">
         {/* 공지 */}
         <div className="notice">
@@ -45,7 +48,7 @@ export default function FeedWriteView() {
 
         {/* 마지막으로 적고 싶은 내용 */}
         <div className="last">
-        <FeedWriteQue title="마지막 칸" guide="마지막으로 적으실 말을 자유롭게 작성해주세요." name="last" explain="마지막으로 적을 내용"/>
+          <FeedWriteQue title="마지막 칸" guide="마지막으로 적으실 말을 자유롭게 작성해주세요." name="last" explain="마지막으로 적을 내용"/>
         </div>
 
         {/* 제목 */}
@@ -63,5 +66,7 @@ export default function FeedWriteView() {
         </form>
       </div>
     </div>
+    
+    </>
   )  
 }
