@@ -1,54 +1,44 @@
-import React, { useState } from "react";
-import { TagLabel } from "@style";
-import { useProducts } from "@context/ProductsContext";
+import React, { useState, useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
+import axios from "axios";
 import { StarIcon as StarEmpty } from "@heroicons/react/24/outline";
 import { StarIcon as StarSolid } from "@heroicons/react/24/solid";
 import { convertToCurrency } from "@utils/currencyFormat";
 
-function ProductTags({ categories }) {
-    const init = {};
-    const [checkedItems, setCheckedItems] = useState(() => {
-        categories.map((ctg) => (init[ctg.name] = false));
-        return init;
-    });
-    const productsAll = useProducts();
+function ProductsAll(props) {
+    const { ref: targetRef, inView: visible } = useInView();
 
-    // 해당 카테고리에 checked인지 저장
-    const checkClicked = (e) => {
-        const { name, checked } = e.target;
-        setCheckedItems({ ...checkedItems, [name]: checked });
+    const [page, setPage] = useState(1);
+    const [productsData, setProductsData] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        console.log("ref: ", targetRef.current);
+    }, []);
+    /* prodcuts 로드 */
+    const fetchProducts = (page) => {
+        setLoading(true);
+        return axios
+            .get(`http://localhost:3000/products?_page=${page}&_limit=8`)
+            .then((res) => setProductsData((prev) => [...prev, ...res.data]))
+            .catch((error) => console.log(error))
+            .finally(setLoading(false));
     };
 
-    // 상품의 카테고리가 checked된 카테고리에 해당하면 보여주기
-    const categoriesChecked = Object.keys(checkedItems).filter(
-        (category) => checkedItems[category]
-    );
-    const productsFiltered = productsAll.filter((product) =>
-        categoriesChecked.includes(product.category)
-    );
+    useEffect(() => {
+        if (visible) {
+            setPage((prev) => prev + 1);
+        }
+    }, [visible]);
+
+    useEffect(() => {
+        fetchProducts(page);
+    }, [page]);
 
     return (
         <>
-            <ul className="flex justify-center p-5">
-                {categories.map((category) => (
-                    <li key={category.id}>
-                        <input
-                            className="sr-only peer"
-                            type="checkbox"
-                            value={category.name}
-                            name={category.name}
-                            id={category.id}
-                            onChange={checkClicked}
-                        />
-
-                        <TagLabel key={category.id} htmlFor={category.id}>
-                            {category.name}
-                        </TagLabel>
-                    </li>
-                ))}
-            </ul>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 px-10">
-                {productsFiltered.map((product) => (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 px-10 scroll-div">
+                {productsData.map((product) => (
                     <div key={product.id}>
                         <img
                             src={product.img_url}
@@ -124,8 +114,9 @@ function ProductTags({ categories }) {
                     </div>
                 ))}
             </div>
+            <div ref={targetRef}>Loading...</div>
         </>
     );
 }
 
-export default ProductTags;
+export default ProductsAll;
