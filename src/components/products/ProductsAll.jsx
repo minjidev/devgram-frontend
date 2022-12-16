@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import axios from "axios";
-import { StarIcon as StarEmpty } from "@heroicons/react/24/outline";
-import { StarIcon as StarSolid } from "@heroicons/react/24/solid";
-import { convertToCurrency } from "@utils/currencyFormat";
+
+import ProductsCards from "./ui/ProductsCards";
 
 function ProductsAll(props) {
     const { ref: targetRef, inView: visible } = useInView();
@@ -37,7 +36,7 @@ function ProductsAll(props) {
 
     return (
         <>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 px-10 scroll-div">
+            {/* <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 px-10 scroll-div">
                 {productsData.map((product) => (
                     <div key={product.id}>
                         <img
@@ -113,7 +112,8 @@ function ProductsAll(props) {
                         </div>
                     </div>
                 ))}
-            </div>
+            </div> */}
+            <ProductsCards products={productsData} />
             <div ref={targetRef}>Loading...</div>
         </>
     );
