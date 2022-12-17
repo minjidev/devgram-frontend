@@ -17,10 +17,6 @@ function App() {
                     <Routes>
                         <Route path="/" element={<MainPage />} />
                         <Route path="/home" element={<MainPage />} />
-                        {/* <Route
-                            path="/products/ranking"
-                            element={<ProductsBestPage />}
-                        /> */}
                         {/* <Route path="/social/feed" element={<FeedPage />} /> */}
                         {/* <Route path="/login" element={<LogIn />} /> */}
 
