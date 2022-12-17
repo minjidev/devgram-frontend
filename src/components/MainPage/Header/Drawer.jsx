@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-function Drawer({ data }) {
+import { useCategories } from "@context/CategoriesContext";
+
+function Drawer() {
+    const categoriesData = useCategories();
     return (
         <div className="drawer-side">
             <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
@@ -44,7 +47,7 @@ function Drawer({ data }) {
                         카테고리
                     </div>
                 </li>
-                {data.map((category) => (
+                {categoriesData.map((category) => (
                     <li
                         key={category.id}
                         className="rounded hover:bg-gray-100 "
