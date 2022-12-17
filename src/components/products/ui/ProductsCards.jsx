@@ -2,18 +2,21 @@ import React from "react";
 import { StarIcon as StarEmpty } from "@heroicons/react/24/outline";
 import { StarIcon as StarSolid } from "@heroicons/react/24/solid";
 import { convertToCurrency } from "@utils/currencyFormat";
+import { Link } from "react-router-dom";
 
 function ProductsCards({ products }) {
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 px-10">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 px-10 p-10">
             {products.map((product) => (
                 <div key={product.id}>
-                    <img
-                        src={product.img_url}
-                        alt={product.name}
-                        className="rounded-lg pb-2"
-                    />
-                    <div className="flex justify-between">
+                    <Link to={`/products/${product.id}`}>
+                        <img
+                            src={product.img_url}
+                            alt={product.name}
+                            className="rounded-lg pb-2"
+                        />
+                    </Link>
+                    <div className="flex justify-between sm:block lg:flex lg:justify-between">
                         <h3 className="md:text-lg">{product.name}</h3>
                         <p className="text-sm flex pb-1">
                             <span className="mr-2 flex">

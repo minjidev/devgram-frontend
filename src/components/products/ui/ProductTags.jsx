@@ -28,7 +28,7 @@ function ProductTags({ categories }) {
 
     return (
         <>
-            <ul className="flex justify-center p-5">
+            <ul className="flex justify-center p-5 flex-wrap">
                 {categories.map((category) => (
                     <li key={category.id}>
                         <input
@@ -46,7 +46,7 @@ function ProductTags({ categories }) {
                     </li>
                 ))}
             </ul>
-            {productsFiltered.length ? (
+            {categoriesChecked.length ? (
                 <ProductsCards products={productsFiltered} />
             ) : (
                 <ProductsAll />
