@@ -2,7 +2,7 @@ import React from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 
-function Navigation(props) {
+function Navigation() {
     return (
         <>
             <nav className="w-full navbar bg-white">

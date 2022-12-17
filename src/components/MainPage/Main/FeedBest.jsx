@@ -31,9 +31,9 @@ function NextBtn({ slickNext }) {
     );
 }
 
-function FeedBest(props) {
+function FeedBest() {
     const API_URL_FEED_BEST = "http://localhost:3000/feedbest";
-    const { data, isLoading, error } = useFeedBestData(API_URL_FEED_BEST);
+    const { data, error, isSuccess } = useFeedBestData(API_URL_FEED_BEST);
     const slider = useRef(null);
 
     const next = () => {
@@ -43,7 +43,6 @@ function FeedBest(props) {
         slider.current.slickPrev();
     };
 
-    if (isLoading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;
 
     const settings = {
@@ -65,42 +64,44 @@ function FeedBest(props) {
             },
         ],
     };
-
-    return (
-        <div className="flex flex-col py-3 px-10 lg:px-32">
-            {/* 타이틀 */}
-            <div className="flex justify-between">
-                <h2 className="text-lg font-bold italic pb-3">DESK SETUPS!</h2>
-                <button className="text-xs btn btn-xs btn-outline rounded-full hover:bg-gray-200 hover:text-black">
-                    <Link to="/feed">더보기</Link>
-                    <ChevronRightIcon className="w-2 h-2 ml-1 stroke-2" />
-                </button>
+    if (isSuccess)
+        return (
+            <div className="flex flex-col py-3 px-10 lg:px-32">
+                {/* 타이틀 */}
+                <div className="flex justify-between">
+                    <h2 className="text-lg font-bold italic pb-3">
+                        DESK SETUPS!
+                    </h2>
+                    <button className="text-xs btn btn-xs btn-outline rounded-full hover:bg-gray-200 hover:text-black">
+                        <Link to="/feed">더보기</Link>
+                        <ChevronRightIcon className="w-2 h-2 ml-1 stroke-2" />
+                    </button>
+                </div>
+                {/* 베스트 피드 */}
+                <div className="relative">
+                    <PrevBtn slickPrev={previous} />
+                    <Slider ref={slider} {...settings}>
+                        {data.map((d) => (
+                            <div
+                                key={d.id}
+                                className="overflow-hidden rounded pr-3"
+                            >
+                                <Link to={`/social/feed/${d.id}`}>
+                                    {" "}
+                                    {/*  api에서 구분 id 아닌 고유한 feed_id 사용 필요 */}
+                                    <img
+                                        src={d.img_url}
+                                        alt={d.name}
+                                        className="relative opacity-80 w-full rounded"
+                                    />
+                                </Link>
+                            </div>
+                        ))}
+                    </Slider>
+                    <NextBtn slickNext={next} />
+                </div>
             </div>
-            {/* 베스트 피드 */}
-            <div className="relative">
-                <PrevBtn slickPrev={previous} />
-                <Slider ref={slider} {...settings}>
-                    {data.map((d) => (
-                        <div
-                            key={d.id}
-                            className="overflow-hidden rounded pr-3"
-                        >
-                            <Link to={`/social/feed/${d.id}`}>
-                                {" "}
-                                {/*  api에서 구분 id 아닌 고유한 feed_id 사용 필요 */}
-                                <img
-                                    src={d.img_url}
-                                    alt={d.name}
-                                    className="relative opacity-80 w-full rounded"
-                                />
-                            </Link>
-                        </div>
-                    ))}
-                </Slider>
-                <NextBtn slickNext={next} />
-            </div>
-        </div>
-    );
+        );
 }
 
 export default FeedBest;
