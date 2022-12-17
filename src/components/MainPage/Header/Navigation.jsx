@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Navigation() {
     return (
-        <>
+        <div className="h-full">
             <nav className="w-full navbar bg-white">
                 <div className="flex-none sm:hidden">
                     <label
@@ -52,8 +52,9 @@ function Navigation() {
                     </button>
                 </div>
             </nav>
-            <hr className="h-px bg-gray-200 border-0 dark:bg-gray-700" />
-        </>
+
+            <hr className="h-px bg-gray-100 border-0 dark:bg-gray-700" />
+        </div>
     );
 }
 
