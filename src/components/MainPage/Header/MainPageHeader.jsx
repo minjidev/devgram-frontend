@@ -1,30 +1,36 @@
-import React, { useState } from "react";
-import { useCategoriesData } from "@hooks/useAdminData";
+import React from "react";
 import Navigation from "./Navigation";
 import Drawer from "./Drawer";
 import NavigationSub from "./NavigationSub";
 import CarouselRanking from "@components/MainPage/Main/CarouselRanking";
+import ProductsMain from "@components/products/ProductsMain";
+import { CategoriesProvider } from "@context/CategoriesContext";
+import { ProductsProvider } from "@context/ProductsContext";
 
-function MainPageHeader() {
-    const API_URL_CAT = "http://localhost:3000/categories";
-    const { data, isLoading, error } = useCategoriesData(API_URL_CAT);
-
-    if (isLoading) return <div>Loading...</div>;
-    if (error) console.error(error);
+function MainPageHeader({ page }) {
     return (
-        <div className="drawer">
-            <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content flex flex-col">
-                {/* 네비게이션 */}
-                <Navigation />
-                {/* 메인 콘텐츠 */}
-                <div className="w-full">
-                    <NavigationSub />
-                    <CarouselRanking />
+        <CategoriesProvider>
+            <ProductsProvider>
+                <div className="drawer">
+                    <input
+                        id="my-drawer-3"
+                        type="checkbox"
+                        className="drawer-toggle"
+                    />
+                    <div className="drawer-content flex flex-col">
+                        {/* 네비게이션 */}
+                        <Navigation />
+                        {/* 메인 콘텐츠 */}
+                        <div className="w-full">
+                            <NavigationSub />
+                            {page === "main" && <CarouselRanking />}
+                            {page === "products" && <ProductsMain />}
+                        </div>
+                    </div>
+                    <Drawer />
                 </div>
-            </div>
-            <Drawer data={data} />
-        </div>
+            </ProductsProvider>
+        </CategoriesProvider>
     );
 }
 

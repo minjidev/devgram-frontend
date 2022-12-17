@@ -9,6 +9,8 @@ export default defineConfig({
             "@components": path.resolve(__dirname, "./src/components"),
             "@hooks": path.resolve(__dirname, "./src/hooks"),
             "@style": path.resolve(__dirname, "./src/style.js"),
+            "@context": path.resolve(__dirname, "./src/context"),
+            "@utils": path.resolve(__dirname, "./src/utils"),
         },
     },
     plugins: [react()],

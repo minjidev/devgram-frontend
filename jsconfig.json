@@ -5,7 +5,9 @@
             "@components/*": ["src/components/*"],
             "@pages/*": ["src/pages/*"],
             "@hooks/*": ["src/hooks/*"],
-            "@style/*": ["src/style.js"]
+            "@style/*": ["src/style.js"],
+            "@context/*": ["src/context/*"],
+            "@utils/*": ["src/utils/*"]
         }
     }
 }
