@@ -1,5 +1,6 @@
 import React, { createContext, useContext } from "react";
 import { useProductsData } from "@hooks/useAdminData";
+import Loader from "@components/products/ui/Loader";
 
 const ProductsContext = createContext();
 
@@ -15,7 +16,12 @@ export function ProductsProvider({ children }) {
         isLoading,
         error,
     } = useProductsData(API_URL_PRODUCTS);
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading)
+        return (
+            <div className="flex justify-center">
+                <Loader />
+            </div>
+        );
     if (error) return <div>{error}</div>;
 
     return (

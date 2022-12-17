@@ -1,5 +1,6 @@
 import React, { createContext, useContext } from "react";
 import { useCategoriesData } from "@hooks/useAdminData";
+import Loader from "@components/products/ui/Loader";
 
 const CategoriesContext = createContext();
 
@@ -15,7 +16,12 @@ export function CategoriesProvider({ children }) {
         isLoading,
         error,
     } = useCategoriesData(API_URL_CAT);
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading)
+        return (
+            <div className="flex justify-center">
+                <Loader />
+            </div>
+        );
     if (error) return <div>{error}</div>;
     return (
         <CategoriesContext.Provider value={categoriesData}>

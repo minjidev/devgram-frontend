@@ -30,7 +30,6 @@ function ProductsAll() {
     }, [visible]);
 
     useEffect(() => {
-        console.log("curr page: ", page);
         if (page < lastPage) {
             fetchProducts(page);
         }
