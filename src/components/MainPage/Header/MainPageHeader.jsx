@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { useCategoriesData } from "@hooks/useAdminData";
 import Navigation from "./Navigation";
 import Drawer from "./Drawer";
 import NavigationSub from "./NavigationSub";
-import CarouselRanking from "@components/MainPage/Main/CarouselRanking";
-import ReviewsRecent from "@components/MainPage/Main/ReviewsRecent";
-import ProductsBest from "@components/MainPage/Main/ProductsBest";
-import FeedBest from "@components/MainPage/Main/FeedBest";
+import CarouselRanking from "@components/mainpage/main/CarouselRanking";
+import ProductsRecent from "@components/mainpage/main/ProductsRecent";
+import ProductsBest from "@components/mainpage/main/ProductsBest";
+import FeedBest from "@components/mainpage/main/FeedBest";
 
 function MainPageHeader() {
     const API_URL_CAT = "http://localhost:3000/categories";
@@ -24,7 +24,7 @@ function MainPageHeader() {
                 <div className="w-full">
                     <NavigationSub />
                     <CarouselRanking />
-                    <ReviewsRecent />
+                    <ProductsRecent />
                     <ProductsBest />
                     <FeedBest />
                 </div>

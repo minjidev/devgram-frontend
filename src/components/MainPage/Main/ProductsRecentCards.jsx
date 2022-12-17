@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function ReviewRecentCard({ card }) {
+function ProductsRecentCards({ card }) {
     return (
         <div className="min-w-[200px] sm:min-w-0 sm:w-full rounded overflow-hidden shadow-lg grow shrink basis-auto">
             <Link to={`products/${card.id}`} className="block">
@@ -19,4 +19,4 @@ function ReviewRecentCard({ card }) {
     );
 }
 
-export default ReviewRecentCard;
+export default ProductsRecentCards;
