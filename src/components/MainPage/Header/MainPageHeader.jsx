@@ -4,6 +4,7 @@ import Drawer from "./Drawer";
 import NavigationSub from "./NavigationSub";
 import CarouselRanking from "@components/MainPage/Main/CarouselRanking";
 import ProductsMain from "@components/products/ProductsMain";
+import FeedMain from "@components/FeedPage/main/FeedMain";
 import { CategoriesProvider } from "@context/CategoriesContext";
 import { ProductsProvider } from "@context/ProductsContext";
 
@@ -25,6 +26,7 @@ function MainPageHeader({ page }) {
                             <NavigationSub />
                             {page === "main" && <CarouselRanking />}
                             {page === "products" && <ProductsMain />}
+                            {page === "feed" && <FeedMain />}
                         </div>
                     </div>
                     <Drawer />
