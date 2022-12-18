@@ -1,15 +1,16 @@
 import React from "react";
 import Navigation from "./Navigation";
 import Drawer from "./Drawer";
-import NavigationSub from "./NavigationSub";
+import NavigationSub from "@components/mainpage/header/NavigationSub";
 import CarouselRanking from "@components/mainpage/main/CarouselRanking";
 import ProductsRecent from "@components/mainpage/main/ProductsRecent";
 import ProductsBest from "@components/mainpage/main/ProductsBest";
 import FeedBest from "@components/mainpage/main/FeedBest";
+import ProductsMain from "@components/products/ProductsMain";
 import { CategoriesProvider } from "@context/CategoriesContext";
 import { ProductsProvider } from "@context/ProductsContext";
 
-function MainPageHeader() {
+function MainPageHeader({ page }) {
     return (
         <CategoriesProvider>
             <ProductsProvider>
@@ -22,13 +23,18 @@ function MainPageHeader() {
                     <div className="drawer-content flex flex-col overflow-hidden">
                         {/* 네비게이션 */}
                         <Navigation />
+                        <NavigationSub />
                         {/* 메인 콘텐츠 */}
                         <div className="w-full">
-                            <NavigationSub />
-                            <CarouselRanking />
-                            <ProductsRecent />
-                            <ProductsBest />
-                            <FeedBest />
+                            {page === "main" && (
+                                <>
+                                    <CarouselRanking />
+                                    <ProductsRecent />
+                                    <ProductsBest />
+                                    <FeedBest />
+                                </>
+                            )}
+                            {page === "products" && <ProductsMain />}
                         </div>
                     </div>
                     <Drawer />

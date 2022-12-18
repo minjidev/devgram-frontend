@@ -1,7 +1,7 @@
 import React from "react";
-import MainPageHeader from "@components/MainPage/Header/MainPageHeader";
+import MainPageHeader from "@components/mainpage/header/MainPageHeader";
 
-function MainPageView(props) {
+function MainPageView() {
     return <MainPageHeader page="main" />;
 }
 

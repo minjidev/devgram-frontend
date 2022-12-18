@@ -5,7 +5,7 @@ import SearchBar from "./SearchBar";
 function NavigationSub() {
     return (
         <>
-            <ul className="hidden sm:flex sm:flex-row items-center h-12 px-10 lg:px-32">
+            <ul className="hidden sm:flex sm:flex-row items-center h-12 px-10 py-3 lg:px-32">
                 <li className="btn btn-xs px-3 btn-ghost text-xs rounded-full">
                     <button>
                         <Link to="/products">PRODUCTS</Link>
@@ -13,7 +13,7 @@ function NavigationSub() {
                 </li>
                 <li className="btn btn-xs px-3 btn-ghost text-xs rounded-full">
                     <button>
-                        <Link to="social/feed">FEED</Link>
+                        <Link to="/social/feed">FEED</Link>
                     </button>
                 </li>
                 <li className="ml-auto">

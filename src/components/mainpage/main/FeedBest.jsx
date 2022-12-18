@@ -9,7 +9,7 @@ import { useFeedBestData } from "@hooks/useMainData";
 function PrevBtn({ slickPrev }) {
     return (
         <button
-            className="slick-prev slick-arrow absolute top-0 bottom-0 my-auto -left-5 
+            className="absolute top-0 bottom-0 my-auto -left-6
             btn btn-squre bg-white border-none opacity-80 hidden sm:block hover:bg-white focus:bg-white
             "
             onClick={slickPrev}
@@ -22,7 +22,7 @@ function PrevBtn({ slickPrev }) {
 function NextBtn({ slickNext }) {
     return (
         <button
-            className="slick-next slick-arrow absolute top-0 bottom-0 my-auto -right-5
+            className="absolute top-0 bottom-0 my-auto -right-4
             btn btn-squre bg-white border-none opacity-80 hidden sm:block hover:bg-white focus:bg-white"
             onClick={slickNext}
         >
@@ -79,7 +79,6 @@ function FeedBest() {
                 </div>
                 {/* 베스트 피드 */}
                 <div className="relative">
-                    <PrevBtn slickPrev={previous} />
                     <Slider ref={slider} {...settings}>
                         {data.map((d) => (
                             <div
@@ -98,6 +97,7 @@ function FeedBest() {
                             </div>
                         ))}
                     </Slider>
+                    <PrevBtn slickPrev={previous} />
                     <NextBtn slickNext={next} />
                 </div>
             </div>

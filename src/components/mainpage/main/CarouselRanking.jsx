@@ -9,10 +9,10 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 function PrevBtn({ slickPrev }) {
     return (
         <button
-            className="slick-prev slick-arrow absolute top-1/2 -translate-y-2/4 -left-8 px-10"
+            className="absolute top-0 bottom-0 my-auto left-0 px-10"
             onClick={slickPrev}
         >
-            <ChevronLeftIcon className="w-6 h-6 sm:w-10 sm:h-10" />
+            <ChevronLeftIcon className="w-6 h-6 sm:w-10 sm:h-10 z-1" />
         </button>
     );
 }
@@ -20,7 +20,7 @@ function PrevBtn({ slickPrev }) {
 function NextBtn({ slickNext }) {
     return (
         <button
-            className="slick-next slick-arrow absolute bottom-1/2 translate-y-2/4 -right-8 px-10"
+            className="absolute top-0 bottom-0 my-auto px-10 right-0"
             onClick={slickNext}
         >
             <ChevronRightIcon className="w-6 h-6 sm:w-10 sm:h-10" />
@@ -58,7 +58,6 @@ function CarouselRanking() {
     if (isSuccess)
         return (
             <div className="relative">
-                <PrevBtn slickPrev={previous} />
                 <Slider ref={slider} {...settings}>
                     {data.map((d) => (
                         <div
@@ -73,7 +72,7 @@ function CarouselRanking() {
                                     className="relative opacity-80 min-w-full min-h-full object-cover lg:-top-64"
                                 />
                             </Link>
-                            <div className="absolute px-14 top-10 sm:px-20 sm:top-20 left-0">
+                            <div className="absolute px-14 top-10 sm:px-32 sm:top-20 left-0">
                                 <h3 className="text-2xl mb-2 sm:text-2xl md:text-4xl text-black font-bold break-all">
                                     {d.name}
                                 </h3>
@@ -84,6 +83,7 @@ function CarouselRanking() {
                         </div>
                     ))}
                 </Slider>
+                <PrevBtn slickPrev={previous} />
                 <NextBtn slickNext={next} />
             </div>
         );
