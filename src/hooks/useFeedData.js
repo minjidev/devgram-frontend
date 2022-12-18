@@ -10,10 +10,19 @@ export const useTagsBestData = (API_URL) => {
     return useQuery(["tags-best"], () => fetchData(API_URL));
 };
 
-export const useFeedData = (API_URL, sort) => {
-    if (!sort) return useQuery(["feed"], () => fetchData(API_URL));
-    else
-        return useQuery([`feed-${sort}`], () =>
-            fetchData(`${baseURL}/${sort}`)
+export const useFeedData = (API_URL, sort, subTags) => {
+    if (!sort && !subTags.length) {
+        return useQuery(["feed", sort, subTags], () => fetchData(API_URL));
+    } else if (sort && !subTags.length) {
+        return useQuery([`feed-${sort}`], () => {
+            fetchData(`${baseURL}/${sort}`);
+        });
+    } else if (!sort && subTags.length) {
+        const set = new Set(subTags);
+        const tagsString = [...set].join(",");
+        console.log(`${baseURL}/${tagsString}`);
+        return useQuery(["feed-tags"], () =>
+            fetchData(`${baseURL}/${tagsString}`)
         );
+    }
 };
