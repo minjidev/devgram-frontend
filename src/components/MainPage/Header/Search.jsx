@@ -2,7 +2,7 @@ import React from "react";
 import SearchBar from "./SearchBar";
 import { Link } from "react-router-dom";
 
-function Search(props) {
+function Search() {
     return (
         <div className="flex items-center justify-center p-5 w-full">
             <SearchBar />

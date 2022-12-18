@@ -1,7 +1,7 @@
 import React from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
-function SearchBar(props) {
+function SearchBar() {
     return (
         <form className="flex items-center">
             <label htmlFor="product-search" className="sr-only">
