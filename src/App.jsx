@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Routes, Route } from "react-router-dom";
 import Search from "@components/mainpage/header/Search";
-import MainPage from "@pages/main/mainpage";
+import MainPage from "@pages/main/Mainpage";
 import NotFound from "@components/mainpage/main/NotFound";
 import ProductsMainPage from "@pages/products/ProductsMainPage";
 import FeedWritePage from "@pages/feed/write/FeedWritePage";
