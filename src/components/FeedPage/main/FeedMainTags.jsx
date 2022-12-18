@@ -1,18 +1,37 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { TagLabel } from "@style";
 
-function FeedMainTags() {
+function FeedMainTags({ setSelectedTag }) {
     const tags = [
-        { id: 1, title: "인기", url: "" },
-        { id: 2, title: "최신", url: "" },
-        { id: 3, title: "팔로잉", url: "" },
+        { id: 1, title: "인기", value: "popular" },
+        { id: 2, title: "최신", value: "recent" },
+        { id: 3, title: "팔로잉", value: "following" },
     ];
+    const inputRef = useRef();
+
+    const checkClicked = (e) => {
+        setSelectedTag(e.target.value);
+    };
+
     return (
-        <div className="flex justify-center">
+        <ul className="flex justify-center">
             {tags.map((tag) => (
-                <TagLabel key={tag.id}># {tag.title}</TagLabel>
+                <li key={tag.id}>
+                    <input
+                        className="sr-only peer"
+                        type="radio"
+                        value={tag.value}
+                        name="tag"
+                        id={tag.id}
+                        onChange={checkClicked}
+                        ref={inputRef}
+                    />
+                    <TagLabel key={tag.id} htmlFor={tag.id}>
+                        # {tag.title}
+                    </TagLabel>
+                </li>
             ))}
-        </div>
+        </ul>
     );
 }
 

@@ -2,14 +2,14 @@ import React from "react";
 import { useFeedData } from "@hooks/useFeedData";
 import FeedCard from "./ui/FeedCard";
 
-function FeedCards() {
+function FeedCards({ selectedTag }) {
     const API_URL_FEED = "http://localhost:3000/feed";
     const {
         data: feedData,
         isSuccess,
         isError,
         error,
-    } = useFeedData(API_URL_FEED);
+    } = useFeedData(API_URL_FEED, selectedTag);
 
     if (isError) return <div>{error}</div>;
 

@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import FeedMainTags from "./FeedMainTags";
 import FeedSubTags from "./FeedSubTags";
 import FeedCards from "./FeedCards";
 function FeedMainView(props) {
+    const [selectedTag, setSelectedTag] = useState(null);
+    console.log(selectedTag);
     return (
         <div className="py-3 px-10 lg:px-32 flex flex-col items-center">
-            <FeedMainTags />
+            <FeedMainTags setSelectedTag={setSelectedTag} />
             <FeedSubTags />
-            <FeedCards />
+            <FeedCards selectedTag={selectedTag} />
             {/*<FeedAddButton />
             <MoveToTopButton /> */}
         </div>
