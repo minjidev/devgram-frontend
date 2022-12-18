@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Navigation() {
     return (
-        <>
+        <div className="h-full">
             <nav className="w-full navbar bg-white">
                 <div className="flex-none sm:hidden">
                     <label
@@ -29,7 +29,7 @@ function Navigation() {
                 {/* 네비 오른쪽 */}
                 <div className="sm:px-10 lg:px-32 flex-auto">
                     <h1 className="flex-1 text-xl sm:px-2 sm:text-2xl font-bold italic">
-                        <Link to="/home">DEVGRAM</Link>
+                        <Link to="/">DEVGRAM</Link>
                     </h1>
                     <div className="flex-none hidden sm:block">
                         <ul className="flex flex-row p-4">
@@ -52,8 +52,8 @@ function Navigation() {
                     </button>
                 </div>
             </nav>
-            <hr className="h-px bg-gray-200 border-0 dark:bg-gray-700" />
-        </>
+            <hr className="h-px bg-gray-100 border-0 dark:bg-gray-700" />
+        </div>
     );
 }
 
