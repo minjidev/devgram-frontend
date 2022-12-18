@@ -52,9 +52,9 @@ function Navigation() {
                     </button>
                 </div>
             </nav>
-
             <hr className="h-px bg-gray-100 border-0 dark:bg-gray-700" />
         </div>
+        </>
     );
 }
 
