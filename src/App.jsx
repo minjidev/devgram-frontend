@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import Search from "@components/MainPage/Header/Search";
 import MainPage from "@pages/Main/MainPage";
 import NotFound from "@components/MainPage/Main/NotFound";
+import FeedWritePage from "@pages/Feed/Write/FeedWritePage";
 
 function App() {
     const client = new QueryClient({
@@ -27,6 +28,7 @@ function App() {
                         {/* <Route path="/my" element={<Mypage />} /> */}
                         <Route path="/search" element={<Search />} />
                         <Route path="*" element={<NotFound />} />
+                        <Route path="/feed" element={<FeedWritePage />} />
                     </Routes>
                     <ReactQueryDevtools
                         initialIsOpen={false}
