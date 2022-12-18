@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useCategories } from "@context/CategoriesContext";
 import ProductTags from "./ui/ProductTags";
-import ProductsAll from "./ProductsAll";
 
 function ProductsMain() {
     const categoriesData = useCategories();

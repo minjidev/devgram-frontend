@@ -5,9 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import Search from "@components/mainpage/header/Search";
 import MainPage from "@pages/main/MainPage";
 import NotFound from "@components/mainpage/main/NotFound";
-import ProductsMainPage from "./pages/products/ProductsMainPage";
-
-
+import ProductsMainPage from "@pages/products/ProductsMainPage";
 
 function App() {
     const client = new QueryClient({
@@ -19,7 +17,7 @@ function App() {
                 <QueryClientProvider client={client}>
                     <Routes>
                         <Route path="/" element={<MainPage />} />
-                        <Route path="/home" element={<MainPage />} />
+                        {/* <Route path="/home" element={<MainPage />} /> */}
                         {/* <Route path="/social/feed" element={<FeedPage />} /> */}
                         {/* <Route path="/login" element={<LogIn />} /> */}
                         {/* <Route path="/my" element={<Mypage />} /> */}
