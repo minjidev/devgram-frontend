@@ -6,6 +6,7 @@ import Search from "@components/MainPage/Header/Search";
 import MainPage from "@pages/Main/MainPage";
 import NotFound from "@components/MainPage/Main/NotFound";
 import ProductsMainPage from "./pages/products/ProductsMainPage";
+import FeedMainPage from "@pages/Feed/main/FeedMainPage";
 
 function App() {
     const client = new QueryClient({
@@ -18,13 +19,8 @@ function App() {
                     <Routes>
                         <Route path="/" element={<MainPage />} />
                         <Route path="/home" element={<MainPage />} />
-                        {/* <Route
-                            path="/products/ranking"
-                            element={<ProductsBestPage />}
-                        /> */}
-                        {/* <Route path="/social/feed" element={<FeedPage />} /> */}
+                        <Route path="/social/feed" element={<FeedMainPage />} />
                         {/* <Route path="/login" element={<LogIn />} /> */}
-
                         {/* <Route path="/my" element={<Mypage />} /> */}
                         <Route
                             path="/products"

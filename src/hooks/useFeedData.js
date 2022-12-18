@@ -9,3 +9,7 @@ const fetchData = (API_URL) => {
 export const useTagsBestData = (API_URL) => {
     return useQuery(["tags-best"], () => fetchData(API_URL));
 };
+
+export const useFeedData = (API_URL) => {
+    return useQuery(["feed"], () => fetchData(API_URL));
+};
