@@ -11,6 +11,7 @@ function FeedMainTags({ setSelectedTag, selectedSubTags }) {
     const checkClicked = (e) => {
         setSelectedTag(e.target.value);
     };
+
     if (!selectedSubTags.length)
         return (
             <ul className="flex justify-center">

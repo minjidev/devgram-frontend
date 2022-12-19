@@ -30,6 +30,7 @@ function FeedSubTags({ selectedTag, setSelectedSubTags }) {
                                         ...prev,
                                         tag.id,
                                     ]);
+                                    // 체크 해제 되면 제거
                                 } else {
                                     setSelectedSubTags((prev) =>
                                         prev.filter((ch) => tag.id !== ch)

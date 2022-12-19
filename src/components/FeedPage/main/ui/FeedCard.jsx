@@ -2,14 +2,16 @@ import React from "react";
 import {
     HeartIcon,
     ChatBubbleBottomCenterTextIcon,
-    EyeIcon,
 } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import ProductsRelated from "./ProductsRelated";
 
 function FeedCard({ feed }) {
     return (
-        <div className="w-full bg-white border-gray-200 rounded-lg">
+        <div
+            className="w-full bg-white border-gray-200 rounded-lg"
+            key={feed.id}
+        >
             <Link to={`/social/feed/${feed.id}`}>
                 <img
                     className="rounded-t-lg"
