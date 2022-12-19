@@ -24,8 +24,6 @@ function FeedSubTags({ selectedTag, setSelectedSubTags }) {
                             name="tag"
                             id={tag.id}
                             onChange={(e) => {
-                                console.log("e :", e.target);
-                                console.log("checkd: ", e.target.checked);
                                 // 체크되면 리스트에 넣기
                                 if (e.target.checked) {
                                     setSelectedSubTags((prev) => [
@@ -34,7 +32,7 @@ function FeedSubTags({ selectedTag, setSelectedSubTags }) {
                                     ]);
                                 } else {
                                     setSelectedSubTags((prev) =>
-                                        prev.filter((ch) => tag.id !== ch.id)
+                                        prev.filter((ch) => tag.id !== ch)
                                     );
                                 }
                             }}

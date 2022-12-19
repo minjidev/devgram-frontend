@@ -12,7 +12,7 @@ export const useTagsBestData = (API_URL) => {
 
 export const useFeedData = (API_URL, sort, subTags) => {
     if (!sort && !subTags.length) {
-        return useQuery(["feed", sort, subTags], () => fetchData(API_URL));
+        return useQuery(["feed"], () => fetchData(API_URL));
     } else if (sort) {
         return useQuery([`feed-${sort}`], () =>
             fetchData(`${baseURL}/${sort}`)

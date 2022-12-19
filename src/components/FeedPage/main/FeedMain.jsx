@@ -6,6 +6,7 @@ import FeedCards from "./FeedCards";
 function FeedMain(props) {
     const [selectedTag, setSelectedTag] = useState(null);
     const [selectedSubTags, setSelectedSubTags] = useState([]);
+    console.log("selected: ", selectedSubTags);
 
     return (
         <div className="py-3 px-10 lg:px-32 flex flex-col items-center">
