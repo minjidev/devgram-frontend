@@ -62,15 +62,23 @@ function AdminManage({
 
             if (
                 korPattern.test(query) &&
-                columns.some((col) => row[col.field].includes(query))
+                columns.some(
+                    (col) =>
+                        korPattern.test(row[col.field]) &&
+                        row[col.field].includes(query)
+                )
             ) {
                 return row;
             }
 
             if (
                 engPattern.test(query) &&
-                columns.some((col) =>
-                    row[col.field].toLowerCase().includes(query.toLowerCase())
+                columns.some(
+                    (col) =>
+                        engPattern.test(row[col.field]) &&
+                        row[col.field]
+                            .toLowerCase()
+                            .includes(query.toLowerCase())
                 )
             ) {
                 return row;
