@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from "react";
 import { TableContainer } from "@style";
-import ReadOnlyRow from "@components/admin/ReadOnlyRow";
-import EditableRow from "@components/admin/EditableRow";
+import ReadOnlyRow from "@components/admin/table/ReadOnlyRow";
+import EditableRow from "@components/admin/table/EditableRow";
 
 function EditableTable({ currentData, columns, useEditData, useDeleteData }) {
     const [editID, setEditID] = useState(null);

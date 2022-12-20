@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState } from "react";
 import { TableContainer } from "@style";
-import SelectStatus from "./SelectStatus";
-import ReportModal from "@components/admin/ReportModal";
+import SelectStatus from "@components/admin/SelectStatus";
+import ReportModal from "@components/admin/ui/ReportModal";
 import axios from "axios";
 
 function Table({ currentData, columns, toggledTab }) {

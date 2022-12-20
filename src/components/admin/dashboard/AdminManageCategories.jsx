@@ -1,4 +1,4 @@
-import AdminManage from "@components/admin/AdminManage";
+import AdminManage from "@components/admin/dashboard/AdminManage";
 import {
     useCategoriesData,
     useAddCategoryData,

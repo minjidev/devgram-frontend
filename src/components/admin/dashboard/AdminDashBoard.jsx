@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import AdminManageCategories from "@components/admin/AdminManageCategories";
-import AdminManageProducts from "@components/admin/AdminManageProducts";
-import AdminManageReports from "@components/admin/AdminManageReports";
+import AdminManageCategories from "@components/admin/dashboard/AdminManageCategories";
+import AdminManageProducts from "@components/admin/dashboard/AdminManageProducts";
+import AdminManageReports from "@components/admin/dashboard/AdminManageReports";
 
 function AdminDashBoard({ open }) {
     return (
