@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import AdminManageCategories from "@pages/admin/AdminManageCategories";
-import AdminManageProducts from "@pages/admin/AdminManageProducts";
-import AdminManageReports from "@pages/admin/AdminManageReports";
+import AdminManageCategories from "@components/admin/AdminManageCategories";
+import AdminManageProducts from "@components/admin/AdminManageProducts";
+import AdminManageReports from "@components/admin/AdminManageReports";
 
 function AdminDashBoard({ open }) {
     return (
@@ -12,15 +12,10 @@ function AdminDashBoard({ open }) {
             }`}
         >
             <Routes>
-                <Route
-                    path="/admin/categories"
-                    element={<AdminManageCategories />}
-                />
-                <Route
-                    path="/admin/products"
-                    element={<AdminManageProducts />}
-                />
-                <Route path="/admin/reports" element={<AdminManageReports />} />
+                <Route path="/" element={<AdminManageCategories />} />
+                <Route path="/categories" element={<AdminManageCategories />} />
+                <Route path="/products" element={<AdminManageProducts />} />
+                <Route path="/reports" element={<AdminManageReports />} />
             </Routes>
         </div>
     );
