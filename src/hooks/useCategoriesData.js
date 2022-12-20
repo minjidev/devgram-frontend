@@ -43,9 +43,6 @@ const updateProduct = ({ id, editedData }) => {
     return axios.put(`${API_URL_PRODUCT}/${id}`, {
         title: editedData.title,
         content: editedData.content,
-        hits: editedData.hits,
-        rating: editedData.rating,
-        like_count: editedData.like_count,
         price: editedData.price,
     });
 };

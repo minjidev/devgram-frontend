@@ -12,9 +12,12 @@ function AdminManageProducts(props) {
     const productColumns = [
         { field: "title", header: "상품명", initialVal: "" },
         { field: "content", header: "상품 설명", initialVal: "" },
-        { field: "hits", header: "조회수", initialVal: 0 },
-        { field: "rating", header: "별점", initialVal: 0 },
-        { field: "like_count", header: "좋아요", initialVal: 0 },
+        {
+            field: "img_url",
+            header: "상품 사진 url",
+            initialVal: "",
+            invisible: true,
+        },
         { field: "price", header: "가격", initialVal: 0 },
     ];
     return (

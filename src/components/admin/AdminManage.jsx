@@ -32,7 +32,6 @@ function AdminManage({
 
     if (isLoading) return <h2>Loading...</h2>; // skeleton으로 변경
     if (error) return <h2>{error.message}</h2>;
-    console.log("this");
 
     const filterComponent = (data) => {
         data = data?.filter((row) => {

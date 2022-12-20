@@ -42,8 +42,7 @@ export const TextInput = tw.input`
     text-sm 
     border 
     rounded 
-    min-w-[100px]
-    w-full 
+    min-w-full 
     p-3 
     mt-2 
     outfocus:outline-0 

@@ -14,5 +14,8 @@ body {
     z-index: 1;
 }
 .table td {
-    min-width: 100px;
+    min-width: 60px;
+    max-width: 400px;
+    overflow-wrap: break-word;
+    white-space: normal;
 }

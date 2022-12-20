@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { TableContainer } from "@style";
 import SelectStatus from "./SelectStatus";
-import ReportModal from "@components/Admin/ReportModal";
+import ReportModal from "@components/admin/ReportModal";
 import axios from "axios";
 
 function Table({ currentData, columns, toggledTab }) {
     const [showModal, setShowModal] = useState(false);
     const [modalItem, setModalItems] = useState([]);
-    // const [isLoading, setIsLoading] = useState(false);
 
     const handleClick = ({ id, toggledTab }) => {
         const API_URL_REPORTED = `http://localhost:3000/${

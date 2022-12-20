@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
-import SelectStatus from "./SelectStatus";
 
 function ReadOnlyRow({ data, columns, handleEditClick, useDeleteData }) {
     const { mutate } = useDeleteData();
@@ -10,9 +9,10 @@ function ReadOnlyRow({ data, columns, handleEditClick, useDeleteData }) {
 
     return (
         <tr>
-            {columns.map((col, index) => (
-                <td key={index}>{data[col.field]}</td>
-            ))}
+            {columns.map(
+                (col, index) =>
+                    !col.invisible && <td key={index}>{data[col.field]}</td>
+            )}
             <td>
                 <button type="button" onClick={() => handleEditClick(data)}>
                     <PencilSquareIcon className="w-5 h-5 hover:text-gray-500" />

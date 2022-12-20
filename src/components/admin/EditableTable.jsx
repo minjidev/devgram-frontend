@@ -13,9 +13,10 @@ function EditableTable({ currentData, columns, useEditData, useDeleteData }) {
         <TableContainer>
             <thead>
                 <tr>
-                    {columns.map((col, index) => (
-                        <th key={index}>{col.header}</th>
-                    ))}
+                    {columns.map(
+                        (col, index) =>
+                            !col.invisible && <th key={index}>{col.header}</th>
+                    )}
                     <th>수정</th>
                     <th>{editID > 0 ? "취소" : "삭제"}</th>
                 </tr>

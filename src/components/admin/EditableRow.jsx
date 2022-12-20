@@ -17,7 +17,8 @@ function EditableRow({ data, columns, handleEditClick, useEditData }) {
     };
 
     const handleEdit = () => {
-        mutate({ id: editedData.id, editedData: editedData });
+        console.log("here: ", editedData);
+        mutate({ id: data.id, editedData: editedData });
         handleEditClick(-1);
     };
 
@@ -27,18 +28,21 @@ function EditableRow({ data, columns, handleEditClick, useEditData }) {
 
     return (
         <tr>
-            {columns.map((col, index) => (
-                <td key={index}>
-                    <TextInput
-                        type="text"
-                        id={col.field}
-                        name={col.field}
-                        placeholder={`${col.header} 입력`}
-                        onChange={(e) => getInputData(e)}
-                        value={editedData[col.field]}
-                    />
-                </td>
-            ))}
+            {columns.map(
+                (col, index) =>
+                    !col.invisible && (
+                        <td key={index}>
+                            <TextInput
+                                type="text"
+                                id={col.field}
+                                name={col.field}
+                                placeholder={`${col.header} 입력`}
+                                onChange={(e) => getInputData(e)}
+                                value={editedData[col.field]}
+                            />
+                        </td>
+                    )
+            )}
             <td>
                 <button
                     type="button"
