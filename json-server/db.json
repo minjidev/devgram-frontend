@@ -106,7 +106,7 @@
     {
       "id": 2,
       "title": "asdfasdf",
-      "content": "qweruiopqweruiopqweruiopqweruiopqweruiopqweruiopqweruiop",
+      "content": "qweruiopqweruiopqweruiopqw eruiopqweruiopqweruiopqweruiop",
       "hits": 0,
       "rating": 0,
       "like_count": 0,
@@ -126,21 +126,21 @@
       "comment": "blahblahbzzzzblahblahbzzzz",
       "created_by": "someone",
       "created_at": "2022/10/22",
-      "status": "신고"
+      "status": "등록"
     },
     {
       "id": 2,
       "comment": "blahblahbzzzz",
       "created_by": "someone",
       "created_at": "2022/10/22",
-      "status": "신고"
+      "status": "등록"
     },
     {
       "id": 3,
       "comment": "blahblahbzzzz",
       "created_by": "someoneelse",
       "created_at": "2022/10/22",
-      "status": "신고"
+      "status": "등록"
     }
   ],
   "reportreivews": [
@@ -149,21 +149,21 @@
       "review": "blahblahbzzzzblahblahbzzzzreview",
       "created_by": "someone",
       "created_at": "2022/10/22",
-      "status": ""
+      "status": "등록"
     },
     {
       "id": 2,
       "review": "blahblahbzzzz",
       "created_by": "someone",
       "created_at": "2022/10/22",
-      "status": ""
+      "status": "등록"
     },
     {
       "id": 3,
       "review": "blahblahbzzzz",
       "created_by": "someoneelse",
       "created_at": "2022/10/22",
-      "status": ""
+      "status": "등록"
     }
   ],
   "comments": [

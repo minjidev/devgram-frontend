@@ -15,7 +15,5 @@ body {
 }
 .table td {
     min-width: 60px;
-    max-width: 400px;
-    overflow-wrap: break-word;
-    white-space: normal;
+    max-width: 500px;
 }

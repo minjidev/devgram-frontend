@@ -39,6 +39,7 @@ function EditableRow({ data, columns, handleEditClick, useEditData }) {
                                 placeholder={`${col.header} 입력`}
                                 onChange={(e) => getInputData(e)}
                                 value={editedData[col.field]}
+                                className="break-word whitespace-normal"
                             />
                         </td>
                     )

@@ -11,7 +11,14 @@ function ReadOnlyRow({ data, columns, handleEditClick, useDeleteData }) {
         <tr>
             {columns.map(
                 (col, index) =>
-                    !col.invisible && <td key={index}>{data[col.field]}</td>
+                    !col.invisible && (
+                        <td
+                            key={index}
+                            className="break-word whitespace-normal"
+                        >
+                            {data[col.field]}
+                        </td>
+                    )
             )}
             <td>
                 <button type="button" onClick={() => handleEditClick(data)}>

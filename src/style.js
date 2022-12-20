@@ -27,7 +27,6 @@ export const SearchInput = tw.input`
 
 export const TableContainer = tw.table`
     table 
-    table-auto
     whitespace-wrap
     w-full 
     max-w-lg 
