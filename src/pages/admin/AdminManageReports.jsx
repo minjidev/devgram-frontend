@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AdminManage from "@components/Admin/AdminManage";
+import AdminManage from "@components/admin/AdminManage";
 import {
     useReportedCommentsData,
     useReportedReivewsData,

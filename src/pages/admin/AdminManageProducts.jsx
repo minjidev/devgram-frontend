@@ -1,5 +1,5 @@
 import React from "react";
-import AdminManage from "@components/Admin/AdminManage";
+import AdminManage from "@components/admin/AdminManage";
 import {
     useProductsData,
     useAddProductData,

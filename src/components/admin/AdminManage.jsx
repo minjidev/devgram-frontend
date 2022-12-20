@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import AddModal from "@components/Admin/AddModal";
-import Pagination from "@components/Admin/Pagination";
-import EditableTable from "@components/Admin/EditableTable";
-import SearchBar from "@components/Admin/SearchBar";
+import AddModal from "@components/admin/AddModal";
+import Pagination from "@components/admin/Pagination";
+import EditableTable from "@components/admin/EditableTable";
+import SearchBar from "@components/admin/SearchBar";
 import { SearchContainer } from "@style";
-import AddButton from "@components/Admin/AddButton";
-import Table from "@components/Admin/Table";
-import Tabs from "@components/Admin/Tabs";
+import AddButton from "@components/admin/AddButton";
+import Table from "@components/admin/Table";
+import Tabs from "@components/admin/Tabs";
 
 function AdminManage({
     title,

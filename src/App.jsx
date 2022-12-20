@@ -7,7 +7,7 @@ import { Routes, Route } from "react-router-dom";
 // import NotFound from "@components/mainpage/main/NotFound";
 // import ProductsMainPage from "@pages/products/ProductsMainPage";
 // import FeedWritePage from "@pages/feed/write/FeedWritePage";
-import AdminPage from "@pages/Admin/AdminPage";
+import AdminPage from "@pages/admin/AdminPage";
 
 function App() {
     const client = new QueryClient({

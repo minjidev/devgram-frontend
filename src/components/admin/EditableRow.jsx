@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useEditCategoryData } from "@hooks/useCategoriesData";
 import { CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { TextInput } from "@style";
 
