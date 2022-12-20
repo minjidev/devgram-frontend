@@ -12,7 +12,7 @@ const fetchData = (API_URL) => {
 
 /** 카테고리 추가,수정,삭제 **/
 const addCategory = ({ data }) => {
-    return baseURL.post("/cateogry", { name: data.name, color: data.color });
+    return baseURL.post("/category", { name: data.name, color: data.color });
 };
 
 const updateCategory = ({ id, editedData }) => {
