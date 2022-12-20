@@ -1,11 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    mode: "jit",
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
     theme: {
         extend: {
-            colors: {},
+            colors: {
+                "point-blue": "#0197F6",
+            },
         },
+        plugins: [require("daisyui")],
     },
-    plugins: [require("daisyui")],
 };

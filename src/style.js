@@ -69,3 +69,25 @@ export const ModalContainer = tw.div`
     bg-opacity-25 
     z-50
 `;
+
+export const TagLabel = tw.label`
+    text-xs 
+    inline-flex 
+    items-center 
+    font-bold 
+    leading-sm 
+    px-2
+    sm:px-3 
+    py-2 
+    my-2 
+    mx-2 
+    text-black 
+    rounded-full
+    bg-color-gray-50 
+    border-gray-300
+    border 
+    cursor-pointer 
+    hover:bg-gray-300
+    peer-checked:bg-point-blue 
+    peer-checked:text-white`;
+
