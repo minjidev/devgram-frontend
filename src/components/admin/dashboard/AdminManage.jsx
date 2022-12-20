@@ -73,13 +73,14 @@ function AdminManage({
 
             if (
                 engPattern.test(query) &&
-                columns.some(
-                    (col) =>
+                columns.some((col) => {
+                    return (
                         engPattern.test(row[col.field]) &&
                         row[col.field]
                             .toLowerCase()
                             .includes(query.toLowerCase())
-                )
+                    );
+                })
             ) {
                 return row;
             }

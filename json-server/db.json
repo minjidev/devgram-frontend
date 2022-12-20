@@ -91,17 +91,15 @@
             "title": "상품 이름",
             "content": "123상품 설명상품 설명상품 설명상품 설명상품 설명상품 설명상품",
             "price": 12000,
-            "id": 1
+            "id": 1,
+            "img_url": "some_url"
         },
         {
             "id": 2,
             "title": "asdfasdf",
             "content": "qweruiopqweruiopqweruiopqw eruiopqweruiopqweruiopqweruiop",
-            "hits": 0,
-            "rating": 0,
-            "like_count": 0,
             "price": 13000,
-            "img_url": ""
+            "img_url": "some_url"
         }
     ],
     "report": [
