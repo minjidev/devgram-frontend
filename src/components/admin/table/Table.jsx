@@ -7,9 +7,9 @@ import axios from "axios";
 function Table({ currentData, columns, toggledTab }) {
     const [showModal, setShowModal] = useState(false);
     const [modalItem, setModalItems] = useState([]);
-
+    const baseURL = "http://localhost:3000";
     const handleClick = ({ id, toggledTab }) => {
-        const API_URL_REPORTED = `http://localhost:3000/${
+        const API_URL_REPORTED = `${baseURL}/${
             toggledTab === 1 ? "reviews" : "comments"
         }/${id}`;
 

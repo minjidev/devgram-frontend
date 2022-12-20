@@ -17,7 +17,6 @@ function EditableRow({ data, columns, handleEditClick, useEditData }) {
     };
 
     const handleEdit = () => {
-        console.log("here: ", editedData);
         mutate({ id: data.id, editedData: editedData });
         handleEditClick(-1);
     };

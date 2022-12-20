@@ -7,8 +7,7 @@ import {
 
 function AdminManageReports(props) {
     const [toggledTab, setToggledTab] = useState(1);
-    const API_URL_REPORT_COMMENTS = "http://localhost:3000/report";
-    const API_URL_REPORT_REVIEWS = "http://localhost:3000/reportreivews";
+
     const reportCommentsColumns = [
         { field: "id", header: "번호", initialVal: 0 },
         { field: "comment", header: "댓글 내용", initialVal: "" },
@@ -28,9 +27,7 @@ function AdminManageReports(props) {
                 <AdminManage
                     title={"신고"}
                     columns={reportReviewsColumns}
-                    useData={() =>
-                        useReportedReivewsData(API_URL_REPORT_REVIEWS)
-                    }
+                    useData={() => useReportedReivewsData()}
                     hasAddButton={false}
                     isEditable={false}
                     toggledTab={toggledTab}
@@ -40,9 +37,7 @@ function AdminManageReports(props) {
                 <AdminManage
                     title={"신고"}
                     columns={reportCommentsColumns}
-                    useData={() =>
-                        useReportedCommentsData(API_URL_REPORT_COMMENTS)
-                    }
+                    useData={() => useReportedCommentsData()}
                     hasAddButton={false}
                     isEditable={false}
                     toggledTab={toggledTab}

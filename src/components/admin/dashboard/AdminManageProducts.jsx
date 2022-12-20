@@ -8,7 +8,6 @@ import {
 } from "@hooks/useCategoriesData";
 
 function AdminManageProducts(props) {
-    const API_URL_PRODUCT = "http://localhost:3000/product";
     const productColumns = [
         { field: "title", header: "상품명", initialVal: "" },
         { field: "content", header: "상품 설명", initialVal: "" },
@@ -24,7 +23,7 @@ function AdminManageProducts(props) {
         <AdminManage
             title={"상품"}
             columns={productColumns}
-            useData={() => useProductsData(API_URL_PRODUCT)}
+            useData={() => useProductsData()}
             useAddData={useAddProductData}
             useEditData={useEditProductData}
             useDeleteData={useDeleteProductData}

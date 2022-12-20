@@ -7,7 +7,6 @@ import {
 } from "@hooks/useCategoriesData";
 
 function AdminManageCategories() {
-    const API_URL_CATEGORY = "http://localhost:3000/category";
     const categoryColumns = [
         { field: "name", header: "카테고리", initialVal: "" },
         { field: "color", header: "색상", initialVal: "" },
@@ -16,7 +15,7 @@ function AdminManageCategories() {
         <AdminManage
             title={"카테고리"}
             columns={categoryColumns}
-            useData={() => useCategoriesData(API_URL_CATEGORY)}
+            useData={() => useCategoriesData()}
             useAddData={useAddCategoryData}
             useEditData={useEditCategoryData}
             useDeleteData={useDeletecategoryData}
