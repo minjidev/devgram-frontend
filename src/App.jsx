@@ -1,7 +1,13 @@
 import React from "react";
-import AdminPage from "@pages/Admin/AdminPage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Routes, Route } from "react-router-dom";
+// import Search from "@components/mainpage/header/Search";
+// import MainPage from "@pages/main/Mainpage";
+// import NotFound from "@components/mainpage/main/NotFound";
+// import ProductsMainPage from "@pages/products/ProductsMainPage";
+// import FeedWritePage from "@pages/feed/write/FeedWritePage";
+import AdminPage from "@pages/Admin/AdminPage";
 
 function App() {
     const client = new QueryClient({
@@ -11,7 +17,20 @@ function App() {
         <>
             <div className="App">
                 <QueryClientProvider client={client}>
-                    <AdminPage />
+                    <Routes>
+                        {/* <Route path="/" element={<MainPage />} /> */}
+                        {/* <Route path="/social/feed" element={<FeedPage />} /> */}
+                        {/* <Route path="/login" element={<LogIn />} /> */}
+                        {/* <Route path="/my" element={<Mypage />} /> */}
+                        {/* <Route
+                            path="/products"
+                            element={<ProductsMainPage />}
+                        />
+                        <Route path="/search" element={<Search />} />
+                        <Route path="*" element={<NotFound />} />
+                        <Route path="/feed" element={<FeedWritePage />} /> */}
+                        <Route path="/admin/*" element={<AdminPage />} />
+                    </Routes>
                     <ReactQueryDevtools
                         initialIsOpen={false}
                         position="bottom-right"
