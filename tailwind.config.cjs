@@ -6,8 +6,7 @@ module.exports = {
             colors: {
                 "point-blue": "#0197F6",
             },
-            translate: ["group-hover"],
         },
+        plugins: [require("daisyui")],
     },
-    plugins: [require("daisyui")],
 };

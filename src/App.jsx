@@ -2,6 +2,7 @@ import React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Routes, Route } from "react-router-dom";
+import AdminPage from "@pages/admin/AdminPage";
 import Search from "@components/mainpage/header/Search";
 import MainPage from "@pages/main/Mainpage";
 import NotFound from "@components/mainpage/main/NotFound";
@@ -17,18 +18,18 @@ function App() {
             <div className="App">
                 <QueryClientProvider client={client}>
                     <Routes>
-                        <Route path="/" element={<MainPage />} />
-                        {/* <Route path="/home" element={<MainPage />} /> */}
+                        {/* <Route path="/" element={<MainPage />} /> */}
                         {/* <Route path="/social/feed" element={<FeedPage />} /> */}
                         {/* <Route path="/login" element={<LogIn />} /> */}
                         {/* <Route path="/my" element={<Mypage />} /> */}
-                        <Route
+                        {/* <Route
                             path="/products"
                             element={<ProductsMainPage />}
                         />
                         <Route path="/search" element={<Search />} />
                         <Route path="*" element={<NotFound />} />
-                        <Route path="/feed" element={<FeedWritePage />} />
+                        <Route path="/feed" element={<FeedWritePage />} /> */}
+                        <Route path="/admin/*" element={<AdminPage />} />
                     </Routes>
                     <ReactQueryDevtools
                         initialIsOpen={false}

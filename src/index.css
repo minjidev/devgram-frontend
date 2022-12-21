@@ -2,9 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
     html,
     body {
-        @apply p-0 m-0 box-border;
+        @apply p-0 m-0 box-border min-h-full;
     }
 }
+
+.table th:first-child {
+    position: relative;
+    z-index: 1;
+}
+
+.table td {
+    min-width: 60px;
+    max-width: 500px;
+}
+
