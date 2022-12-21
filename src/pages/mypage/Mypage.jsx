@@ -10,7 +10,7 @@ import MypageFeed from '@components/mypage/MyPageSubFeed'
 import bird from '@image/bird.jpg'
 import styles from '../../index.css'
 
-export default function Mypage() {
+export default function MyPage() {
   /* 리뷰 - 좋아요 상품 - 나의 피드 순번 */
   const [reviews, setreviews] = useState([])
   const [likes, setLikes] = useState([])
@@ -74,7 +74,7 @@ export default function Mypage() {
         </div>
         <div className='md:w-8/12 sm:w-full'>
           <div className='reviews'>
-            <MypageTitle title="나의 리뷰" btn={<Link to="/review">더보기</Link>}/>
+            <MypageTitle title="나의 리뷰" btn={<Link to="/my/review">더보기</Link>}/>
             <ul className='flex justify-between flex-wrap gap-[1em] mt-3'>
             {reviews.map(review => (
               <MainReview
@@ -88,7 +88,7 @@ export default function Mypage() {
           </div>
           
           <div className='likes mt-12'>
-            <MypageTitle title="좋아요한 상품" btn={<Link to="/like">더보기</Link>}/>
+            <MypageTitle title="좋아요한 상품" btn={<Link to="/my/like">더보기</Link>}/>
             <ul className='flex justify-between flex-wrap gap-[1em] mt-6'>
             {likes.map(like => (
               <MypageGoods title={like.title}
@@ -98,7 +98,7 @@ export default function Mypage() {
           </div>
           
           <div className='feeds mt-12'>
-            <MypageTitle title="나의 피드" btn={<Link to="/feed" state={{ name: "나의 피드" }}>더보기</Link>}/>
+            <MypageTitle title="나의 피드" btn={<Link to="/my/feed" state={{ name: "나의 피드" }}>더보기</Link>}/>
             <ul className='flex justify-between flex-wrap gap-[1em] mt-6'>
               {feeds.map(f => (
                 <MypageFeed
@@ -110,8 +110,8 @@ export default function Mypage() {
           </div>
 
           <div className='나머지'>
-            <button className='btn'><Link to="/userFeed">다른 유저피드</Link></button>
-            <button className='btn'><Link to="/follow">팔로잉 페이지</Link></button>
+            <button className='btn'><Link to="/my/userFeed">다른 유저피드</Link></button>
+            <button className='btn'><Link to="/my/follow">팔로잉 페이지</Link></button>
           </div>
         </div>
       </div>
