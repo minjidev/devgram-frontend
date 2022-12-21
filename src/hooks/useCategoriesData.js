@@ -1,34 +1,34 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
-const API_URL_CATEGORY = "http://localhost:3000/category";
-const API_URL_PRODUCT = "http://localhost:3000/product";
-const API_URL_REPORT = "http://localhost:3000/report";
-const API_URL_REPORT_REVIEWS = "http://localhost:3000/reportreivews";
+/** baseURL **/
+const baseURL = axios.create({
+    baseURL: "http://localhost:3000",
+});
 
-/** 카테고리 추가,수정,삭제 **/
 const fetchData = (API_URL) => {
-    return axios.get(API_URL).then((res) => res.data);
+    return baseURL.get(API_URL).then((res) => res.data);
 };
 
+/** 카테고리 추가,수정,삭제 **/
 const addCategory = ({ data }) => {
-    return axios.post(API_URL_CATEGORY, { name: data.name, color: data.color });
+    return baseURL.post("/category", { name: data.name, color: data.color });
 };
 
 const updateCategory = ({ id, editedData }) => {
-    return axios.put(`${API_URL_CATEGORY}/${id}`, {
+    return baseURL.put(`/category/${id}`, {
         name: editedData.name,
         color: editedData.color,
     });
 };
 
 const deleteCategory = ({ id }) => {
-    return axios.delete(`${API_URL_CATEGORY}/${id}`, id);
+    return baseURL.delete(`/category/${id}`, id);
 };
 
 /** 상품 추가,수정,삭제 **/
 const addProduct = ({ data }) => {
-    return axios.post(API_URL_PRODUCT, {
+    return baseURL.post("/product", {
         title: data.title,
         content: data.content,
         hits: data.hits,
@@ -39,35 +39,32 @@ const addProduct = ({ data }) => {
 };
 
 const updateProduct = ({ id, editedData }) => {
-    return axios.put(`${API_URL_PRODUCT}/${id}`, {
+    return baseURL.put(`/product/${id}`, {
         title: editedData.title,
         content: editedData.content,
-        hits: editedData.hits,
-        rating: editedData.rating,
-        like_count: editedData.like_count,
         price: editedData.price,
     });
 };
 
 const deleteProduct = ({ id }) => {
-    return axios.delete(`${API_URL_PRODUCT}/${id}`, id);
+    return baseURL.delete(`/product/${id}`, id);
 };
 
 /** 신고 수정 **/
 const updateReportedComment = ({ id, status }) => {
-    return axios.patch(`${API_URL_REPORT}/${id}`, {
+    return baseURL.patch(`report/${id}`, {
         status: status,
     });
 };
 const updateReportedReviews = ({ id, status }) => {
-    return axios.patch(`${API_URL_REPORT_REVIEWS}/${id}`, {
+    return baseURL.patch(`reportreviews/${id}`, {
         status: status,
     });
 };
 
 /* custom hooks */
-export const useCategoriesData = (API_URL) => {
-    return useQuery(["categories"], () => fetchData(API_URL));
+export const useCategoriesData = () => {
+    return useQuery(["categories"], () => fetchData("/category"));
 };
 
 export const useAddCategoryData = () => {
@@ -92,6 +89,7 @@ export const useEditCategoryData = () => {
         },
     });
 };
+
 export const useDeletecategoryData = () => {
     const queryClient = useQueryClient();
     return useMutation(deleteCategory, {
@@ -101,8 +99,8 @@ export const useDeletecategoryData = () => {
     });
 };
 
-export const useProductsData = (API_URL) => {
-    return useQuery(["products"], () => fetchData(API_URL));
+export const useProductsData = () => {
+    return useQuery(["products"], () => fetchData("product"));
 };
 
 export const useAddProductData = () => {
@@ -131,8 +129,8 @@ export const useDeleteProductData = () => {
     });
 };
 
-export const useReportedCommentsData = (API_URL) => {
-    return useQuery(["reported-comments"], () => fetchData(API_URL));
+export const useReportedCommentsData = () => {
+    return useQuery(["reported-comments"], () => fetchData("/report"));
 };
 
 export const useEditReportedCommentsData = () => {
@@ -144,24 +142,21 @@ export const useEditReportedCommentsData = () => {
     });
 };
 
-export const useReportedCommentsDataDetail = (API_URL) => {
-    return useQuery(["reported-comments-detail"], () => fetchData(API_URL));
-};
+// export const useReportedCommentsDataDetail = (API_URL) => {
+//     return useQuery(["reported-comments-detail"], () => fetchData(API_URL));
+// };
 
-export const useReportedReivewsData = (API_URL) => {
-    return useQuery(["reported-reviews-detail"], () => fetchData(API_URL));
+export const useReportedReivewsData = () => {
+    return useQuery(["reported-reviews-detail"], () =>
+        fetchData("/reportreviews")
+    );
 };
 
 export const useEditReportedReviewsData = () => {
     const queryClient = useQueryClient();
     return useMutation(updateReportedReviews, {
         onSuccess: () => {
-            queryClient.invalidateQueries("reported-comments");
+            queryClient.invalidateQueries("reported-reviews");
         },
     });
-};
-
-/** 캐러셀  **/
-export const useProductsCarouselData = (API_URL) => {
-    return useQuery(["products-carousel"], () => fetchData(API_URL));
 };

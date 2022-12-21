@@ -1,5 +1,5 @@
 import React from "react";
-import MainPageView from "@components/MainPage/MainPageView";
+import MainPageView from "@components/mainpage/MainPageView";
 
 function MainPage(props) {
     return <MainPageView />;
