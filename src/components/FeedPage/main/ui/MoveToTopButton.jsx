@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ArrowUpIcon } from "@heroicons/react/24/solid";
 
 function MoveToTopButton() {
-    const content = document.querySelector(".drawer-content");
-
     const scrollUp = () => {
-        content.scrollTo({
+        document.querySelector(".drawer-content").scrollTo({
             top: 0,
             behavior: "smooth",
         });
