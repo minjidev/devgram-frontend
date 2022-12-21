@@ -14,6 +14,6 @@ module.exports = {
             },
             translate: ["group-hover"],
         },
+        plugins: [require("daisyui")],
     },
-    plugins: [require("daisyui")],
 };

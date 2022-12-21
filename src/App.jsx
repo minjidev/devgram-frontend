@@ -2,6 +2,7 @@ import React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Routes, Route } from "react-router-dom";
+import AdminPage from "@pages/admin/AdminPage";
 import Search from "@components/mainpage/header/Search";
 import MainPage from "@pages/main/Mainpage";
 import NotFound from "@components/mainpage/main/NotFound";
@@ -26,8 +27,7 @@ function App() {
             <div className="App">
                 <QueryClientProvider client={client}>
                     <Routes>
-                        <Route path="/" element={<MainPage />} />
-                        {/* <Route path="/home" element={<MainPage />} /> */}
+                        {/* <Route path="/" element={<MainPage />} /> */}
                         {/* <Route path="/social/feed" element={<FeedPage />} /> */}
                         {/* <Route path="/login" element={<LogIn />} /> */}
 
@@ -39,14 +39,13 @@ function App() {
                         <Route path="/my/userFeed" element={<MypageUserFeed />} />
                         <Route path="/my/follow" element={<MyPageFollowing />} />
 
-                        <Route
-                            path="/products"
-                            element={<ProductsMainPage />}
+                        <Route path="/products" element={<ProductsMainPage />}
                         />
                         <Route path="/products/detail" element={<ProductsDatailPage />} />
                         <Route path="/search" element={<Search />} />
                         <Route path="*" element={<NotFound />} />
                         <Route path="/social/feed/write" element={<FeedWritePage />} />
+                        <Route path="/admin/*" element={<AdminPage />} />
                     </Routes>
                     <ReactQueryDevtools
                         initialIsOpen={false}
