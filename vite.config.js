@@ -11,6 +11,7 @@ export default defineConfig({
             "@style": path.resolve(__dirname, "./src/style.js"),
             "@context": path.resolve(__dirname, "./src/context"),
             "@utils": path.resolve(__dirname, "./src/utils"),
+            "@image": path.resolve(__dirname, "./src/image"),
         },
     },
     plugins: [react()],

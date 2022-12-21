@@ -8,6 +8,15 @@ import MainPage from "@pages/main/Mainpage";
 import NotFound from "@components/mainpage/main/NotFound";
 import ProductsMainPage from "@pages/products/ProductsMainPage";
 import FeedWritePage from "@pages/feed/write/FeedWritePage";
+import ProductsDatailPage from "@pages/products/detail/ProductsDatailPage";
+
+/* 마이페이지 */
+import MyPage from "@pages/mypage/MyPage";
+import MyPageReview from "@pages/mypage/MyPageReview";
+import MyPageFeed from "@pages/mypage/MyPageFeed";
+import MyPageLike from "@pages/mypage/MyPageLike";
+import MypageUserFeed from "@pages/mypage/MypageUserFeed";
+import MyPageFollowing from "@pages/mypage/MyPageFollowing";
 
 function App() {
     const client = new QueryClient({
@@ -21,14 +30,21 @@ function App() {
                         {/* <Route path="/" element={<MainPage />} /> */}
                         {/* <Route path="/social/feed" element={<FeedPage />} /> */}
                         {/* <Route path="/login" element={<LogIn />} /> */}
-                        {/* <Route path="/my" element={<Mypage />} /> */}
-                        {/* <Route
-                            path="/products"
-                            element={<ProductsMainPage />}
+
+                        {/* 마이페이지 */}
+                        <Route path="/my" element={<MyPage />} />
+                        <Route path="/my/review" element={<MyPageReview />} />
+                        <Route path="/my/feed" element={<MyPageFeed />} />
+                        <Route path="/my/like" element={<MyPageLike />} />
+                        <Route path="/my/userFeed" element={<MypageUserFeed />} />
+                        <Route path="/my/follow" element={<MyPageFollowing />} />
+
+                        <Route path="/products" element={<ProductsMainPage />}
                         />
+                        <Route path="/products/detail" element={<ProductsDatailPage />} />
                         <Route path="/search" element={<Search />} />
                         <Route path="*" element={<NotFound />} />
-                        <Route path="/feed" element={<FeedWritePage />} /> */}
+                        <Route path="/social/feed/write" element={<FeedWritePage />} />
                         <Route path="/admin/*" element={<AdminPage />} />
                     </Routes>
                     <ReactQueryDevtools
