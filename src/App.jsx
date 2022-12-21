@@ -11,6 +11,7 @@ import ProductsMainPage from "@pages/products/ProductsMainPage";
 import FeedWritePage from "@pages/feed/write/FeedWritePage";
 import ProductsDatailPage from "@pages/products/detail/ProductsDatailPage";
 import FeedMainPage from "@pages/Feed/main/FeedMainPage";
+import FeedDetailPage from "./pages/Feed/detail/FeedDetailPage";
 
 /* 마이페이지 */
 import MyPage from "@pages/mypage/MyPage";
@@ -37,6 +38,10 @@ function App() {
                         <Route
                             path="/social/feed/write"
                             element={<FeedWritePage />}
+                        />
+                        <Route
+                            path="/social/feed/:id"
+                            element={<FeedDetailPage />}
                         />
                         {/* <Route path="/login" element={<LogIn />} /> */}
                         {/* 마이페이지 */}
