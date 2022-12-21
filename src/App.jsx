@@ -46,7 +46,7 @@ function App() {
                         <Route path="/products/detail" element={<ProductsDatailPage />} />
                         <Route path="/search" element={<Search />} />
                         <Route path="*" element={<NotFound />} />
-                        <Route path="/feed" element={<FeedWritePage />} />
+                        <Route path="/social/feed/write" element={<FeedWritePage />} />
                     </Routes>
                     <ReactQueryDevtools
                         initialIsOpen={false}
