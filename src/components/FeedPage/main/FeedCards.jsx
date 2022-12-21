@@ -12,8 +12,6 @@ function FeedCards({ selectedTag, selectedSubTags }) {
         status,
         hasNextPage,
         fetchNextPage,
-        isFetchingNextPage,
-        isFetching,
     } = useFeedData(API_URL_FEED, selectedTag, selectedSubTags) || [];
     useEffect(() => {
         // 다음 페이지가 있는 경우
@@ -31,7 +29,7 @@ function FeedCards({ selectedTag, selectedSubTags }) {
                 <Loader />
             ) : (
                 <>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 px-10 p-10 h-full">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 px-10 p-10">
                         {feedData?.pages?.map((page) =>
                             page.map((feed) => (
                                 <FeedCard feed={feed} key={feed.id} />
