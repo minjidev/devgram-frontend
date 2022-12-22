@@ -1,5 +1,5 @@
 {
-   "posts": [
+    "posts": [
         {
             "id": 1,
             "title": "json-server",
@@ -192,8 +192,8 @@
             "reporter": "somereporter3",
             "content": "IdontlikeitIdontlikeitIdontlikeitIdontlikeitIdontlikeit",
             "reported_at": "2022/10/22"
-         }
-        ],
+        }
+    ],
     "categories": [
         { "id": 1, "name": "노트북", "color": "#B84A62" },
         { "id": 2, "name": "마우스", "color": "#AC7B84" },
@@ -2667,5 +2667,6 @@
                 }
             ]
         }
-    ]
+    ],
+    "1": [{}]
 }

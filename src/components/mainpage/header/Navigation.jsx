@@ -5,24 +5,23 @@ import { Link } from "react-router-dom";
 function Navigation() {
     const handleLogin = () => {
         fetch(`$http://52.194.161.226:8080/api/user`, {
-          method: 'POST',
-          body: JSON.stringify({
-            email: this.state.email,
-            password: this.state.password,
-          }),
+            method: "POST",
+            body: JSON.stringify({
+                email: this.state.email,
+                password: this.state.password,
+            }),
         })
-       
-          .then(response => response.json())
-      
-          .then(response => {
-            if (response.ACCESS_TOKEN) {
-              localStorage.setItem('login-token', response.ACCESS_TOKEN);
-            }
-          });
-      };
+            .then((response) => response.json())
+
+            .then((response) => {
+                if (response.ACCESS_TOKEN) {
+                    localStorage.setItem("login-token", response.ACCESS_TOKEN);
+                }
+            });
+    };
 
     return (
-        <div className="h-full">
+        <div>
             <nav className="w-full navbar bg-white">
                 <div className="flex-none sm:hidden">
                     <label
@@ -52,8 +51,9 @@ function Navigation() {
                     <div className="flex-none hidden sm:block">
                         <ul className="flex flex-row p-4">
                             <li className="mr-3">
-                                <button className="btn btn-xs btn-outline rounded-full"
-                                onClick={handleLogin}
+                                <button
+                                    className="btn btn-xs btn-outline rounded-full"
+                                    onClick={handleLogin}
                                 >
                                     {/* <Link to="/login">로그인</Link> */}
                                     로그인
