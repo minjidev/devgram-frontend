@@ -2,7 +2,6 @@ import React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Routes, Route } from "react-router-dom";
-
 import AdminPage from "@pages/admin/AdminPage";
 import Search from "@components/mainpage/header/Search";
 import MainPage from "@pages/main/Mainpage";
@@ -24,6 +23,7 @@ function App() {
     const client = new QueryClient({
         defaultOptions: {},
     });
+    
     return (
         <>
             <div className="App">
@@ -38,9 +38,9 @@ function App() {
                             path="/social/feed/write"
                             element={<FeedWritePage />}
                         />
-                        {/* <Route path="/login" element={<LogIn />} /> */}
+                        {/* <Route path="/login" element={(props) => <Login {...props} />} loginCallBack={loginCallBack} /> */}
                         {/* 마이페이지 */}
-                        <Route path="/my" element={<MyPage />} />
+                        <Route path="/my" element={<MyPage/>} />
                         <Route path="/my/review" element={<MyPageReview />} />
                         <Route path="/my/feed" element={<MyPageFeed />} />
                         <Route path="/my/like" element={<MyPageLike />} />
@@ -57,10 +57,7 @@ function App() {
                             element={<ProductsMainPage />}
                         />
                         {/* 상품 페이지 */}
-                        <Route
-                            path="/products/detail"
-                            element={<ProductsDatailPage />}
-                        />
+                        <Route path="/products/detail/:id" element={<ProductsDatailPage />} />
                         <Route path="/search" element={<Search />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>

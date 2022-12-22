@@ -2,25 +2,7 @@ import React from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 
-function Navigation() {
-    const handleLogin = () => {
-        fetch(`$http://52.194.161.226:8080/api/user`, {
-          method: 'POST',
-          body: JSON.stringify({
-            email: this.state.email,
-            password: this.state.password,
-          }),
-        })
-       
-          .then(response => response.json())
-      
-          .then(response => {
-            if (response.ACCESS_TOKEN) {
-              localStorage.setItem('login-token', response.ACCESS_TOKEN);
-            }
-          });
-      };
-
+export default function Navigation() {
     return (
         <div className="h-full">
             <nav className="w-full navbar bg-white">
@@ -53,10 +35,8 @@ function Navigation() {
                         <ul className="flex flex-row p-4">
                             <li className="mr-3">
                                 <button className="btn btn-xs btn-outline rounded-full"
-                                onClick={handleLogin}
                                 >
-                                    {/* <Link to="/login">로그인</Link> */}
-                                    로그인
+                                    <Link to="/login">로그인</Link>
                                 </button>
                             </li>
                             <li>
@@ -77,5 +57,3 @@ function Navigation() {
         </div>
     );
 }
-
-export default Navigation;
