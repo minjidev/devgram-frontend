@@ -12,8 +12,11 @@ module.exports = {
                 'keyboard-img': "url('/src/image/keyboard.jpg')",
                 'Load-img': "url('/src/image/Load.png')",
             },
-            translate: ["group-hover"],
         },
-        plugins: [require("daisyui")],
     },
+    plugins: [require("daisyui")],
 };
+
+
+
+
