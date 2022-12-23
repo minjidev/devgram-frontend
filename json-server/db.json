@@ -2668,5 +2668,28 @@
             ]
         }
     ],
-    "1": [{}]
+    "1": [
+        {
+            "intro": "자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개자기소개",
+            "title": "모니터가 많은 시니어 개발자의 데스크탑 셋업",
+            "main_img_url": "https://images.unsplash.com/photo-1640955014216-75201056c829?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
+            "products_used": [
+                {
+                    "id": 1,
+                    "title": "사용된 제품명 1",
+                    "img_url": "https://images.unsplash.com/photo-1640955014216-75201056c829?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80"
+                },
+                {
+                    "id": 2,
+                    "title": "사용된 제품명 2",
+                    "img_url": "https://images.unsplash.com/photo-1640955014216-75201056c829?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80"
+                }
+            ],
+            "products_best": "베스트 추천 제품 1개",
+            "products_recommened": "기타 추천 제품",
+            "products_recommended_reason": "추천 제품 이유",
+            "last": "마지막 할 말",
+            "tags_count": 3
+        }
+    ]
 }
