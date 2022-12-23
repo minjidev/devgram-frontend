@@ -65,3 +65,7 @@ export const useFeedData = (API_URL, sort, subTags) => {
         );
     }
 };
+
+export const useFeedDetailData = (id, API_URL) => {
+    return useQuery([`detail-${id}`], () => fetchData(`${API_URL}/${id}`));
+};
