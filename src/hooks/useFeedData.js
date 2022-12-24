@@ -21,6 +21,25 @@ const addComments = ({ data }) => {
         children: data.children,
     });
 };
+
+// 자식 댓글 추가
+const addChildrenComments = ({ data }) => {
+    return baseURL.post(`/commentData`, {
+        id: data.id,
+        text: data.text,
+        author: data.author,
+        children: data.children,
+    });
+};
+
+// 신고 댓글 추가
+const addReportedComments = ({ data }) => {
+    return baseURL.post("/accuse", {
+        id: data.id,
+        accuseReason: data.reason,
+    });
+};
+
 /** custom hooks **/
 
 const fetchData = (API_URL) => {
@@ -100,6 +119,28 @@ export const useFeedCommentsData = (id, API_URL) => {
 export const useAddCommentsData = () => {
     const queryClient = useQueryClient();
     return useMutation(addComments, {
+        // mutation 이 성공하면 실행
+        onSuccess: () => {
+            queryClient.invalidateQueries("comments");
+        },
+    });
+};
+
+// 자식 댓글 추가
+export const useAddChildrenCommentsData = () => {
+    const queryClient = useQueryClient();
+    return useMutation(addChildrenComments, {
+        // mutation 이 성공하면 실행
+        onSuccess: () => {
+            queryClient.invalidateQueries("child-comments");
+        },
+    });
+};
+
+// 신고 댓글 추가
+export const useAddReportedCommentsData = () => {
+    const queryClient = useQueryClient();
+    return useMutation(addReportedComments, {
         // mutation 이 성공하면 실행
         onSuccess: () => {
             queryClient.invalidateQueries("comments");

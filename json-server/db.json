@@ -20,7 +20,8 @@
       "products_recommened": "기타 추천 제품",
       "products_recommended_reason": "추천 제품 이유",
       "last": "마지막 할 말",
-      "tags_count": 3
+      "tags_count": 3,
+      "created_by": ""
     }
   ],
   "4": [
@@ -3060,10 +3061,19 @@
       "children": []
     },
     {
-      "id": 5,
-      "text": "aaaaaa",
+      "id": 6,
+      "text": "asdf",
       "author": "currentUser",
       "children": []
+    }
+  ],
+  "accuse": [
+    {
+      "id": 1,
+      "accuseReason": "신고 이유"
+    },
+    {
+      "id": 6
     }
   ]
 }
