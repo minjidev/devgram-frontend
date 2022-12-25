@@ -4,6 +4,7 @@ import { ModalContainer, TableContainer } from "@style";
 
 function ReportModal({ visible, modalData, onClose }) {
     if (!visible) return null;
+    console.log("modalData: ", modalData);
 
     return (
         <ModalContainer>

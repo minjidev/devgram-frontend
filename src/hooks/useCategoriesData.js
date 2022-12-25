@@ -3,7 +3,7 @@ import axios from "axios";
 
 /** baseURL **/
 const baseURL = axios.create({
-    baseURL: "http://localhost:3000",
+    baseURL: "http://52.194.161.226:8080/api",
 });
 
 const fetchData = (API_URL) => {
@@ -12,23 +12,23 @@ const fetchData = (API_URL) => {
 
 /** 카테고리 추가,수정,삭제 **/
 const addCategory = ({ data }) => {
-    return baseURL.post("/category", { name: data.name, color: data.color });
+    return baseURL.post("/categories", { name: data.name, color: data.color });
 };
 
 const updateCategory = ({ id, editedData }) => {
-    return baseURL.put(`/category/${id}`, {
+    return baseURL.put(`/categories`, {
         name: editedData.name,
         color: editedData.color,
     });
 };
 
 const deleteCategory = ({ id }) => {
-    return baseURL.delete(`/category/${id}`, id);
+    return baseURL.delete(`/categories/delete`, id);
 };
 
 /** 상품 추가,수정,삭제 **/
 const addProduct = ({ data }) => {
-    return baseURL.post("/product", {
+    return baseURL.post("/products", {
         title: data.title,
         content: data.content,
         hits: data.hits,
@@ -39,7 +39,7 @@ const addProduct = ({ data }) => {
 };
 
 const updateProduct = ({ id, editedData }) => {
-    return baseURL.put(`/product/${id}`, {
+    return baseURL.put(`/products`, {
         title: editedData.title,
         content: editedData.content,
         price: editedData.price,
@@ -47,24 +47,28 @@ const updateProduct = ({ id, editedData }) => {
 };
 
 const deleteProduct = ({ id }) => {
-    return baseURL.delete(`/product/${id}`, id);
+    return baseURL.delete(`/products`, id);
 };
 
 /** 신고 수정 **/
 const updateReportedComment = ({ id, status }) => {
-    return baseURL.patch(`report/${id}`, {
-        status: status,
+    return baseURL.patch(`/comments/status`, {
+        commentSeq: id,
+        commentStatus: status,
     });
 };
+
+/** 리뷰 수정 URL 변경 필요  **/
 const updateReportedReviews = ({ id, status }) => {
-    return baseURL.patch(`reportreviews/${id}`, {
-        status: status,
+    return baseURL.patch(`/reviews/status`, {
+        reviewSeq: id,
+        reviewStatus: status,
     });
 };
 
 /* custom hooks */
 export const useCategoriesData = () => {
-    return useQuery(["categories"], () => fetchData("/category"));
+    return useQuery(["categories"], () => fetchData("/categories"));
 };
 
 export const useAddCategoryData = () => {
@@ -100,7 +104,7 @@ export const useDeletecategoryData = () => {
 };
 
 export const useProductsData = () => {
-    return useQuery(["products"], () => fetchData("product"));
+    return useQuery(["products"], () => fetchData("/products/admin"));
 };
 
 export const useAddProductData = () => {
@@ -130,7 +134,7 @@ export const useDeleteProductData = () => {
 };
 
 export const useReportedCommentsData = () => {
-    return useQuery(["reported-comments"], () => fetchData("/report"));
+    return useQuery(["reported-comments"], () => fetchData("/comments/accuse"));
 };
 
 export const useEditReportedCommentsData = () => {
@@ -142,13 +146,10 @@ export const useEditReportedCommentsData = () => {
     });
 };
 
-// export const useReportedCommentsDataDetail = (API_URL) => {
-//     return useQuery(["reported-comments-detail"], () => fetchData(API_URL));
-// };
-
+/** 신고 리뷰 **/
 export const useReportedReivewsData = () => {
     return useQuery(["reported-reviews-detail"], () =>
-        fetchData("/reportreviews")
+        fetchData("/comments/accuse")
     );
 };
 

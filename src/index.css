@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
     html,
     body {
@@ -19,4 +18,3 @@
     min-width: 60px;
     max-width: 500px;
 }
-

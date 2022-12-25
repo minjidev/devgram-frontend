@@ -7,6 +7,7 @@ import Table from "@components/admin/table/Table";
 import AddButton from "@components/admin/ui/AddButton";
 import Tabs from "@components/admin/ui/Tabs";
 import AddModal from "@components/admin/ui/AddModal";
+import { current } from "daisyui/src/colors";
 
 function AdminManage({
     title,
@@ -53,7 +54,7 @@ function AdminManage({
             </div>
         );
     if (error) return <h2>{error.message}</h2>;
-
+    // const data = adminData.content;
     const filterComponent = (data) => {
         data = data?.filter((row) => {
             if (query === "") {
@@ -89,6 +90,7 @@ function AdminManage({
     };
 
     const currentData = filterComponent(data).slice(firstIndex, lastIndex);
+    console.log("data: ", currentData);
 
     return (
         <div>

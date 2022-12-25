@@ -7,16 +7,23 @@ import axios from "axios";
 function Table({ currentData, columns, toggledTab }) {
     const [showModal, setShowModal] = useState(false);
     const [modalItem, setModalItems] = useState([]);
-    const baseURL = "http://localhost:3000";
+    const baseURL = "http://52.194.161.226:8080/api";
+    // 신고보기 버튼 클릭 시 해당 리뷰/댓글 관련 신고 내역 표시
     const handleClick = ({ id, toggledTab }) => {
         const API_URL_REPORTED = `${baseURL}/${
-            toggledTab === 1 ? "reviews" : "comments"
-        }/${id}`;
+            toggledTab === 1
+                ? "reviews/accuse/detail"
+                : "comments/accuse/detail"
+        }`;
 
         axios
-            .get(API_URL_REPORTED)
+            .get(API_URL_REPORTED, {
+                params: {
+                    commentSeq: id,
+                },
+            })
             .then((res) => setModalItems(res.data))
-            .catch((err) => console.err(err));
+            .catch((err) => console.error(err));
     };
 
     return (
@@ -39,7 +46,7 @@ function Table({ currentData, columns, toggledTab }) {
                             ))}
                             <td>
                                 <SelectStatus
-                                    currentStatus={data.status}
+                                    currentStatus={data.commentStatus}
                                     id={data.id}
                                     toggledTab={toggledTab}
                                 />
