@@ -32,9 +32,9 @@ function ProductTags({ categories }) {
     // 카테고리 업데이트 시 해당 카테고리 상품 필터링
     useEffect(() => {
         setProductsFiltered(() =>
-            productsAll.filter((product) => {
-                return Number(categoriesChecked) === product.category_Seq;
-            })
+            productsAll.filter(
+                (product) => Number(categoriesChecked) === product.category_Seq
+            )
         );
     }, [categoriesChecked]);
 
