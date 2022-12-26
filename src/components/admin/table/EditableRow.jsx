@@ -3,10 +3,11 @@ import { CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { TextInput } from "@style";
 
 function EditableRow({ data, columns, handleEditClick, useEditData }) {
+    console.log("data in editable row: ", data);
     const { mutate } = useEditData();
     const init = {};
     const [editedData, setEditedData] = useState(() => {
-        columns.map((col) => (init[col.field] = data[col.field]));
+        columns.forEach((col) => (init[col.field] = data[col.field]));
         return init;
     });
 
@@ -17,7 +18,7 @@ function EditableRow({ data, columns, handleEditClick, useEditData }) {
     };
 
     const handleEdit = () => {
-        mutate({ id: data.id, editedData: editedData });
+        mutate({ id: data.category_Seq, editedData: editedData });
         handleEditClick(-1);
     };
 

@@ -26,7 +26,10 @@ function ReadOnlyRow({ data, columns, handleEditClick, useDeleteData }) {
                 </button>
             </td>
             <td>
-                <button type="button" onClick={() => handleDelete(data.id)}>
+                <button
+                    type="button"
+                    onClick={() => handleDelete(data.category_Seq)}
+                >
                     <TrashIcon className="w-5 h-5 text-error" />
                 </button>
             </td>

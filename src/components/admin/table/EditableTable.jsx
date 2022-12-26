@@ -6,7 +6,7 @@ import EditableRow from "@components/admin/table/EditableRow";
 function EditableTable({ currentData, columns, useEditData, useDeleteData }) {
     const [editID, setEditID] = useState(null);
     const handleEditClick = (data) => {
-        setEditID(data.id);
+        setEditID(data.category_Seq);
     };
 
     return (
@@ -23,8 +23,8 @@ function EditableTable({ currentData, columns, useEditData, useDeleteData }) {
             </thead>
             <tbody>
                 {currentData.map((data) => (
-                    <Fragment key={data.id}>
-                        {editID === data.id ? (
+                    <Fragment key={data.category_Seq}>
+                        {editID === data.category_Seq ? (
                             <EditableRow
                                 data={data}
                                 columns={columns}

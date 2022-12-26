@@ -16,14 +16,17 @@ const addCategory = ({ data }) => {
 };
 
 const updateCategory = ({ id, editedData }) => {
-    return baseURL.put(`/categories`, {
+    return baseURL.post(`/categories`, {
+        category_Seq: id,
         name: editedData.name,
         color: editedData.color,
     });
 };
 
 const deleteCategory = ({ id }) => {
-    return baseURL.delete(`/categories/delete`, id);
+    return baseURL.post(`/categories/delete`, {
+        category_Seq: id,
+    });
 };
 
 /** 상품 추가,수정,삭제 **/

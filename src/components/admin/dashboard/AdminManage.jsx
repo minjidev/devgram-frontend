@@ -7,7 +7,6 @@ import Table from "@components/admin/table/Table";
 import AddButton from "@components/admin/ui/AddButton";
 import Tabs from "@components/admin/ui/Tabs";
 import AddModal from "@components/admin/ui/AddModal";
-import { current } from "daisyui/src/colors";
 
 function AdminManage({
     title,
@@ -54,38 +53,42 @@ function AdminManage({
             </div>
         );
     if (error) return <h2>{error.message}</h2>;
+    console.log("data before filter in adminManage: ", data);
     // const data = adminData.content;
     const filterComponent = (data) => {
-        data = data?.filter((row) => {
-            if (query === "") {
-                return row;
-            }
+        data =
+            (Array.isArray(data) &&
+                data?.filter((row) => {
+                    if (query === "") {
+                        return row;
+                    }
 
-            if (
-                korPattern.test(query) &&
-                columns.some(
-                    (col) =>
-                        korPattern.test(row[col.field]) &&
-                        row[col.field].includes(query)
-                )
-            ) {
-                return row;
-            }
+                    if (
+                        korPattern.test(query) &&
+                        columns.some(
+                            (col) =>
+                                korPattern.test(row[col.field]) &&
+                                row[col.field].includes(query)
+                        )
+                    ) {
+                        return row;
+                    }
 
-            if (
-                engPattern.test(query) &&
-                columns.some((col) => {
-                    return (
-                        engPattern.test(row[col.field]) &&
-                        row[col.field]
-                            .toLowerCase()
-                            .includes(query.toLowerCase())
-                    );
-                })
-            ) {
-                return row;
-            }
-        });
+                    if (
+                        engPattern.test(query) &&
+                        columns.some((col) => {
+                            return (
+                                engPattern.test(row[col.field]) &&
+                                row[col.field]
+                                    .toLowerCase()
+                                    .includes(query.toLowerCase())
+                            );
+                        })
+                    ) {
+                        return row;
+                    }
+                })) ||
+            [];
         return data;
     };
 
