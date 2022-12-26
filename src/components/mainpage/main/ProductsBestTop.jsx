@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function ProductsBestTop({ data }) {
+    console.log("topdata : ", data);
     return (
         <div className="py-6 flex justify-between w-full gap-x-2 overflow-x-auto">
             {data.map((card) => (
@@ -26,12 +27,12 @@ function ProductsBestTop({ data }) {
                         <p className="mb-2 text-md sm:text-xl font-medium tracking-tight text-gray-900 dark:text-white">
                             {card.title}
                         </p>
-                        <span
+                        {/* <span
                             className={`text-white text-xs sm:text-sm font-medium mr-2 px-2.5 py-0.5 rounded-full opacity-80`}
                             style={{ backgroundColor: `${card.color}` }}
                         >
                             {card.category}
-                        </span>
+                        </span> */}
                     </div>
                 </div>
             ))}

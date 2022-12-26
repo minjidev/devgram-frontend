@@ -59,7 +59,7 @@ function Drawer() {
                 ))}
                 <hr />
                 <li>
-                    <Link to="/products/ranking">BEST</Link>
+                    <Link to="/products">PRODUCTS</Link>
                 </li>
                 <li>
                     <Link to="/social/feed">FEED</Link>

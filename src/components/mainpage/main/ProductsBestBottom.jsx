@@ -12,7 +12,10 @@ function ProductsBestBottom({ data }) {
                     <Link to={`products/${card.product_Seq}`}>
                         <img
                             className="rounded-lg"
-                            src={card.img_url}
+                            src={
+                                card.img_url ||
+                                "https://cdn.pixabay.com/photo/2016/03/27/07/12/apple-1282241_1280.jpg"
+                            }
                             alt={card.title}
                         />
                     </Link>

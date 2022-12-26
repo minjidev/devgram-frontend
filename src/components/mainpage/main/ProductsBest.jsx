@@ -1,19 +1,18 @@
 import React from "react";
 import { useProductsBestData } from "@hooks/useMainData";
-import ProductsBestTop from "@components/MainPage/Main/ProductsBestTop";
-import ProductsBestBottom from "@components/MainPage/Main/ProductsBestBottom";
+import ProductsBestTop from "@components/mainpage/main/ProductsBestTop";
+import ProductsBestBottom from "@components/mainpage/main/ProductsBestBottom";
 
 function ProductsBest() {
-    // http://52.194.161.226:8080/api/products
-    const API_URL_REVIEWS_RECENT = "http://localhost:3000/best";
-    const { data, error, isSuccess } = useProductsBestData(
-        API_URL_REVIEWS_RECENT
-    );
+    const API_REVIEW_BEST = "http://52.194.161.226:8080/api/products/bestLike";
+    const { data, error, isSuccess } = useProductsBestData(API_REVIEW_BEST);
 
     if (error) return <div>{error}</div>;
+    console.log("data: ", data);
     if (isSuccess) {
         const topData = data.slice(0, 3);
         const bottomData = data.slice(3, 8);
+        console.log(topData);
 
         return (
             <div className="flex flex-col py-3 px-10 lg:px-32">
