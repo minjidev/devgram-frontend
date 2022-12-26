@@ -3,7 +3,6 @@ import { useInView } from "react-intersection-observer";
 import axios from "axios";
 import ProductsCards from "./ui/ProductsCards";
 import Loader from "./ui/Loader";
-import { useProducts } from "@context/ProductsContext";
 
 function ProductsAll() {
     const { ref: targetRef, inView: visible } = useInView();
@@ -11,8 +10,7 @@ function ProductsAll() {
     const [productsData, setProductsData] = useState([]);
     const [showLoader, setShowLoader] = useState(false);
     // const [lastPage, setLastPage] = useState(0);
-    const products = useProducts();
-    const lastPage = Math.ceil(20 / 5);
+    const lastPage = Math.ceil(100 / 5);
 
     /* prodcuts 로드 */
     const fetchProducts = (page) => {
@@ -20,7 +18,7 @@ function ProductsAll() {
         return (
             axios
                 .get(
-                    `http://52.194.161.226:8080/api/products/list?_page=${page}`
+                    `http://52.194.161.226:8080/api/products/list?page=${page}`
                 )
                 .then((res) => {
                     console.log("res: ", res);

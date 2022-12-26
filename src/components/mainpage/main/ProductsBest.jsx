@@ -4,6 +4,7 @@ import ProductsBestTop from "@components/MainPage/Main/ProductsBestTop";
 import ProductsBestBottom from "@components/MainPage/Main/ProductsBestBottom";
 
 function ProductsBest() {
+    // http://52.194.161.226:8080/api/products
     const API_URL_REVIEWS_RECENT = "http://localhost:3000/best";
     const { data, error, isSuccess } = useProductsBestData(
         API_URL_REVIEWS_RECENT
