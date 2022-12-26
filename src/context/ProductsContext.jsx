@@ -10,7 +10,7 @@ export function useProducts() {
 }
 
 export function ProductsProvider({ children }) {
-    const API_URL_PRODUCTS = "http://localhost:3000/products";
+    const API_URL_PRODUCTS = "http://52.194.161.226:8080/api/products/list";
     const {
         data: productsData,
         isLoading,
@@ -23,7 +23,6 @@ export function ProductsProvider({ children }) {
             </div>
         );
     if (error) return <div>{error}</div>;
-
     return (
         <ProductsContext.Provider value={productsData}>
             {children}

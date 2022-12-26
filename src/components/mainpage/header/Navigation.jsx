@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function Navigation() {
     return (
-        <div className="h-full">
+        <div>
             <nav className="w-full navbar bg-white">
                 <div className="flex-none sm:hidden">
                     <label
@@ -34,8 +34,7 @@ export default function Navigation() {
                     <div className="flex-none hidden sm:block">
                         <ul className="flex flex-row p-4">
                             <li className="mr-3">
-                                <button className="btn btn-xs btn-outline rounded-full"
-                                >
+                                <button className="btn btn-xs btn-outline rounded-full">
                                     <Link to="/login">로그인</Link>
                                 </button>
                             </li>

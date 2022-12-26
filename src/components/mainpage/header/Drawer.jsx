@@ -49,10 +49,10 @@ function Drawer() {
                 </li>
                 {categoriesData.map((category) => (
                     <li
-                        key={category.id}
+                        key={category.category_Seq}
                         className="rounded hover:bg-gray-100 "
                     >
-                        <Link to={`/products/category=${category.name}`}>
+                        <Link to={`/products/:${category.name}`}>
                             {category.name}
                         </Link>
                     </li>

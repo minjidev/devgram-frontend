@@ -10,7 +10,7 @@ export function useCategories() {
 }
 
 export function CategoriesProvider({ children }) {
-    const API_URL_CAT = "http://localhost:3000/categories";
+    const API_URL_CAT = "http://52.194.161.226:8080/api/categories";
     const {
         data: categoriesData,
         isLoading,
@@ -23,6 +23,7 @@ export function CategoriesProvider({ children }) {
             </div>
         );
     if (error) return <div>{error}</div>;
+
     return (
         <CategoriesContext.Provider value={categoriesData}>
             {children}
