@@ -9,7 +9,7 @@ function ProductsCards({ products }) {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 px-10 p-10">
             {products.map((product) => (
                 <div key={product.product_Seq}>
-                    <Link to={`/products/${product.product_Seq}`}>
+                    <Link to={`/products/detail/${product.product_Seq}`}>
                         <img
                             src={
                                 product.img_url ||
