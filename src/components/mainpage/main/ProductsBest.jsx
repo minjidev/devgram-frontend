@@ -8,11 +8,10 @@ function ProductsBest() {
     const { data, error, isSuccess } = useProductsBestData(API_REVIEW_BEST);
 
     if (error) return <div>{error}</div>;
-    console.log("data: ", data);
+
     if (isSuccess) {
         const topData = data.slice(0, 3);
         const bottomData = data.slice(3, 8);
-        console.log(topData);
 
         return (
             <div className="flex flex-col py-3 px-10 lg:px-32">

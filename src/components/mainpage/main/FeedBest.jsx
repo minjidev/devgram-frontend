@@ -32,7 +32,8 @@ function NextBtn({ slickNext }) {
 }
 
 function FeedBest() {
-    const API_URL_FEED_BEST = "http://localhost:3000/feedbest";
+    const API_URL_FEED_BEST =
+        "http://52.194.161.226:8080/api/boards?sort=popular";
     const { data, error, isSuccess } = useFeedBestData(API_URL_FEED_BEST);
     const slider = useRef(null);
 
@@ -64,6 +65,7 @@ function FeedBest() {
             },
         ],
     };
+
     if (isSuccess)
         return (
             <div className="flex flex-col py-3 px-10 lg:px-32">
@@ -80,17 +82,18 @@ function FeedBest() {
                 {/* 베스트 피드 */}
                 <div className="relative">
                     <Slider ref={slider} {...settings}>
-                        {data.map((d) => (
+                        {data?.content.map((d) => (
                             <div
                                 key={d.id}
                                 className="overflow-hidden rounded pr-3"
                             >
                                 <Link to={`/social/feed/${d.id}`}>
-                                    {" "}
-                                    {/*  api에서 구분 id 아닌 고유한 feed_id 사용 필요 */}
                                     <img
-                                        src={d.img_url}
-                                        alt={d.name}
+                                        src={
+                                            d.img_url ||
+                                            "https://cdn.pixabay.com/photo/2017/08/10/03/16/computer-2617622_1280.jpg"
+                                        }
+                                        alt={d.title}
                                         className="relative opacity-80 w-full rounded"
                                     />
                                 </Link>

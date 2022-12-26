@@ -6,7 +6,7 @@ function ProductsBestBottom({ data }) {
         <div className="py-6 flex justify-between w-full gap-x-2 overflow-x-auto">
             {data.map((card) => (
                 <div
-                    key={card.product_Seq} // api에서 구분 id 아닌 고유한 product_id 사용 필요
+                    key={card.product_Seq}
                     className="relative min-w-[120px] bg-white rounded-lg dark:bg-gray-800 dark:border-gray-700"
                 >
                     <Link to={`products/${card.product_Seq}`}>
