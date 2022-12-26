@@ -75,7 +75,7 @@ function FeedBest() {
                         DESK SETUPS!
                     </h2>
                     <button className="text-xs btn btn-xs btn-outline rounded-full hover:bg-gray-200 hover:text-black">
-                        <Link to="/feed">더보기</Link>
+                        <Link to="/social/feed">더보기</Link>
                         <ChevronRightIcon className="w-2 h-2 ml-1 stroke-2" />
                     </button>
                 </div>

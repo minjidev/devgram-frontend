@@ -64,7 +64,7 @@ function CarouselRanking() {
                             key={d.product_Seq}
                             className="h-[65vw] md:h-[35vw] lg:h-[25vw] overflow-hidden"
                         >
-                            <Link to={`products/${d.product_Seq}`}>
+                            <Link to={`products/detail/${d.product_Seq}`}>
                                 <img
                                     src={
                                         d.img_url ||

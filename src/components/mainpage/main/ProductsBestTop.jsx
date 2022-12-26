@@ -9,7 +9,7 @@ function ProductsBestTop({ data }) {
                     key={card.product_Seq}
                     className="relative min-w-[220px] bg-white rounded-lg dark:bg-gray-800 dark:border-gray-700"
                 >
-                    <Link to={`/products/${card.product_Seq}`}>
+                    <Link href={`/products/detail/${card.product_Seq}`}>
                         <img
                             className="rounded-lg"
                             src={
