@@ -55,7 +55,7 @@ function AdminManage({
     if (error) return <h2>{error.message}</h2>;
     console.log("data before filter in adminManage: ", data);
     // const data = adminData.content;
-    const filterComponent = (data) => {
+    const filterData = (data) => {
         data =
             (Array.isArray(data) &&
                 data?.filter((row) => {
@@ -92,7 +92,7 @@ function AdminManage({
         return data;
     };
 
-    const currentData = filterComponent(data).slice(firstIndex, lastIndex);
+    const currentData = filterData(data).slice(firstIndex, lastIndex);
     console.log("data: ", currentData);
 
     return (
