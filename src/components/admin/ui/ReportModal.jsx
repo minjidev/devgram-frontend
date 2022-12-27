@@ -25,11 +25,13 @@ function ReportModal({ visible, modalData, onClose }) {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>{modalData.reporter}</td>
-                            <td>{modalData.content}</td>
-                            <td>{modalData.reported_at}</td>
-                        </tr>
+                        {modalData.map((report) => (
+                            <tr>
+                                <td>{report.createdBy}</td>
+                                <td>{report.accuseReason}</td>
+                                <td>{report.createdAt}</td>
+                            </tr>
+                        ))}
                     </tbody>
                 </TableContainer>
             </div>

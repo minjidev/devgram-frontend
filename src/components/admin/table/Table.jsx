@@ -12,19 +12,21 @@ function Table({ currentData, columns, toggledTab }) {
     const handleClick = ({ id, toggledTab }) => {
         const API_URL_REPORTED = `${baseURL}/${
             toggledTab === 1
-                ? "reviews/accuse/detail"
-                : "comments/accuse/detail"
+                ? `reviews/accuse/detail`
+                : `comments/accuse/detail?commentSeq=${id}`
         }`;
 
         axios
-            .get(API_URL_REPORTED, {
-                params: {
-                    commentSeq: id,
-                },
+            .get(API_URL_REPORTED)
+            .then((res) => {
+                console.log("url: ", API_URL_REPORTED);
+                console.log("res: ", res);
+                setModalItems(res.data);
             })
-            .then((res) => setModalItems(res.data))
             .catch((err) => console.error(err));
     };
+    console.log("curre: ", currentData);
+    console.log("detail: ", modalItem);
 
     return (
         <>
@@ -40,14 +42,14 @@ function Table({ currentData, columns, toggledTab }) {
                 </thead>
                 <tbody>
                     {currentData.map((data) => (
-                        <tr key={data.id}>
+                        <tr key={data.commentSeq}>
                             {columns.map((col, index) => (
                                 <td key={index}>{data[col.field]}</td>
                             ))}
                             <td>
                                 <SelectStatus
                                     currentStatus={data.commentStatus}
-                                    id={data.id}
+                                    id={data.commentSeq}
                                     toggledTab={toggledTab}
                                 />
                             </td>
@@ -57,7 +59,7 @@ function Table({ currentData, columns, toggledTab }) {
                                     onClick={() => {
                                         setShowModal(true);
                                         handleClick({
-                                            id: data.id,
+                                            id: data.commentSeq,
                                             toggledTab: toggledTab,
                                         });
                                     }}
