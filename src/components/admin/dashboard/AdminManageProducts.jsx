@@ -10,6 +10,11 @@ import {
 function AdminManageProducts(props) {
     const productColumns = [
         { field: "title", header: "상품명", initialVal: "" },
+        {
+            field: "category_Seq",
+            header: "카테고리",
+            initialVal: "카테고리 선택",
+        },
         { field: "content", header: "상품 설명", initialVal: "" },
         {
             field: "img_url",

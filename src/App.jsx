@@ -65,6 +65,7 @@ function App() {
                         <Route path="/search" element={<Search />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
+
                     <ReactQueryDevtools
                         initialIsOpen={false}
                         position="bottom-right"
