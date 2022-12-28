@@ -7,6 +7,7 @@ import ProductsRecent from "@components/mainpage/main/ProductsRecent";
 import ProductsBest from "@components/mainpage/main/ProductsBest";
 import FeedBest from "@components/mainpage/main/FeedBest";
 import ProductsMain from "@components/products/ProductsMain";
+import FeedMain from "@components/FeedPage/main/FeedMain";
 import { CategoriesProvider } from "@context/CategoriesContext";
 import { ProductsProvider } from "@context/ProductsContext";
 
@@ -35,6 +36,7 @@ function MainPageHeader({ page }) {
                                 </>
                             )}
                             {page === "products" && <ProductsMain />}
+                            {page === "feed" && <FeedMain />}
                         </div>
                     </div>
                     <Drawer />
