@@ -6,6 +6,11 @@ const baseURL = axios.create({
     baseURL: "http://52.194.161.226:8080/api",
 });
 
+const testAuth =
+    "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJBRE1JTiIsInN1YiI6IkFUSyIsInJvbGUiOiJST0xFX0FETUlOIiwiaWF0IjoxNjcyMjI4MjUwLCJleHAiOjE2NzIyMzAwNTB9.E95Cg4bRuafnejXaL3E_PIcf4hOFAozUdMfz3cYOpbk";
+// "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJ0ZXN0VXNlckBuYXZlci5jb20iLCJzdWIiOiJBVEsiLCJyb2xlIjoiUk9MRV9VU0VSIiwiaWF0IjoxNjcyMjE5MjAxLCJleHAiOjE2NzIyMjEwMDF9.3awTgUnt2kEVmXK24uSp5ByhyA8ljtyFA7Z0yahSXYY";
+// "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJ1c2VyIiwic3ViIjoiQVRLIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY3MjIxMTkzMSwiZXhwIjoxNjcyMjEzNzMxfQ.OPHOAwRV9WAqiEEs3T1xnF3cxj3UyEYct2Dhvg_gd1g";
+
 const fetchData = (API_URL) => {
     return baseURL.get(API_URL).then((res) => res.data);
 };
@@ -32,11 +37,12 @@ const deleteCategory = ({ id }) => {
 /** 상품 추가,수정,삭제 **/
 const addProduct = ({ data }) => {
     return baseURL.post("/products", {
+        category_Seq: data.category_Seq,
         title: data.title,
         content: data.content,
-        hits: data.hits,
-        rating: data.rating,
-        like_count: data.like_count,
+        // hits: data.hits,
+        // rating: data.rating,
+        // like_count: data.like_count,
         price: data.price,
     });
 };
@@ -53,7 +59,7 @@ const deleteProduct = ({ id }) => {
     return baseURL.delete(`/products`, id);
 };
 
-/** 신고 수정 **/
+/** 댓글 신고 수정 **/
 const updateReportedComment = ({ id, status }) => {
     return baseURL.patch(`/comments/status`, {
         commentSeq: id,
@@ -145,9 +151,16 @@ export const useDeleteProductData = () => {
     });
 };
 
+/** 신고 댓글 **/
 export const useReportedCommentsData = () => {
     return useQuery(["reported-comments"], () =>
-        fetchData("/comments/accuse/admin")
+        baseURL
+            .get("/comments/accuse/admin", {
+                headers: {
+                    Authentication: testAuth,
+                },
+            })
+            .then((res) => res.data)
     );
 };
 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { ModalContainer, TableContainer } from "@style";
 
-function ReportModal({ visible, modalData, onClose }) {
+function ReportModal({ visible, modalData, onClose, toggledTab }) {
     if (!visible) return null;
     console.log("modalData: ", modalData);
 
@@ -24,15 +24,27 @@ function ReportModal({ visible, modalData, onClose }) {
                             <th>신고 일자</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        {modalData.map((report) => (
-                            <tr>
-                                <td>{report.createdBy}</td>
-                                <td>{report.accuseReason}</td>
-                                <td>{report.createdAt}</td>
-                            </tr>
-                        ))}
-                    </tbody>
+                    {toggledTab === 2 ? (
+                        <tbody>
+                            {modalData.map((report) => (
+                                <tr>
+                                    <td>{report.createdBy}</td>
+                                    <td>{report.accuseReason}</td>
+                                    <td>{report.createdAt}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    ) : (
+                        <tbody>
+                            {modalData.map((report) => (
+                                <tr>
+                                    <td>{report.username}</td>
+                                    <td>{report.content}</td>
+                                    <td>{report.reportAt}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    )}
                 </TableContainer>
             </div>
         </ModalContainer>

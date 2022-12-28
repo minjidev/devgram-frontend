@@ -12,7 +12,7 @@ function Table({ currentData, columns, toggledTab }) {
     const handleClick = ({ id, toggledTab }) => {
         const API_URL_REPORTED = `${baseURL}/${
             toggledTab === 1
-                ? `reviews/accuse/detail?reviewSeq=${id}`
+                ? `review/accuse/detail?reviewSeq=${id}`
                 : `comments/accuse/detail/admin?commentSeq=${id}`
         }`;
 
@@ -80,7 +80,7 @@ function Table({ currentData, columns, toggledTab }) {
                                 ))}
                                 <td>
                                     <SelectStatus
-                                        currentStatus={data.commentStatus}
+                                        currentStatus={data.status}
                                         id={data.reviewSeq}
                                         toggledTab={toggledTab}
                                     />
@@ -109,6 +109,7 @@ function Table({ currentData, columns, toggledTab }) {
                 visible={showModal}
                 modalData={modalItem}
                 onClose={() => setShowModal(false)}
+                toggledTab={toggledTab}
             />
         </>
     );

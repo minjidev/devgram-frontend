@@ -2,11 +2,17 @@ import React, { useState, Fragment } from "react";
 import { TableContainer } from "@style";
 import ReadOnlyRow from "@components/admin/table/ReadOnlyRow";
 import EditableRow from "@components/admin/table/EditableRow";
-
-function EditableTable({ currentData, columns, useEditData, useDeleteData }) {
+// category_Seq와 product_Seq를 id로 받아서 사용
+function EditableTable({
+    currentData,
+    columns,
+    useEditData,
+    useDeleteData,
+    title,
+}) {
     const [editID, setEditID] = useState(null);
-    const handleEditClick = (data) => {
-        setEditID(data.category_Seq);
+    const handleEditClick = (id) => {
+        setEditID(id);
     };
 
     return (
@@ -23,8 +29,17 @@ function EditableTable({ currentData, columns, useEditData, useDeleteData }) {
             </thead>
             <tbody>
                 {currentData.map((data) => (
-                    <Fragment key={data.category_Seq}>
-                        {editID === data.category_Seq ? (
+                    <Fragment
+                        key={
+                            title === "상품"
+                                ? data.product_Seq
+                                : data.category_Seq
+                        }
+                    >
+                        {editID ===
+                        (title === "상품"
+                            ? data.product_Seq
+                            : data.category_Seq) ? (
                             <EditableRow
                                 data={data}
                                 columns={columns}

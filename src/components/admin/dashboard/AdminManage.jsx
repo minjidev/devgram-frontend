@@ -54,7 +54,7 @@ function AdminManage({
         );
     if (error) return <h2>{error.message}</h2>;
     console.log("data before filter in adminManage: ", data);
-    // const data = adminData.content;
+
     const filterData = (data) => {
         data =
             (Array.isArray(data) &&
@@ -115,6 +115,7 @@ function AdminManage({
                         columns={columns}
                         useEditData={useEditData}
                         useDeleteData={useDeleteData}
+                        title={title}
                     />
                 </form>
             ) : (

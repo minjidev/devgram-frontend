@@ -15,10 +15,10 @@ function AdminManageReports(props) {
         { field: "createdAt", header: "댓글 작성일", initialVal: "" },
     ];
     const reportReviewsColumns = [
-        { field: "id", header: "번호", initialVal: 0 },
-        { field: "review", header: "리뷰 내용", initialVal: "" },
-        { field: "created_by", header: "리뷰 작성자", initialVal: "" },
-        { field: "created_at", header: "리뷰 작성일", initialVal: "" },
+        { field: "reviewSeq", header: "번호", initialVal: 0 },
+        { field: "content", header: "리뷰 내용", initialVal: "" },
+        { field: "username", header: "리뷰 작성자", initialVal: "" },
+        { field: "createdAt", header: "리뷰 작성일", initialVal: "" },
     ];
 
     return (
