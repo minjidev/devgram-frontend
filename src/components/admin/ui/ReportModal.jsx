@@ -27,7 +27,7 @@ function ReportModal({ visible, modalData, onClose, toggledTab }) {
                     {toggledTab === 2 ? (
                         <tbody>
                             {modalData.map((report) => (
-                                <tr>
+                                <tr key={report.commentAccuseSeq}>
                                     <td>{report.createdBy}</td>
                                     <td>{report.accuseReason}</td>
                                     <td>{report.createdAt}</td>
@@ -37,7 +37,7 @@ function ReportModal({ visible, modalData, onClose, toggledTab }) {
                     ) : (
                         <tbody>
                             {modalData.map((report) => (
-                                <tr>
+                                <tr key={report.reviewAccuseSeq}>
                                     <td>{report.username}</td>
                                     <td>{report.content}</td>
                                     <td>{report.reportAt}</td>

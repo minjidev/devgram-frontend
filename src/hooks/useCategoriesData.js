@@ -154,13 +154,7 @@ export const useDeleteProductData = () => {
 /** 신고 댓글 **/
 export const useReportedCommentsData = () => {
     return useQuery(["reported-comments"], () =>
-        baseURL
-            .get("/comments/accuse/admin", {
-                headers: {
-                    Authentication: testAuth,
-                },
-            })
-            .then((res) => res.data)
+        fetchData("/comments/accuse/admin")
     );
 };
 
