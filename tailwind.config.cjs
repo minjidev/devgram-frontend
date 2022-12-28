@@ -12,6 +12,12 @@ module.exports = {
                 'keyboard-img': "url('/src/image/keyboard.jpg')",
                 'Load-img': "url('/src/image/Load.png')",
             },
+            backgroundImage: {
+                'bird-img': "url('/src/image/bird.jpg')",
+                'feedImg-img': "url('/src/image/feedImg.jpg')",
+                'keyboard-img': "url('/src/image/keyboard.jpg')",
+                'Load-img': "url('/src/image/Load.png')",
+            },
         },
     },
     plugins: [require("daisyui")],
