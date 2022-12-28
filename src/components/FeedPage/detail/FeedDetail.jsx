@@ -18,9 +18,10 @@ function FeedDetail(props) {
         e.preventDefault();
 
         const data = {
-            id: 5,
-            text: commentValue,
-            children: [],
+            boardSeq: id,
+            content: commentValue,
+            parentCommentSeq: null,
+            // commentGroup:
         };
         mutate({
             data: data,

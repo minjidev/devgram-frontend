@@ -12,32 +12,57 @@ const baseURL = axios.create({
     baseURL: "http://52.194.161.226:8080/api/",
 });
 
+const testAuth =
+    "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJ1c2VyIiwic3ViIjoiQVRLIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY3MjIxMTkzMSwiZXhwIjoxNjcyMjEzNzMxfQ.OPHOAwRV9WAqiEEs3T1xnF3cxj3UyEYct2Dhvg_gd1g";
+
 // 댓글 추가
 const addComments = ({ data }) => {
-    return baseURL.post(`/comments`, {
-        content: data.content,
-        boardSeq: data.boardSeq,
-        parentCommentSeq: null,
-        commentGroup: data.commentGroup,
-    });
+    return baseURL.post(
+        `/comments`,
+        {
+            content: data.content,
+            boardSeq: data.boardSeq,
+            parentCommentSeq: data.parentCommentSeq,
+            commentGroup: data.commentGroup,
+        },
+        {
+            headers: {
+                Authentication: testAuth,
+            },
+        }
+    );
 };
 
 // 자식 댓글 추가
 const addChildrenComments = ({ data }) => {
-    return baseURL.post(`/comments`, {
-        content: data.content,
-        boardSeq: data.boardSeq,
-        parentCommentSeq: data.parentCommentSeq,
-        commentGroup: data.commentGroup,
-    });
+    return baseURL.post(
+        `/comments`,
+        {
+            content: data.content,
+            boardSeq: data.boardSeq,
+            parentCommentSeq: data.parentCommentSeq,
+            commentGroup: data.commentGroup,
+        },
+        {
+            headers: {
+                Authentication: testAuth,
+            },
+        }
+    );
 };
 
 // 신고 댓글 추가
 const addReportedComments = ({ data }) => {
-    return baseURL.post("/accuse", {
-        id: data.id,
-        accuseReason: data.reason,
-    });
+    return baseURL.post(
+        "/accuse",
+        {
+            id: data.id,
+            accuseReason: data.reason,
+        },
+        {
+            Authentication: testAuth,
+        }
+    );
 };
 
 /** custom hooks **/

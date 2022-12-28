@@ -41,7 +41,7 @@ function CommentChildren({ comment }) {
         const data = {
             boardSeq: comment.boardSeq,
             content: commetInput,
-            parentCommentSeq: comment.parentCommentSeq,
+            parentCommentSeq: comment.commentSeq,
             commentGroup: comment.commentGroup,
         };
         addComment({

@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import {
+    ChevronDownIcon,
+    EllipsisHorizontalIcon,
+} from "@heroicons/react/24/outline";
 import {
     useAddReportedCommentsData,
     useAddChildrenCommentsData,
@@ -42,6 +45,7 @@ function CommentParent({ comment, setShowChildren }) {
         const data = {
             boardSeq: comment.boardSeq,
             content: commetInput,
+            parentCommentSeq: comment.CommentSeq,
             commentGroup: comment.commentGroup,
         };
         addComment({
@@ -117,9 +121,25 @@ function CommentParent({ comment, setShowChildren }) {
                                 <ChevronDownIcon className="w-4 h-4 mr-2" />
                             </p>
                             <p>replies</p>
-                            {/* <p>{comment.children.length} replies</p> */}
                         </button>
                     )}
+                </div>
+                {/* 댓글 수정&삭제 */}
+                <div className="dropdown">
+                    <label tabIndex={0} className="btn m-1">
+                        <EllipsisHorizontalIcon className="w-5 h-5" />
+                    </label>
+                    <ul
+                        tabIndex={0}
+                        className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+                    >
+                        <li>
+                            <a>Item 1</a>
+                        </li>
+                        <li>
+                            <a>Item 2</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

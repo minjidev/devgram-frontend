@@ -1,8 +1,4 @@
 import React, { useState } from "react";
-import {
-    useAddReportedCommentsData,
-    useAddChildrenCommentsData,
-} from "@hooks/useFeedData";
 import CommentChildren from "./CommentChildren";
 import CommentParent from "./CommentParent";
 
