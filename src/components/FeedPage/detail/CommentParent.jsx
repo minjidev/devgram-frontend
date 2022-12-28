@@ -32,7 +32,7 @@ function CommentParent({ comment, setShowChildren }) {
         e.preventDefault();
 
         const data = {
-            id: comment.id,
+            id: comment.commentSeq,
             reason: accuseReason,
         };
         mutate({
@@ -47,9 +47,10 @@ function CommentParent({ comment, setShowChildren }) {
         const data = {
             boardSeq: comment.boardSeq,
             content: commetInput,
-            parentCommentSeq: comment.CommentSeq,
+            parentCommentSeq: comment.commentSeq,
             commentGroup: comment.commentGroup,
         };
+
         addComment({
             data: data,
         });
@@ -121,27 +122,30 @@ function CommentParent({ comment, setShowChildren }) {
                             </form>
                         )}
                         {/* 대댓글 열기 버튼 */}
-                        {comment.includedCommentList.length > 0 && (
-                            <button
-                                className="my-1 text-point-blue font-bold flex items-center"
-                                onClick={() => setShowChildren((prev) => !prev)}
-                            >
-                                <p>
-                                    <ChevronDownIcon className="w-4 h-4 mr-2" />
-                                </p>
-                                <p>replies</p>
-                            </button>
-                        )}
+                        {Array.isArray(comment.includedCommentList) &&
+                            comment.includedCommentList.length > 0 && (
+                                <button
+                                    className="my-1 text-point-blue font-bold flex items-center"
+                                    onClick={() =>
+                                        setShowChildren((prev) => !prev)
+                                    }
+                                >
+                                    <p>
+                                        <ChevronDownIcon className="w-4 h-4 mr-2" />
+                                    </p>
+                                    <p>replies</p>
+                                </button>
+                            )}
                     </div>
                 </div>
                 {/* 댓글 수정&삭제 */}
                 <div className="dropdown">
-                    <label tabIndex={0} className="m-1 cursor-pointer">
+                    <label tabIndex={0} className="m-1 cursor-pointer relative">
                         <EllipsisHorizontalIcon className="w-5 h-5" />
                     </label>
                     <ul
                         tabIndex={0}
-                        className="dropdown-content menu p-1 shadow bg-base-100 rounded-box w-24"
+                        className="dropdown-content menu p-1 absolute top-12 shadow bg-base-100 rounded-box w-24"
                     >
                         <li>
                             <button

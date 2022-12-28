@@ -13,7 +13,7 @@ function Comments({ comment }) {
                 comment={comment}
                 setShowChildren={setShowChildren}
             />
-            {comment.includedCommentList.map(
+            {comment.includedCommentList?.map(
                 (children) =>
                     showChildren && (
                         <CommentChildren

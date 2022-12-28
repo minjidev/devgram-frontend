@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 import { useParams, Link } from "react-router-dom";
 import { useFeedDetailData, useFeedCommentsData } from "@hooks/useFeedData";
 import Comments from "./Comments";
@@ -7,26 +8,30 @@ import { useAddCommentsData } from "@hooks/useFeedData";
 
 function FeedDetail(props) {
     const { id } = useParams();
+    const { ref: targetRef, inView } = useInView();
     const [commentValue, setCommentValue] = useState("");
     const handleClick = (e) => {
         setCommentValue(e.currentTarget.value);
     };
     const { mutate, isSuccess: isMutationDone } = useAddCommentsData();
-    console.log(commentValue);
+    console.log("commentVal : ", commentValue);
 
+    useEffect(() => {
+        if (inView && hasNextPage) {
+            fetchNextPage();
+        }
+    }, [inView]);
     const onSubmit = (e) => {
         e.preventDefault();
 
         const data = {
             boardSeq: id,
             content: commentValue,
-            parentCommentSeq: null,
-            // commentGroup:
         };
         mutate({
             data: data,
         });
-        isMutationDone && setCommentValue("");
+        setCommentValue("");
     };
 
     const {
@@ -43,6 +48,8 @@ function FeedDetail(props) {
         isError: isCommentsError,
         error: commentError,
         isSuccess: isCommentsSuccess,
+        hasNextPage,
+        fetchNextPage,
     } = useFeedCommentsData(id, `http://52.194.161.226:8080/api/comments`);
 
     if (isLoading || isCommentsLoading)
@@ -53,8 +60,8 @@ function FeedDetail(props) {
         );
     if (isError) return <div>{error}</div>;
     if (isCommentsError) return <div>{commentError}</div>;
-    console.log("feed: ", feedData);
-    console.log("comments: ", commentsData.pages);
+    // console.log("feed: ", feedData);
+    // console.log("comments: ", commentsData.pages);
     const qna = [
         {
             question: "자기소개",
@@ -160,8 +167,8 @@ function FeedDetail(props) {
                         <br />
                         <button className="btn">확인</button>
                     </form>
-                    {commentsData?.pages.map((page) =>
-                        page.map((comment) => (
+                    {commentsData?.pages?.map((page) =>
+                        (Array.isArray(page) ? page : []).map((comment) => (
                             <article
                                 key={comment.commentSeq}
                                 className="py-6 text-base bg-white rounded-lg border-b"
@@ -173,6 +180,7 @@ function FeedDetail(props) {
                             </article>
                         ))
                     )}
+                    <div className="h-1" ref={targetRef}></div>
                 </div>
             </div>
         );

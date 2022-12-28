@@ -9,22 +9,21 @@ import axios from "axios";
 /** 태그 **/
 /** baseURL **/
 const baseURL = axios.create({
-    baseURL: "http://52.194.161.226:8080/api/",
+    baseURL: "http://52.194.161.226:8080/api",
 });
 
 const testAuth =
-    "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJ0ZXN0VXNlckBuYXZlci5jb20iLCJzdWIiOiJBVEsiLCJyb2xlIjoiUk9MRV9VU0VSIiwiaWF0IjoxNjcyMjE5MjAxLCJleHAiOjE2NzIyMjEwMDF9.3awTgUnt2kEVmXK24uSp5ByhyA8ljtyFA7Z0yahSXYY";
-// "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJ1c2VyIiwic3ViIjoiQVRLIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY3MjIxMTkzMSwiZXhwIjoxNjcyMjEzNzMxfQ.OPHOAwRV9WAqiEEs3T1xnF3cxj3UyEYct2Dhvg_gd1g";
+    "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJBRE1JTiIsInN1YiI6IkFUSyIsInJvbGUiOiJST0xFX0FETUlOIiwiaWF0IjoxNjcyMjQ5MTgwLCJleHAiOjE2NzIyNTA5ODB9.49Mby03ZaKFbChTT5PDjcs1hpmP0t3CRXlTFaxIJgz0";
 
-// 댓글 추가
+// 부모 댓글 추가
 const addComments = ({ data }) => {
+    console.log("here data: ", data);
     return baseURL.post(
         `/comments`,
         {
             content: data.content,
             boardSeq: data.boardSeq,
-            parentCommentSeq: data.parentCommentSeq,
-            commentGroup: data.commentGroup,
+            parentCommentSeq: null,
         },
         {
             headers: {
@@ -55,23 +54,10 @@ const addChildrenComments = ({ data }) => {
 // 신고 댓글 추가
 const addReportedComments = ({ data }) => {
     return baseURL.post(
-        "/accuse",
+        "comments/accuse",
         {
-            id: data.id,
+            commentSeq: data.id,
             accuseReason: data.reason,
-        },
-        {
-            Authentication: testAuth,
-        }
-    );
-};
-
-// 댓글 삭제
-const deleteComments = (id) => {
-    return baseURL.delete(
-        "/comments",
-        {
-            commentSeq: id,
         },
         {
             headers: {
@@ -79,6 +65,15 @@ const deleteComments = (id) => {
             },
         }
     );
+};
+
+// 댓글 삭제
+const deleteComments = (id) => {
+    return baseURL.delete(`/comments?commentSeq=${id}`, {
+        headers: {
+            Authorization: testAuth,
+        },
+    });
 };
 
 /** custom hooks **/
@@ -158,7 +153,7 @@ export const useFeedCommentsData = (id, API_URL) => {
             fetchData(`${API_URL}?boardSeq=${id}&page=${pageParam}&size=5`),
         {
             getNextPageParam: (lastPage, allPages) => {
-                const maxPage = 20 / 5;
+                const maxPage = 10 / 5;
                 const nextPage = allPages.length + 1;
                 return nextPage <= maxPage ? nextPage : undefined;
             },
@@ -194,7 +189,7 @@ export const useAddReportedCommentsData = () => {
     return useMutation(addReportedComments, {
         // mutation 이 성공하면 실행
         onSuccess: () => {
-            queryClient.invalidateQueries("comments");
+            queryClient.invalidateQueries("reported-comments");
         },
     });
 };
