@@ -14,7 +14,6 @@ function FeedDetail(props) {
         setCommentValue(e.currentTarget.value);
     };
     const { mutate, isSuccess: isMutationDone } = useAddCommentsData();
-    console.log("commentVal : ", commentValue);
 
     useEffect(() => {
         if (inView && hasNextPage) {
@@ -60,8 +59,7 @@ function FeedDetail(props) {
         );
     if (isError) return <div>{error}</div>;
     if (isCommentsError) return <div>{commentError}</div>;
-    // console.log("feed: ", feedData);
-    // console.log("comments: ", commentsData.pages);
+
     const qna = [
         {
             question: "자기소개",

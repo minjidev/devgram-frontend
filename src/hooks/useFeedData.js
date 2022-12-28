@@ -13,11 +13,10 @@ const baseURL = axios.create({
 });
 
 const testAuth =
-    "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJBRE1JTiIsInN1YiI6IkFUSyIsInJvbGUiOiJST0xFX0FETUlOIiwiaWF0IjoxNjcyMjQ5MTgwLCJleHAiOjE2NzIyNTA5ODB9.49Mby03ZaKFbChTT5PDjcs1hpmP0t3CRXlTFaxIJgz0";
+    "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJBRE1JTiIsInN1YiI6IkFUSyIsInJvbGUiOiJST0xFX0FETUlOIiwiaWF0IjoxNjcyMjU0MjA4LCJleHAiOjE2NzIyNTYwMDh9.LQZbEYPRIjOWxkrEwLbo0ZTqBslWqfYSPRy3J9GG2hs";
 
 // 부모 댓글 추가
 const addComments = ({ data }) => {
-    console.log("here data: ", data);
     return baseURL.post(
         `/comments`,
         {
@@ -58,6 +57,22 @@ const addReportedComments = ({ data }) => {
         {
             commentSeq: data.id,
             accuseReason: data.reason,
+        },
+        {
+            headers: {
+                Authentication: testAuth,
+            },
+        }
+    );
+};
+
+// 댓글 수정
+const editComments = (data) => {
+    return baseURL.put(
+        `/comments/content`,
+        {
+            commentSeq: data.commentSeq,
+            content: data.content,
         },
         {
             headers: {
@@ -123,9 +138,6 @@ export const useFeedData = (API_URL, sort, subTags) => {
         return useInfiniteQuery(
             [`feed-${subTags}`],
             ({ pageParam = 1 }) => {
-                console.log(
-                    `${baseURL}/${tagsString}?_page=${pageParam}&_limit=5`
-                );
                 return fetchData(
                     `${baseURL}/${tagsString}?_page=${pageParam}&_limit=5`
                 );
@@ -190,6 +202,17 @@ export const useAddReportedCommentsData = () => {
         // mutation 이 성공하면 실행
         onSuccess: () => {
             queryClient.invalidateQueries("reported-comments");
+        },
+    });
+};
+
+// 댓글 수정
+export const useEditCommentsData = () => {
+    const queryClient = useQueryClient();
+    return useMutation(editComments, {
+        // mutation 이 성공하면 실행
+        onSuccess: () => {
+            queryClient.invalidateQueries("comments");
         },
     });
 };

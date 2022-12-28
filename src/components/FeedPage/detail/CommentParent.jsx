@@ -7,6 +7,7 @@ import {
     useAddReportedCommentsData,
     useAddChildrenCommentsData,
     useDeleteCommentsData,
+    useEditCommentsData,
 } from "@hooks/useFeedData";
 
 function CommentParent({ comment, setShowChildren }) {
@@ -14,6 +15,8 @@ function CommentParent({ comment, setShowChildren }) {
     const [showCommentInput, setShowCommentInput] = useState(false);
     const [commetInput, setCommentInput] = useState("");
     const [accuseReason, setAccuseReason] = useState("");
+    const [editID, setEditID] = useState(null);
+    const [commentEdited, setCommentEdited] = useState(comment.content);
 
     const handleAccuseClick = (e) => {
         setAccuseReason(e.currentTarget.value);
@@ -27,6 +30,7 @@ function CommentParent({ comment, setShowChildren }) {
     const { mutate: addComment, isSuccess: isCommentMutationDone } =
         useAddChildrenCommentsData();
     const { mutate: deleteComments } = useDeleteCommentsData();
+    const { mutate: editComments } = useEditCommentsData();
 
     const onReportSubmit = (e) => {
         e.preventDefault();
@@ -39,6 +43,7 @@ function CommentParent({ comment, setShowChildren }) {
             data: data,
         });
         setAccuseReason("");
+        setEditID(-1);
     };
 
     const onCommentSubmit = (e) => {
@@ -57,9 +62,27 @@ function CommentParent({ comment, setShowChildren }) {
         setCommentInput("");
     };
 
-    const onClickEdit = () => {};
+    const onClickEdit = () => {
+        setEditID(comment.commentSeq);
+    };
     const onClickDelete = (e) => {
         deleteComments(e.target.id);
+    };
+
+    const editCommentClick = (e) => {
+        setCommentEdited(e.target.value);
+    };
+
+    const onEditCommentSubmit = (e) => {
+        e.preventDefault();
+
+        const data = {
+            commentSeq: comment.commentSeq,
+            content: commentEdited,
+        };
+        editComments(data);
+
+        setEditID(-1);
     };
 
     return (
@@ -76,7 +99,35 @@ function CommentParent({ comment, setShowChildren }) {
                         <p className="font-semibold text-sm">
                             @{comment.createdBy}
                         </p>
-                        <p className="pb-2">{comment.content}</p>
+                        {/* 댓글 수정 & 내용 */}
+                        {editID === comment.commentSeq ? (
+                            <form
+                                onSubmit={onEditCommentSubmit}
+                                className="flex items-center gap-3 py-2"
+                            >
+                                <textarea
+                                    className="min-w-[300px] rounded-lg border p-2"
+                                    onChange={editCommentClick}
+                                    value={commentEdited}
+                                ></textarea>
+                                <button
+                                    type="submit"
+                                    className="btn bg-point-blue border-0 hover:bg-point-blue"
+                                >
+                                    수정
+                                </button>
+                                <button
+                                    type="button"
+                                    className="btn btn-ghost btn-active font-bold"
+                                    onClick={() => setEditID(-1)}
+                                >
+                                    취소
+                                </button>
+                            </form>
+                        ) : (
+                            <p className="pb-2">{comment.content}</p>
+                        )}
+
                         {/* 댓글 남기기 */}
                         <button
                             className="text-sm font-bold mr-5"

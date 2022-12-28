@@ -3,6 +3,7 @@ import {
     useAddReportedCommentsData,
     useAddChildrenCommentsData,
     useDeleteCommentsData,
+    useEditCommentsData,
 } from "@hooks/useFeedData";
 import { EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
 
@@ -11,6 +12,8 @@ function CommentChildren({ comment }) {
     const [showCommentInput, setShowCommentInput] = useState(false);
     const [commetInput, setCommentInput] = useState("");
     const [accuseReason, setAccuseReason] = useState("");
+    const [editID, setEditID] = useState(null);
+    const [commentEdited, setCommentEdited] = useState(comment.content);
 
     const handleAccuseClick = (e) => {
         setAccuseReason(e.currentTarget.value);
@@ -23,6 +26,7 @@ function CommentChildren({ comment }) {
     const { mutate } = useAddReportedCommentsData();
     const { mutate: addComment } = useAddChildrenCommentsData();
     const { mutate: deleteComments } = useDeleteCommentsData();
+    const { mutate: editComments } = useEditCommentsData();
 
     const onReportSubmit = (e) => {
         e.preventDefault();
@@ -52,9 +56,27 @@ function CommentChildren({ comment }) {
         setCommentInput("");
     };
 
-    const onClickEdit = () => {};
+    const onClickEdit = () => {
+        setEditID(comment.commentSeq);
+    };
     const onClickDelete = (e) => {
         deleteComments(e.target.id);
+    };
+
+    const editCommentClick = (e) => {
+        setCommentEdited(e.target.value);
+    };
+
+    const onEditCommentSubmit = (e) => {
+        e.preventDefault();
+
+        const data = {
+            commentSeq: comment.commentSeq,
+            content: commentEdited,
+        };
+        editComments(data);
+
+        setEditID(-1);
     };
 
     return (
@@ -74,7 +96,33 @@ function CommentChildren({ comment }) {
                                 {comment.parentCommentCreatedBy}
                             </span>
                         </p>
-                        <p className="pb-2">{comment.content}</p>
+                        {editID === comment.commentSeq ? (
+                            <form
+                                onSubmit={onEditCommentSubmit}
+                                className="flex items-center gap-3 py-2"
+                            >
+                                <textarea
+                                    className="min-w-[300px] rounded-lg border p-2"
+                                    onChange={editCommentClick}
+                                    value={commentEdited}
+                                ></textarea>
+                                <button
+                                    type="submit"
+                                    className="btn bg-point-blue border-0 hover:bg-point-blue"
+                                >
+                                    수정
+                                </button>
+                                <button
+                                    type="button"
+                                    className="btn btn-ghost btn-active font-bold"
+                                    onClick={() => setEditID(-1)}
+                                >
+                                    취소
+                                </button>
+                            </form>
+                        ) : (
+                            <p className="pb-2">{comment.content}</p>
+                        )}
                         {/* 댓글 남기기 */}
                         <button
                             className="text-sm font-bold mr-5"
