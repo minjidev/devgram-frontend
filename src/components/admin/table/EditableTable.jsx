@@ -11,9 +11,10 @@ function EditableTable({
     title,
 }) {
     const [editID, setEditID] = useState(null);
-    const handleEditClick = (id) => {
-        setEditID(id);
+    const handleEditClick = (dataID) => {
+        setEditID(dataID);
     };
+    console.log("set edit id in editable table: ", editID);
 
     return (
         <TableContainer>
@@ -28,34 +29,32 @@ function EditableTable({
                 </tr>
             </thead>
             <tbody>
-                {currentData.map((data) => (
-                    <Fragment
-                        key={
-                            title === "상품"
-                                ? data.product_Seq
-                                : data.category_Seq
-                        }
-                    >
-                        {editID ===
-                        (title === "상품"
-                            ? data.product_Seq
-                            : data.category_Seq) ? (
-                            <EditableRow
-                                data={data}
-                                columns={columns}
-                                handleEditClick={handleEditClick}
-                                useEditData={useEditData}
-                            />
-                        ) : (
-                            <ReadOnlyRow
-                                data={data}
-                                columns={columns}
-                                handleEditClick={handleEditClick}
-                                useDeleteData={useDeleteData}
-                            />
-                        )}
-                    </Fragment>
-                ))}
+                {currentData.map((data) => {
+                    const dataID =
+                        title === "상품" ? data.product_Seq : data.category_Seq;
+                    // console.log("id: ", title, dataID);
+                    return (
+                        <Fragment key={dataID}>
+                            {editID === dataID ? (
+                                <EditableRow
+                                    data={data}
+                                    columns={columns}
+                                    handleEditClick={handleEditClick}
+                                    useEditData={useEditData}
+                                    id={dataID}
+                                />
+                            ) : (
+                                <ReadOnlyRow
+                                    data={data}
+                                    columns={columns}
+                                    handleEditClick={handleEditClick}
+                                    useDeleteData={useDeleteData}
+                                    id={dataID}
+                                />
+                            )}
+                        </Fragment>
+                    );
+                })}
             </tbody>
         </TableContainer>
     );

@@ -21,7 +21,7 @@ const addCategory = ({ data }) => {
 };
 
 const updateCategory = ({ id, editedData }) => {
-    return baseURL.post(`/categories`, {
+    return baseURL.post(`/categories/update`, {
         category_Seq: id,
         name: editedData.name,
         color: editedData.color,
@@ -36,19 +36,21 @@ const deleteCategory = ({ id }) => {
 
 /** 상품 추가,수정,삭제 **/
 const addProduct = ({ data }) => {
-    return baseURL.post("/products", {
+    return baseURL.post("/products/update", {
         category_Seq: data.category_Seq,
         title: data.title,
         content: data.content,
-        // hits: data.hits,
-        // rating: data.rating,
-        // like_count: data.like_count,
         price: data.price,
     });
 };
 
 const updateProduct = ({ id, editedData }) => {
-    return baseURL.put(`/products`, {
+    console.log("id: ", id);
+    console.log("editedD: ", editedData);
+    console.log("cat_Seq: ", editedData.category_Seq);
+    return baseURL.post(`/products/update`, {
+        product_Seq: id,
+        category_Seq: editedData.category_Seq,
         title: editedData.title,
         content: editedData.content,
         price: editedData.price,
@@ -56,7 +58,9 @@ const updateProduct = ({ id, editedData }) => {
 };
 
 const deleteProduct = ({ id }) => {
-    return baseURL.delete(`/products`, id);
+    return baseURL.post(`/products/delete`, {
+        product_Seq: id,
+    });
 };
 
 /** 댓글 신고 수정 **/
@@ -69,9 +73,9 @@ const updateReportedComment = ({ id, status }) => {
 
 /** 리뷰 수정 URL 변경 필요  **/
 const updateReportedReviews = ({ id, status }) => {
-    return baseURL.patch(`/reviews/status`, {
+    return baseURL.post(`/review/accuse/statusUpdate`, {
         reviewSeq: id,
-        reviewStatus: status,
+        status: status,
     });
 };
 
