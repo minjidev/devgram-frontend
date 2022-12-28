@@ -9,26 +9,26 @@ import axios from "axios";
 /** 태그 **/
 /** baseURL **/
 const baseURL = axios.create({
-    baseURL: "http://localhost:3000",
+    baseURL: "http://52.194.161.226:8080/api/",
 });
 
 // 댓글 추가
 const addComments = ({ data }) => {
-    return baseURL.post(`/commentData`, {
-        id: data.id,
-        text: data.text,
-        author: data.author,
-        children: data.children,
+    return baseURL.post(`/comments`, {
+        content: data.content,
+        boardSeq: data.boardSeq,
+        parentCommentSeq: null,
+        commentGroup: data.commentGroup,
     });
 };
 
 // 자식 댓글 추가
 const addChildrenComments = ({ data }) => {
-    return baseURL.post(`/commentData`, {
-        id: data.id,
-        text: data.text,
-        author: data.author,
-        children: data.children,
+    return baseURL.post(`/comments`, {
+        content: data.content,
+        boardSeq: data.boardSeq,
+        parentCommentSeq: data.parentCommentSeq,
+        commentGroup: data.commentGroup,
     });
 };
 
@@ -110,9 +110,19 @@ export const useFeedDetailData = (id, API_URL) => {
     return useQuery([`detail-${id}`], () => fetchData(`${API_URL}/${id}`));
 };
 
-// 보드 id 넘겨주도록 변경 필요
 export const useFeedCommentsData = (id, API_URL) => {
-    return useQuery([`comments-${id}`], () => fetchData(`${API_URL}`));
+    return useInfiniteQuery(
+        [`comments-${id}`],
+        ({ pageParam = 1 }) =>
+            fetchData(`${API_URL}?boardSeq=${id}&page=${pageParam}&size=5`),
+        {
+            getNextPageParam: (lastPage, allPages) => {
+                const maxPage = 20 / 5;
+                const nextPage = allPages.length + 1;
+                return nextPage <= maxPage ? nextPage : undefined;
+            },
+        }
+    );
 };
 
 // 댓글 추가
