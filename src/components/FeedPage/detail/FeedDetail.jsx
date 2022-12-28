@@ -120,7 +120,7 @@ function FeedDetail(props) {
                 {/* 메인 사진 영역  */}
                 <img
                     src={
-                        feedData.imgUrl ||
+                        feedData.imageUrl ||
                         "https://images.unsplash.com/photo-1520155346-36773ab29479?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2531&q=80"
                     }
                     alt={feedData.title}

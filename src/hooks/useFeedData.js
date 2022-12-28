@@ -13,7 +13,8 @@ const baseURL = axios.create({
 });
 
 const testAuth =
-    "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJ1c2VyIiwic3ViIjoiQVRLIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY3MjIxMTkzMSwiZXhwIjoxNjcyMjEzNzMxfQ.OPHOAwRV9WAqiEEs3T1xnF3cxj3UyEYct2Dhvg_gd1g";
+    "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJ0ZXN0VXNlckBuYXZlci5jb20iLCJzdWIiOiJBVEsiLCJyb2xlIjoiUk9MRV9VU0VSIiwiaWF0IjoxNjcyMjE5MjAxLCJleHAiOjE2NzIyMjEwMDF9.3awTgUnt2kEVmXK24uSp5ByhyA8ljtyFA7Z0yahSXYY";
+// "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJ1c2VyIiwic3ViIjoiQVRLIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY3MjIxMTkzMSwiZXhwIjoxNjcyMjEzNzMxfQ.OPHOAwRV9WAqiEEs3T1xnF3cxj3UyEYct2Dhvg_gd1g";
 
 // 댓글 추가
 const addComments = ({ data }) => {
@@ -61,6 +62,21 @@ const addReportedComments = ({ data }) => {
         },
         {
             Authentication: testAuth,
+        }
+    );
+};
+
+// 댓글 삭제
+const deleteComments = (id) => {
+    return baseURL.delete(
+        "/comments",
+        {
+            commentSeq: id,
+        },
+        {
+            headers: {
+                Authentication: testAuth,
+            },
         }
     );
 };
@@ -176,6 +192,17 @@ export const useAddChildrenCommentsData = () => {
 export const useAddReportedCommentsData = () => {
     const queryClient = useQueryClient();
     return useMutation(addReportedComments, {
+        // mutation 이 성공하면 실행
+        onSuccess: () => {
+            queryClient.invalidateQueries("comments");
+        },
+    });
+};
+
+// 댓글 삭제
+export const useDeleteCommentsData = () => {
+    const queryClient = useQueryClient();
+    return useMutation(deleteComments, {
         // mutation 이 성공하면 실행
         onSuccess: () => {
             queryClient.invalidateQueries("comments");
