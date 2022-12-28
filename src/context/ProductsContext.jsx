@@ -1,5 +1,6 @@
 import React, { createContext, useContext } from "react";
-import { useProductsData } from "@hooks/useAdminData";
+// import { useProductsData } from "@hooks/useAdminData";
+import { useProductsDataAll } from "@hooks/useCategoriesData";
 import Loader from "@components/products/ui/Loader";
 
 const ProductsContext = createContext();
@@ -10,12 +11,8 @@ export function useProducts() {
 }
 
 export function ProductsProvider({ children }) {
-    const API_URL_PRODUCTS = "http://52.194.161.226:8080/api/products/list";
-    const {
-        data: productsData,
-        isLoading,
-        error,
-    } = useProductsData(API_URL_PRODUCTS);
+    // const API_URL_PRODUCTS = "http://52.194.161.226:8080/api/products/list";
+    const { data: productsData, isLoading, error } = useProductsDataAll();
     if (isLoading)
         return (
             <div className="flex justify-center">

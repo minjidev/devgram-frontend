@@ -1,5 +1,6 @@
 import React, { createContext, useContext } from "react";
-import { useCategoriesData } from "@hooks/useAdminData";
+// import { useCategoriesData } from "@hooks/useAdminData";
+import { useCategoriesData } from "@hooks/useCategoriesData";
 import Loader from "@components/products/ui/Loader";
 
 const CategoriesContext = createContext();
@@ -10,12 +11,8 @@ export function useCategories() {
 }
 
 export function CategoriesProvider({ children }) {
-    const API_URL_CAT = "http://52.194.161.226:8080/api/categories";
-    const {
-        data: categoriesData,
-        isLoading,
-        error,
-    } = useCategoriesData(API_URL_CAT);
+    // const API_URL_CAT = "http://52.194.161.226:8080/api/categories";
+    const { data: categoriesData, isLoading, error } = useCategoriesData();
     if (isLoading)
         return (
             <div className="flex justify-center">

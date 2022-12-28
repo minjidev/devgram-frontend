@@ -110,6 +110,15 @@ export const useProductsData = () => {
     return useQuery(["products"], () => fetchData("/products/admin"));
 };
 
+export const useProductsDataAll = () => {
+    return useQuery(["products-all"], () => fetchData("/products/lists"));
+};
+
+/** 캐러셀  **/
+export const useProductsCarouselData = (API_URL) => {
+    return useQuery(["products-carousel"], () => fetchData(API_URL));
+};
+
 export const useAddProductData = () => {
     const queryClient = useQueryClient();
     return useMutation(addProduct, {
@@ -137,7 +146,9 @@ export const useDeleteProductData = () => {
 };
 
 export const useReportedCommentsData = () => {
-    return useQuery(["reported-comments"], () => fetchData("/comments/accuse"));
+    return useQuery(["reported-comments"], () =>
+        fetchData("/comments/accuse/admin")
+    );
 };
 
 export const useEditReportedCommentsData = () => {
@@ -151,8 +162,8 @@ export const useEditReportedCommentsData = () => {
 
 /** 신고 리뷰 **/
 export const useReportedReivewsData = () => {
-    return useQuery(["reported-reviews-detail"], () =>
-        fetchData("/comments/accuse")
+    return useQuery(["reported-reviews"], () =>
+        fetchData("/review/accuse/list")
     );
 };
 

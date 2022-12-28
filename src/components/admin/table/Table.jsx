@@ -12,8 +12,8 @@ function Table({ currentData, columns, toggledTab }) {
     const handleClick = ({ id, toggledTab }) => {
         const API_URL_REPORTED = `${baseURL}/${
             toggledTab === 1
-                ? `reviews/accuse/detail`
-                : `comments/accuse/detail?commentSeq=${id}`
+                ? `reviews/accuse/detail?reviewSeq=${id}`
+                : `comments/accuse/detail/admin?commentSeq=${id}`
         }`;
 
         axios
@@ -40,38 +40,71 @@ function Table({ currentData, columns, toggledTab }) {
                         <th>신고 보기</th>
                     </tr>
                 </thead>
-                <tbody>
-                    {currentData.map((data) => (
-                        <tr key={data.commentSeq}>
-                            {columns.map((col, index) => (
-                                <td key={index}>{data[col.field]}</td>
-                            ))}
-                            <td>
-                                <SelectStatus
-                                    currentStatus={data.commentStatus}
-                                    id={data.commentSeq}
-                                    toggledTab={toggledTab}
-                                />
-                            </td>
-                            <td>
-                                <button
-                                    className="btn btn-sm btn-outline"
-                                    onClick={() => {
-                                        setShowModal(true);
-                                        handleClick({
-                                            id: data.commentSeq,
-                                            toggledTab: toggledTab,
-                                        });
-                                    }}
-                                >
-                                    신고 보기
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
+                {toggledTab === 2 ? (
+                    <tbody>
+                        {currentData.map((data) => (
+                            <tr key={data.commentSeq}>
+                                {columns.map((col, index) => (
+                                    <td key={index}>{data[col.field]}</td>
+                                ))}
+                                <td>
+                                    <SelectStatus
+                                        currentStatus={data.commentStatus}
+                                        id={data.commentSeq}
+                                        toggledTab={toggledTab}
+                                    />
+                                </td>
+                                <td>
+                                    <button
+                                        className="btn btn-sm btn-outline"
+                                        onClick={() => {
+                                            setShowModal(true);
+                                            handleClick({
+                                                id: data.commentSeq,
+                                                toggledTab: toggledTab,
+                                            });
+                                        }}
+                                    >
+                                        신고 보기
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                ) : (
+                    <tbody>
+                        {currentData.map((data) => (
+                            <tr key={data.reviewSeq}>
+                                {columns.map((col, index) => (
+                                    <td key={index}>{data[col.field]}</td>
+                                ))}
+                                <td>
+                                    <SelectStatus
+                                        currentStatus={data.commentStatus}
+                                        id={data.reviewSeq}
+                                        toggledTab={toggledTab}
+                                    />
+                                </td>
+                                <td>
+                                    <button
+                                        className="btn btn-sm btn-outline"
+                                        onClick={() => {
+                                            setShowModal(true);
+                                            handleClick({
+                                                id: data.reviewSeq,
+                                                toggledTab: toggledTab,
+                                            });
+                                        }}
+                                    >
+                                        신고 보기
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                )}
             </TableContainer>
-
+            {/* 모달을 댓글/리뷰 각각 만들어야하나..? */}
             <ReportModal
                 visible={showModal}
                 modalData={modalItem}
