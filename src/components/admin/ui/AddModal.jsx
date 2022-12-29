@@ -13,19 +13,29 @@ function AddModal({ visible, onClose, columns, useAddData }) {
     const [categorySelected, setCategorySelected] = useState("");
     const categories = useCategories();
     const { mutate, isSuccess } = useAddData();
+    const [file, setFile] = useState(null);
+
     if (!visible) return null;
+
+    const handleFile = (e) => {
+        let file = e.target.files[0];
+        setFile(file);
+    };
 
     const getInputData = (e) => {
         const newData = { ...data };
         newData[e.target.id] = e.target.value;
         setData(newData);
     };
-
+    // 상품 등록
     const handleSubmit = (e) => {
-        const newD = {};
         e.preventDefault();
-        mutate({ data: data });
+        // let formData = new FormData();
+        // formData.append("file", file);
+        // formData.append("product", data);
 
+        mutate({ data: data, file: file });
+        const newD = {};
         setData(() => {
             columns.map((col) => (newD[col.field] = col.initialVal));
             return newD;
@@ -39,6 +49,7 @@ function AddModal({ visible, onClose, columns, useAddData }) {
             category_Seq: e.target.id,
         });
     };
+    console.log("file", file);
     console.log("data: ", data);
     const handleClose = (e) => {
         if (e.target.id === "wrapper") onClose();
@@ -98,6 +109,18 @@ function AddModal({ visible, onClose, columns, useAddData }) {
                                                 </li>
                                             ))}
                                         </ul>
+                                    </div>
+                                ) : col.field === "img_url" ? (
+                                    <div>
+                                        <label htmlFor="" className="sr-only">
+                                            파일 선택하기
+                                        </label>
+                                        <input
+                                            type="file"
+                                            name="file"
+                                            accept="image/*"
+                                            onChange={handleFile}
+                                        ></input>
                                     </div>
                                 ) : (
                                     <TextInput

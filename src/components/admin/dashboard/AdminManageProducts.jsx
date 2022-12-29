@@ -26,14 +26,16 @@ function AdminManageProducts(props) {
         { field: "status", header: "상태", initialVal: 0 },
     ];
     return (
-        <AdminManage
-            title={"상품"}
-            columns={productColumns}
-            useData={() => useProductsData()}
-            useAddData={useAddProductData}
-            useEditData={useEditProductData}
-            useDeleteData={useDeleteProductData}
-        />
+        <div>
+            <AdminManage
+                title={"상품"}
+                columns={productColumns}
+                useData={() => useProductsData()}
+                useAddData={useAddProductData}
+                useEditData={useEditProductData}
+                useDeleteData={useDeleteProductData}
+            />
+        </div>
     );
 }
 

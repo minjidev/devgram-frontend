@@ -10,6 +10,7 @@ import ProductsMainPage from "@pages/products/ProductsMainPage";
 import FeedWritePage from "@pages/feed/write/FeedWritePage";
 import ProductsDatailPage from "@pages/products/detail/ProductsDatailPage";
 import FeedMainPage from "@pages/Feed/main/FeedMainPage";
+import FeedDetail from "@components/FeedPage/detail/FeedDetail";
 
 /* 마이페이지 */
 import MyPage from "@pages/mypage/MyPage";
@@ -31,19 +32,33 @@ function App() {
             <div className="App">
                 <QueryClientProvider client={client}>
                     <Routes>
+                        {/* pubilc routes */}
                         {/* 메인 페이지 */}
                         <Route path="/" element={<MainPage />} />
-                        <Route path="/admin/*" element={<AdminPage />} />
+                        <Route path="/login/callback" element={<Login />} />
                         {/* 피드 페이지 */}
                         <Route path="/social/feed" element={<FeedMainPage />} />
+                        <Route
+                            path="/social/feed/:id"
+                            element={<FeedDetail />}
+                        />
+                        {/* 상품 페이지 */}
+                        <Route
+                            path="/products"
+                            element={<ProductsMainPage />}
+                        />
+                        <Route
+                            path="/products/detail/:id"
+                            element={<ProductsDatailPage />}
+                        />
+                        <Route path="/search" element={<Search />} />
+
+                        {/* protected routes */}
+                        <Route path="/admin/*" element={<AdminPage />} />
                         <Route
                             path="/social/feed/write"
                             element={<FeedWritePage />}
                         />
-
-                        {/* <Route path="/social/feed/:id" element={<FeedDetail />} /> */}
-                        <Route path="/login/callback" element={<Login />} />
-
                         {/* 마이페이지 */}
                         <Route path="/my" element={<MyPage />} />
                         <Route path="/my/review" element={<MyPageReview />} />
@@ -57,16 +72,8 @@ function App() {
                             path="/my/follow"
                             element={<MyPageFollowing />}
                         />
-                        <Route
-                            path="/products"
-                            element={<ProductsMainPage />}
-                        />
-                        {/* 상품 페이지 */}
-                        <Route
-                            path="/products/detail/:id"
-                            element={<ProductsDatailPage />}
-                        />
-                        <Route path="/search" element={<Search />} />
+
+                        {/* missing routes */}
                         <Route path="*" element={<NotFound />} />
                     </Routes>
 

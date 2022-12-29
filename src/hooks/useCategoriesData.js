@@ -7,7 +7,7 @@ const baseURL = axios.create({
 });
 
 const testAuth =
-    "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJBRE1JTiIsInN1YiI6IkFUSyIsInJvbGUiOiJST0xFX0FETUlOIiwiaWF0IjoxNjcyMzI2NDc0LCJleHAiOjE2NzIzMjgyNzR9.EvQyrOKnndxhQzyZNGCurHzdaqA4JV9wPlxnfBC58cI";
+    "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJBRE1JTiIsInN1YiI6IkFUSyIsInJvbGUiOiJST0xFX0FETUlOIiwiaWF0IjoxNjcyMzQzNTYyLCJleHAiOjE2NzIzNDUzNjJ9.b3I3q5rCCr6QG332iK2UUtNns7nGGdJu5knzBEoztQM";
 
 const fetchData = (API_URL) => {
     return baseURL.get(API_URL).then((res) => res.data);
@@ -67,13 +67,18 @@ const deleteCategory = ({ id }) => {
 };
 
 /** 상품 추가,수정,삭제 **/
-const addProduct = ({ data }) => {
-    return baseURL.post("/products", {
-        category_Seq: data.category_Seq,
-        title: data.title,
-        content: data.content,
-        price: data.price,
+const addProduct = ({ data, file }) => {
+    let formData = new FormData();
+    console.log("da here: :", data);
+    formData.append("product", new Blob([JSON.stringify(data)]), {
+        type: "application/json",
     });
+
+    formData.append("file", file);
+    for (var pair of formData.entries()) {
+        console.log(pair[0] + ", " + pair[1]);
+    }
+    return baseURL.post("/products", formData);
 };
 
 const updateProduct = ({ id, editedData }) => {

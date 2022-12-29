@@ -13,7 +13,7 @@ const baseURL = axios.create({
 });
 
 const testAuth =
-    "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJBRE1JTiIsInN1YiI6IkFUSyIsInJvbGUiOiJST0xFX0FETUlOIiwiaWF0IjoxNjcyMzI2NDc0LCJleHAiOjE2NzIzMjgyNzR9.EvQyrOKnndxhQzyZNGCurHzdaqA4JV9wPlxnfBC58cI";
+    "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJBRE1JTiIsInN1YiI6IkFUSyIsInJvbGUiOiJST0xFX0FETUlOIiwiaWF0IjoxNjcyMzQzNTYyLCJleHAiOjE2NzIzNDUzNjJ9.b3I3q5rCCr6QG332iK2UUtNns7nGGdJu5knzBEoztQM";
 // 댓글 추가
 const addComments = ({ data }) => {
     return baseURL.post(
