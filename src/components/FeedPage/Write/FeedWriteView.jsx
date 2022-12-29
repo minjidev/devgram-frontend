@@ -5,7 +5,10 @@ import Navigation from '@components/MainPage/Header/Navigation'
 import FeedWriteList from '@components/FeedPage/Write/FeedWriteList'
 import FeedWriteQue from '@components/FeedPage/Write/FeedWriteQue'
 import FeedWriteFile from '@components/FeedPage/Write/FeedWriteFile'
+import FeedWriteEquipment from '@components/FeedPage/Write/FeedWriteEquipment'
+
 import FeedWriteModal from '@components/FeedPage/Write/FeedWriteModal'
+import EquipmentModal from '@components/FeedPage/Write/Modal/EquipmentModal'
 
 /* 피드 작성페이지 뷰 */
 export default function FeedWriteView() {
@@ -22,29 +25,36 @@ export default function FeedWriteView() {
   hover:border-point-blue
   `
   const [modalOpen, setModalOpen] = useState(false)
+  const [EquiModal, setEquiModal] = useState(false)
+  const [products, setproducts] = useState([])
 
   /* 필수질문 관리 */
   const [target1, setTarget1] = useState(false)
   const [target2, setTarget2] = useState(false)
+  const [tmpEquiArr, settmpEquiArr] = useState([])
 
   function handlerModalBtn() {
     if (!target1 && !target2) {
       alert("필수질문을 모두 작성해주세요.")
-    }
-    else if (!target1) {
-      alert("자기소개를 작성해주세요.")
-    }
-    else if (!target2) {
-      alert("추천하는 이유를 작성해주세요.")
     }
     else {
       setModalOpen(!modalOpen)
     }
   }
 
+  useEffect(() => {
+		const fetchData = async() => {
+          const res = await fetch(`http://localhost:3001/product`);
+          const result = res.json();
+          return result;
+        }	
+        
+        fetchData().then(res => setproducts(res));
+    }, []);
+
   return (
     <dlv>
-    {modalOpen ? <div className="fixed w-full h-full bg-black z-40 opacity-70"></div> : null}
+    {EquiModal ? <div className="fixed w-full h-full bg-black z-40 opacity-70"></div> : null}
     <Navigation />
     <div className='text-black mt-12'>
       <div className="m-auto w-[700px]">
@@ -57,7 +67,9 @@ export default function FeedWriteView() {
 
         {/* 자기소개와 사진 */}
         <div className="intro">
-          <FeedWriteFile title="자기소개" mandatory={true} guide="자기소개를 입력 해주세요 (블로그, SNS, 깃헙주소 등을 적으셔도 됩니다)" name="intro"
+          <FeedWriteFile 
+          title="자기소개" mandatory={true} 
+          guide="자기소개를 입력 해주세요 (블로그, SNS, 깃헙주소 등을 적으셔도 됩니다)" name="intro"
           explain="자기소개"
           target={setTarget1}
           />
@@ -65,9 +77,16 @@ export default function FeedWriteView() {
 
         {/* 장비 선택 */}
         <div className="equipment">
-          {/* name: equipment */}
+          <FeedWriteEquipment 
+          title="장비선택" 
+          mandatory={true} guide="추천하는 장비 선택해주세요" name="intro"
+          explain="자기소개"
+          target={setTarget1}
+          Btn={Btn}
+          setEquiModal={setEquiModal}
+          />
         </div>
-
+        <input type="hidden" value={tmpEquiArr} name="productSep" />
         {/* 추천 사유 */}
         <div className="recommend">
             <FeedWriteQue title="추천하는 이유" mandatory={true} guide="추천한 장비에 대한 장점을 적어주세요, 가성비나 외형, 기능 등을 자유롭게 적어주시면 됩니다." name="recommend"
@@ -103,7 +122,13 @@ export default function FeedWriteView() {
         </div>
         <div className="btn-box flex flex-row-reverse mt-10">
           <Btn onClick={handlerModalBtn} type="button">작성</Btn>
-          {modalOpen === true ? <FeedWriteModal setModalOpen={setModalOpen}/> : null}
+          {modalOpen === true ? <FeedWriteModal setModalOpen={setModalOpen}/> 
+          : null}
+          {EquiModal === true ? <EquipmentModal Open={setEquiModal}
+          products={products}
+          list={settmpEquiArr}
+          /> 
+          : null}
         </div>
         </form>
       </div>
