@@ -4,8 +4,11 @@ import { useProducts } from "@context/ProductsContext";
 import ProductsCards from "./ProductsCards";
 import ProductsAll from "../ProductsAll";
 import ProductAddButton from "./ProductAddButton";
+import useAuth from "@hooks/useAuth";
 
 function ProductTags({ categories }) {
+    const { auth } = useAuth();
+    console.log("token: ", auth);
     // 클릭한 카테고리(카테고리명)에 해당하는 상품(카테고리 id -> 카테고리 이름)만 보여주기
     const init = {};
     // 카테고리 id 각각 false로 기본 상태 지정

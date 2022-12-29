@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 
 export default function Login() {
     //test
@@ -67,6 +68,16 @@ export default function Login() {
                                 );
                                 //test
                                 navigate(from, { replace: true });
+                                console.log(
+                                    "lookL :",
+                                    localStorage.getItem("webAccessToken")
+                                );
+                                const { setAuth } = useAuth();
+                                setAuth({
+                                    webAcessToken:
+                                        localStorage.getItem("webAccessToken"),
+                                    userId: localStorage.getItem("userId"),
+                                });
                             });
                     });
             }
