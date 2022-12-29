@@ -10,16 +10,18 @@ import {
     useDeleteFeedData,
 } from "@hooks/useFeedData";
 import { EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
+import EditModal from "./EditModal";
 
 function FeedDetail(props) {
     const { id } = useParams();
     const { ref: targetRef, inView } = useInView();
     const [commentValue, setCommentValue] = useState("");
+    const [showModal, setShowModal] = useState(false);
     const handleClick = (e) => {
         setCommentValue(e.currentTarget.value);
     };
 
-    const { mutate, isSuccess: isMutationDone } = useAddCommentsData();
+    const { mutate } = useAddCommentsData();
     const { mutate: followWriter } = useFollowWriterData();
     const { mutate: deleteFeed } = useDeleteFeedData();
 
@@ -93,8 +95,16 @@ function FeedDetail(props) {
     ];
     console.log("feedDta: ", feedData);
     const onFollowClick = () => {
-        console.log(feedData.createdBySeq);
         followWriter(feedData.createdBySeq);
+    };
+
+    const onDeleteFeedClick = () => {
+        console.log("board 3 id : ", id);
+        deleteFeed(id);
+    };
+
+    const onClose = () => {
+        setShowModal(false);
     };
 
     if (isSuccess && isCommentsSuccess)
@@ -125,10 +135,16 @@ function FeedDetail(props) {
                                 className="dropdown-content menu p-1 absolute top-5 shadow bg-base-100 rounded-box w-24 text-sm"
                             >
                                 <li>
-                                    <button>수정</button>
+                                    <button onClick={() => setShowModal(true)}>
+                                        수정
+                                    </button>
                                 </li>
                                 <li>
-                                    <button>삭제</button>
+                                    <Link to="/social/feed">
+                                        <button onClick={onDeleteFeedClick}>
+                                            삭제
+                                        </button>
+                                    </Link>
                                 </li>
                             </ul>
                         </div>
@@ -190,8 +206,6 @@ function FeedDetail(props) {
                 </div>
                 {/* 댓글 영역 */}
                 <div className="py-3">
-                    {/* <hr className="mt-8 mb-4 h-px w-full bg-gray-200 border-0 dark:bg-gray-700"></hr> */}
-
                     <p className="text-2xl font-extrabold p-2">댓글</p>
                     {/* 댓글 작성창 */}
                     <form
@@ -222,6 +236,12 @@ function FeedDetail(props) {
                     )}
                     <div className="h-1" ref={targetRef}></div>
                 </div>
+                <EditModal
+                    feedData={feedData}
+                    visible={showModal}
+                    onClose={onClose}
+                    boardSeq={id}
+                />
             </div>
         );
 }

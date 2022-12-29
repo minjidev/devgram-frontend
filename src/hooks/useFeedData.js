@@ -101,48 +101,31 @@ const followWriter = (followingUserSeq) => {
 };
 
 // 피드 수정
-const editFeed = (data) => {
+const editFeed = ({ data, boardSeq }) => {
     return baseURL.put(
         `/boards`,
         {
-            boardSeq: data.boardSeq,
+            boardSeq: boardSeq,
             title: data.title,
-            content: data.content,
-        },
-        {
-            headers: {
-                Authentication: testAuth,
-            },
+            selfIntroduce: data.selfIntroduce,
+            recommendReason: data.recommendReason,
+            bestProduct: data.bestProduct,
+            otherProduct: data.otherProduct,
+            // last: data.last,
         }
+        // {
+        //     headers: {
+        //         Authentication: testAuth,
+        //     },
+        // }
     );
-};
-
-// 피드 수정
-export const useEditFeedData = () => {
-    const queryClient = useQueryClient();
-    return useMutation(editComments, {
-        // mutation 이 성공하면 실행
-        onSuccess: () => {
-            queryClient.invalidateQueries("comments");
-        },
-    });
 };
 
 // 피드 삭제
 const deleteFeed = (id) => {
-    return baseURL.delete(`/boards/{id}`, {
+    return baseURL.delete(`/boards/${id}`, {
         headers: {
-            Authorization: testAuth,
-        },
-    });
-};
-
-export const useDeleteFeedData = () => {
-    const queryClient = useQueryClient();
-    return useMutation(deleteFeed, {
-        // mutation 이 성공하면 실행
-        onSuccess: () => {
-            queryClient.invalidateQueries("feed");
+            Authentication: testAuth,
         },
     });
 };
@@ -291,6 +274,26 @@ export const useFollowWriterData = () => {
         // mutation 이 성공하면 실행
         onSuccess: () => {
             queryClient.invalidateQueries("following");
+        },
+    });
+};
+
+// 피드 수정
+export const useEditFeedData = () => {
+    const queryClient = useQueryClient();
+    return useMutation(editFeed, {
+        onSuccess: () => {
+            queryClient.invalidateQueries("feed");
+        },
+    });
+};
+
+// 피드 삭제
+export const useDeleteFeedData = () => {
+    const queryClient = useQueryClient();
+    return useMutation(deleteFeed, {
+        onSuccess: () => {
+            queryClient.invalidateQueries("feed");
         },
     });
 };

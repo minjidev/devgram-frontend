@@ -189,7 +189,7 @@ function CommentParent({ comment, setShowChildren }) {
                             )}
                     </div>
                 </div>
-                {/* 댓글 수정&삭제 */}
+                {/* 댓글 수정 & 삭제 */}
                 <div className="dropdown">
                     <label tabIndex={0} className="m-1 cursor-pointer relative">
                         <EllipsisHorizontalIcon className="w-5 h-5" />
