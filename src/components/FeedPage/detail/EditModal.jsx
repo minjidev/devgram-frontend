@@ -5,7 +5,6 @@ import { XMarkIcon } from "@heroicons/react/24/solid";
 import { TextInput } from "@style";
 
 function EditModal({ visible, onClose, feedData, boardSeq }) {
-    console.log("boardseq: ", boardSeq);
     const columns = [
         {
             field: "title",
@@ -44,7 +43,6 @@ function EditModal({ visible, onClose, feedData, boardSeq }) {
         return init;
     });
 
-    console.log("editedD: ", data);
     const { mutate: editFeed } = useEditFeedData();
     if (!visible) return null;
 

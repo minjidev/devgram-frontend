@@ -93,13 +93,11 @@ function FeedDetail(props) {
             answer: `${feedData.last}`,
         },
     ];
-    console.log("feedDta: ", feedData);
     const onFollowClick = () => {
         followWriter(feedData.createdBySeq);
     };
 
     const onDeleteFeedClick = () => {
-        console.log("board 3 id : ", id);
         deleteFeed(id);
     };
 
