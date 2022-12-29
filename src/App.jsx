@@ -19,6 +19,8 @@ import MyPageLike from "@pages/mypage/MyPageLike";
 import MypageUserFeed from "@pages/mypage/MypageUserFeed";
 import MyPageFollowing from "@pages/mypage/MyPageFollowing";
 
+import Login from "@components/mainpage/header/Login";
+
 function App() {
     const client = new QueryClient({
         defaultOptions: {},
@@ -38,8 +40,10 @@ function App() {
                             path="/social/feed/write"
                             element={<FeedWritePage />}
                         />
+
                         {/* <Route path="/social/feed/:id" element={<FeedDetail />} /> */}
-                        {/* <Route path="/login" element={(props) => <Login {...props} />} loginCallBack={loginCallBack} /> */}
+                        <Route path="/login/callback" element={<Login />} />
+
                         {/* 마이페이지 */}
                         <Route path="/my" element={<MyPage />} />
                         <Route path="/my/review" element={<MyPageReview />} />
