@@ -18,6 +18,7 @@ export function CategoriesProvider({ children }) {
                 <Loader />
             </div>
         );
+
     if (error) return <div>{error}</div>;
 
     return (
