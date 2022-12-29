@@ -95,7 +95,6 @@ export default function Navigation() {
                                 >
                                 로그인
                                 </button>}
-                                
                             </li>
                             <li>
                                 <button className="btn btn-xs rounded-full flex content-center text-white hover:bg-gray-500">

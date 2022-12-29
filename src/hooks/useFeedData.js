@@ -9,6 +9,8 @@ import axios from "axios";
 /** 태그 **/
 /** baseURL **/
 const baseURL = axios.create({
+
+// 부모 댓글 추가
     baseURL: "http://52.194.161.226:8080/api/",
 });
 
@@ -21,8 +23,10 @@ const addComments = ({ data }) => {
         {
             content: data.content,
             boardSeq: data.boardSeq,
+
             parentCommentSeq: data.parentCommentSeq,
             commentGroup: data.commentGroup,
+
         },
         {
             headers: {
@@ -53,23 +57,28 @@ const addChildrenComments = ({ data }) => {
 // 신고 댓글 추가
 const addReportedComments = ({ data }) => {
     return baseURL.post(
-        "/accuse",
+        "comments/accuse",
         {
-            id: data.id,
+            commentSeq: data.id,
             accuseReason: data.reason,
         },
         {
-            Authentication: testAuth,
+            headers: {
+                Authentication: testAuth,
+            },
+
         }
     );
 };
 
-// 댓글 삭제
-const deleteComments = (id) => {
-    return baseURL.delete(
-        "/comments",
+// 댓글 수정
+const editComments = (data) => {
+    return baseURL.put(
+        `/comments/content`,
         {
-            commentSeq: id,
+            commentSeq: data.commentSeq,
+            content: data.content,
+
         },
         {
             headers: {
@@ -78,6 +87,55 @@ const deleteComments = (id) => {
         }
     );
 };
+
+// 댓글 삭제
+const deleteComments = (id) => {
+    return baseURL.delete(`/comments?commentSeq=${id}`, {
+        headers: {
+            Authorization: testAuth,
+        },
+    });
+};
+
+// 작성자 팔로우
+const followWriter = (followingUserSeq) => {
+    return baseURL.post(`/user/follow`, {
+        FollowDto: {
+            followingUserSeq: followingUserSeq,
+        },
+    });
+};
+
+// 피드 수정
+const editFeed = ({ data, boardSeq }) => {
+    return baseURL.put(
+        `/boards`,
+        {
+            boardSeq: boardSeq,
+            title: data.title,
+            selfIntroduce: data.selfIntroduce,
+            recommendReason: data.recommendReason,
+            bestProduct: data.bestProduct,
+            otherProduct: data.otherProduct,
+            // last: data.last,
+        }
+        // {
+        //     headers: {
+        //         Authentication: testAuth,
+        //     },
+        // }
+    );
+};
+
+// 피드 삭제
+const deleteFeed = (id) => {
+    return baseURL.delete(`/boards/${id}`, {
+        headers: {
+            Authentication: testAuth,
+        },
+    });
+};
+
 
 /** custom hooks **/
 
@@ -126,9 +184,6 @@ export const useFeedData = (API_URL, sort, subTags) => {
         return useInfiniteQuery(
             [`feed-${subTags}`],
             ({ pageParam = 1 }) => {
-                console.log(
-                    `${baseURL}/${tagsString}?_page=${pageParam}&_limit=5`
-                );
                 return fetchData(
                     `${baseURL}/${tagsString}?_page=${pageParam}&_limit=5`
                 );
@@ -156,7 +211,11 @@ export const useFeedCommentsData = (id, API_URL) => {
             fetchData(`${API_URL}?boardSeq=${id}&page=${pageParam}&size=5`),
         {
             getNextPageParam: (lastPage, allPages) => {
+
+                const maxPage = 10 / 5;
+
                 const maxPage = 20 / 5;
+
                 const nextPage = allPages.length + 1;
                 return nextPage <= maxPage ? nextPage : undefined;
             },
@@ -192,6 +251,19 @@ export const useAddReportedCommentsData = () => {
     return useMutation(addReportedComments, {
         // mutation 이 성공하면 실행
         onSuccess: () => {
+
+            queryClient.invalidateQueries("reported-comments");
+        },
+    });
+};
+
+// 댓글 수정
+export const useEditCommentsData = () => {
+    const queryClient = useQueryClient();
+    return useMutation(editComments, {
+        // mutation 이 성공하면 실행
+        onSuccess: () => {
+
             queryClient.invalidateQueries("comments");
         },
     });
@@ -207,3 +279,36 @@ export const useDeleteCommentsData = () => {
         },
     });
 };
+
+
+// 팔로잉
+export const useFollowWriterData = () => {
+    const queryClient = useQueryClient();
+    return useMutation(followWriter, {
+        // mutation 이 성공하면 실행
+        onSuccess: () => {
+            queryClient.invalidateQueries("following");
+        },
+    });
+};
+
+// 피드 수정
+export const useEditFeedData = () => {
+    const queryClient = useQueryClient();
+    return useMutation(editFeed, {
+        onSuccess: () => {
+            queryClient.invalidateQueries("feed");
+        },
+    });
+};
+
+// 피드 삭제
+export const useDeleteFeedData = () => {
+    const queryClient = useQueryClient();
+    return useMutation(deleteFeed, {
+        onSuccess: () => {
+            queryClient.invalidateQueries("feed");
+        },
+    });
+};
+
