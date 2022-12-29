@@ -28,9 +28,9 @@ function ProductsBestBottom({ data }) {
                         </p>
                         <span
                             className="text-white text-xs font-medium sm:text-sm mr-2 px-2.5 py-0.5 rounded-full opacity-80"
-                            style={{ backgroundColor: `${card.color}` }}
+                            style={{ backgroundColor: `${card.categoryColor}` }}
                         >
-                            {card.category}
+                            {card.categoryName}
                         </span>
                     </div>
                 </div>
