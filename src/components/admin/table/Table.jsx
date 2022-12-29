@@ -7,17 +7,26 @@ import axios from "axios";
 function Table({ currentData, columns, toggledTab }) {
     const [showModal, setShowModal] = useState(false);
     const [modalItem, setModalItems] = useState([]);
-    const baseURL = "http://localhost:3000";
+    const baseURL = "http://52.194.161.226:8080/api";
+    // 신고보기 버튼 클릭 시 해당 리뷰/댓글 관련 신고 내역 표시
     const handleClick = ({ id, toggledTab }) => {
         const API_URL_REPORTED = `${baseURL}/${
-            toggledTab === 1 ? "reviews" : "comments"
-        }/${id}`;
+            toggledTab === 1
+                ? `review/accuse/detail/admin?reviewSeq=${id}`
+                : `comments/accuse/detail/admin?commentSeq=${id}`
+        }`;
 
         axios
             .get(API_URL_REPORTED)
-            .then((res) => setModalItems(res.data))
-            .catch((err) => console.err(err));
+            .then((res) => {
+                console.log("url: ", API_URL_REPORTED);
+                console.log("res: ", res);
+                setModalItems(res.data);
+            })
+            .catch((err) => console.error(err));
     };
+    console.log("curre: ", currentData);
+    console.log("detail: ", modalItem);
 
     return (
         <>
@@ -31,42 +40,76 @@ function Table({ currentData, columns, toggledTab }) {
                         <th>신고 보기</th>
                     </tr>
                 </thead>
-                <tbody>
-                    {currentData.map((data) => (
-                        <tr key={data.id}>
-                            {columns.map((col, index) => (
-                                <td key={index}>{data[col.field]}</td>
-                            ))}
-                            <td>
-                                <SelectStatus
-                                    currentStatus={data.status}
-                                    id={data.id}
-                                    toggledTab={toggledTab}
-                                />
-                            </td>
-                            <td>
-                                <button
-                                    className="btn btn-sm btn-outline"
-                                    onClick={() => {
-                                        setShowModal(true);
-                                        handleClick({
-                                            id: data.id,
-                                            toggledTab: toggledTab,
-                                        });
-                                    }}
-                                >
-                                    신고 보기
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
+                {toggledTab === 2 ? (
+                    <tbody>
+                        {currentData.map((data) => (
+                            <tr key={data.commentSeq}>
+                                {columns.map((col, index) => (
+                                    <td key={index}>{data[col.field]}</td>
+                                ))}
+                                <td>
+                                    <SelectStatus
+                                        currentStatus={data.commentStatus}
+                                        id={data.commentSeq}
+                                        toggledTab={toggledTab}
+                                    />
+                                </td>
+                                <td>
+                                    <button
+                                        className="btn btn-sm btn-outline"
+                                        onClick={() => {
+                                            setShowModal(true);
+                                            handleClick({
+                                                id: data.commentSeq,
+                                                toggledTab: toggledTab,
+                                            });
+                                        }}
+                                    >
+                                        신고 보기
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                ) : (
+                    <tbody>
+                        {currentData.map((data) => (
+                            <tr key={data.reviewSeq}>
+                                {columns.map((col, index) => (
+                                    <td key={index}>{data[col.field]}</td>
+                                ))}
+                                <td>
+                                    <SelectStatus
+                                        currentStatus={data.status}
+                                        id={data.reviewSeq}
+                                        toggledTab={toggledTab}
+                                    />
+                                </td>
+                                <td>
+                                    <button
+                                        className="btn btn-sm btn-outline"
+                                        onClick={() => {
+                                            setShowModal(true);
+                                            handleClick({
+                                                id: data.reviewSeq,
+                                                toggledTab: toggledTab,
+                                            });
+                                        }}
+                                    >
+                                        신고 보기
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                )}
             </TableContainer>
 
             <ReportModal
                 visible={showModal}
                 modalData={modalItem}
                 onClose={() => setShowModal(false)}
+                toggledTab={toggledTab}
             />
         </>
     );

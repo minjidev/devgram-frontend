@@ -9,7 +9,7 @@ function SelectStatus({ currentStatus, id, toggledTab }) {
     const [selected, setSelected] = useState("");
 
     const [openOptions, setOpenOptions] = useState(false);
-    const status = ["등록", "신고", "삭제"];
+    const status = ["POST", "ACCUSE", "DELETE"];
 
     const { mutate } =
         toggledTab === 1

@@ -25,7 +25,7 @@ function App() {
     const client = new QueryClient({
         defaultOptions: {},
     });
-    
+
     return (
         <>
             <div className="App">
@@ -40,7 +40,10 @@ function App() {
                             path="/social/feed/write"
                             element={<FeedWritePage />}
                         />
+
+                        {/* <Route path="/social/feed/:id" element={<FeedDetail />} /> */}
                         <Route path="/login/callback" element={<Login />} />
+
                         {/* 마이페이지 */}
                         <Route path="/my" element={<MyPage />} />
                         <Route path="/my/review" element={<MyPageReview />} />
@@ -59,10 +62,14 @@ function App() {
                             element={<ProductsMainPage />}
                         />
                         {/* 상품 페이지 */}
-                        <Route path="/products/detail/:id" element={<ProductsDatailPage />} />
+                        <Route
+                            path="/products/detail/:id"
+                            element={<ProductsDatailPage />}
+                        />
                         <Route path="/search" element={<Search />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
+
                     <ReactQueryDevtools
                         initialIsOpen={false}
                         position="bottom-right"

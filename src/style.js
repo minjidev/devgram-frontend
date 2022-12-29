@@ -90,4 +90,3 @@ export const TagLabel = tw.label`
     hover:bg-gray-300
     peer-checked:bg-point-blue 
     peer-checked:text-white`;
-

@@ -9,16 +9,16 @@ function AdminManageReports(props) {
     const [toggledTab, setToggledTab] = useState(1);
 
     const reportCommentsColumns = [
-        { field: "id", header: "번호", initialVal: 0 },
-        { field: "comment", header: "댓글 내용", initialVal: "" },
-        { field: "created_by", header: "댓글 작성자", initialVal: "" },
-        { field: "created_at", header: "댓글 작성일", initialVal: "" },
+        { field: "commentSeq", header: "번호", initialVal: 0 },
+        { field: "content", header: "댓글 내용", initialVal: "" },
+        { field: "createdBy", header: "댓글 작성자", initialVal: "" },
+        { field: "createdAt", header: "댓글 작성일", initialVal: "" },
     ];
     const reportReviewsColumns = [
-        { field: "id", header: "번호", initialVal: 0 },
-        { field: "review", header: "리뷰 내용", initialVal: "" },
-        { field: "created_by", header: "리뷰 작성자", initialVal: "" },
-        { field: "created_at", header: "리뷰 작성일", initialVal: "" },
+        { field: "reviewSeq", header: "번호", initialVal: 0 },
+        { field: "content", header: "리뷰 내용", initialVal: "" },
+        { field: "username", header: "리뷰 작성자", initialVal: "" },
+        { field: "createdAt", header: "리뷰 작성일", initialVal: "" },
     ];
 
     return (

@@ -4,8 +4,8 @@ import { TagLabel } from "@style";
 function FeedMainTags({ setSelectedTag, selectedSubTags }) {
     const tags = [
         { id: 1, title: "인기", value: "popular" },
-        { id: 2, title: "최신", value: "recent" },
-        { id: 3, title: "팔로잉", value: "following" },
+        { id: 2, title: "최신", value: "" },
+        { id: 3, title: "팔로잉", value: "follow" },
     ];
 
     const checkClicked = (e) => {

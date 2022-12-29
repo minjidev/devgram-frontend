@@ -7,7 +7,6 @@ function ProductsMain() {
 
     return (
         <div className="px-10 lg:px-32">
-            {/* 카테고리 태그 */}
             <ProductTags categories={categoriesData} />
         </div>
     );

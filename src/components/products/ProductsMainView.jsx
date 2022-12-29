@@ -1,4 +1,4 @@
-import MainPageHeader from "@components/MainPage/Header/MainPageHeader";
+import MainPageHeader from "@components/mainpage/header/MainPageHeader";
 import React from "react";
 
 function ProductsMainView(props) {

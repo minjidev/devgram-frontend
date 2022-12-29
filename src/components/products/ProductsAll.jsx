@@ -3,24 +3,31 @@ import { useInView } from "react-intersection-observer";
 import axios from "axios";
 import ProductsCards from "./ui/ProductsCards";
 import Loader from "./ui/Loader";
-import { useProducts } from "@context/ProductsContext";
 
 function ProductsAll() {
     const { ref: targetRef, inView: visible } = useInView();
-    const [page, setPage] = useState(1);
+    const [page, setPage] = useState(0);
     const [productsData, setProductsData] = useState([]);
     const [showLoader, setShowLoader] = useState(false);
-    const products = useProducts();
-    const lastPage = Math.ceil(products.length / 8);
+    // const [lastPage, setLastPage] = useState(0);
+    const lastPage = Math.ceil(100 / 5);
 
     /* prodcuts 로드 */
     const fetchProducts = (page) => {
         setShowLoader(true);
-        return axios
-            .get(`http://localhost:3000/products?_page=${page}&_limit=10`)
-            .then((res) => setProductsData((prev) => [...prev, ...res.data]))
-            .catch((error) => console.log(error))
-            .finally(setShowLoader(false));
+        return (
+            axios
+                .get(
+                    `http://52.194.161.226:8080/api/products/list?page=${page}`
+                )
+                .then((res) => {
+                    console.log("res: ", res);
+                    setProductsData((prev) => [...prev, ...res.data]);
+                })
+                // .then(setLastPage(res.data.length))
+                .catch((error) => console.log(error))
+                .finally(setShowLoader(false))
+        );
     };
 
     useEffect(() => {
@@ -34,12 +41,14 @@ function ProductsAll() {
             fetchProducts(page);
         }
     }, [page]);
+    console.log("page: ", page);
+    console.log("producsData in all : ", productsData);
 
     return (
         <div className="flex flex-col items-center">
             <ProductsCards products={productsData} />
             {showLoader && <Loader />}
-            <div className="h-1" ref={targetRef}></div>
+            <div className="h-1 w-1" ref={targetRef}></div>
         </div>
     );
 }
