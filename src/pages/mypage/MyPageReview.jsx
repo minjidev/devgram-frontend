@@ -40,8 +40,6 @@ export default function MypageMyReview() {
     return () => observer && observer.disconnect();
   }, [target]);
 
-    console.log(reviews)
-
   return (
     <div className='w-10/12 m-auto'>
         <MypageTitle title="나의 리뷰"></MypageTitle>

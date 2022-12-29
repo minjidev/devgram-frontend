@@ -11,6 +11,18 @@ export default function FeedWriteFile({title, mandatory = false, guide, name, va
   const [imgInput, setImgInput] = useState(false)
   const [textInput, setTextInput] = useState(false)
 
+  
+
+  function imgChange(file) {
+    let formData = new FormData();
+    console.log(file)
+    if (file) {
+      setImgInput(true)
+      formData.append('file', file)
+      setImg(formData)
+    }
+  }
+
   useEffect(() => {
     if(imgInput && textInput === true) {
       target(true)
@@ -55,10 +67,8 @@ export default function FeedWriteFile({title, mandatory = false, guide, name, va
           이미지 파일 선택
           </label>
           <input type="file" className='img block' onChange={
-            (e) => e.target.value 
-            ? setImgInput(true)
-            : setImgInput(false)
-            } 
+            (e) => imgChange(e.target.files[0])
+          } 
             id="file"
           accept="image/jpeg, image/png"/>
           <input type="hidden" name="introImg" value={img}/>
