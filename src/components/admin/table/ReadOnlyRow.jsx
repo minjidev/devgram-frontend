@@ -3,13 +3,18 @@ import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
 
 import SelectProductStatus from "../ui/SelectProductStatus";
 
-function ReadOnlyRow({ data, columns, handleEditClick, useDeleteData, id }) {
+function ReadOnlyRow({
+    data,
+    columns,
+    handleEditClick,
+    useDeleteData,
+    id,
+    title,
+}) {
     const { mutate } = useDeleteData();
     const handleDelete = () => {
-        console.log("delete id: ", id);
         mutate({ id: id });
     };
-    console.log("data in row: ", data);
     return (
         <tr>
             {columns.map(
@@ -36,11 +41,13 @@ function ReadOnlyRow({ data, columns, handleEditClick, useDeleteData, id }) {
                     <PencilSquareIcon className="w-5 h-5 hover:text-gray-500" />
                 </button>
             </td>
-            <td>
-                <button type="button" onClick={handleDelete}>
-                    <TrashIcon className="w-5 h-5 text-error" />
-                </button>
-            </td>
+            {title !== "상품" && (
+                <td>
+                    <button type="button" onClick={handleDelete}>
+                        <TrashIcon className="w-5 h-5 text-error" />
+                    </button>
+                </td>
+            )}
         </tr>
     );
 }

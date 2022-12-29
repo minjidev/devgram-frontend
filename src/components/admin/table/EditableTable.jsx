@@ -25,7 +25,11 @@ function EditableTable({
                             !col.invisible && <th key={index}>{col.header}</th>
                     )}
                     <th>수정</th>
-                    <th>{editID > 0 ? "취소" : "삭제"}</th>
+                    {title === "상품" ? (
+                        <th>{editID > 0 && "취소"}</th>
+                    ) : (
+                        <th>{editID > 0 ? "취소" : "삭제"}</th>
+                    )}
                 </tr>
             </thead>
             <tbody>
@@ -50,6 +54,7 @@ function EditableTable({
                                     handleEditClick={handleEditClick}
                                     useDeleteData={useDeleteData}
                                     id={dataID}
+                                    title={title}
                                 />
                             )}
                         </Fragment>

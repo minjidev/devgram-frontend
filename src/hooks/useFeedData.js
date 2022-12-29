@@ -13,10 +13,7 @@ const baseURL = axios.create({
 });
 
 const testAuth =
-    "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJBRE1JTiIsInN1YiI6IkFUSyIsInJvbGUiOiJST0xFX0FETUlOIiwiaWF0IjoxNjcyMzE2MDk4LCJleHAiOjE2NzIzMTc4OTh9.xSJmAfHVRElmuSfCe_CNNL88jhexmxYa5lP_N6gqGaw";
-// "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJ0ZXN0VXNlckBuYXZlci5jb20iLCJzdWIiOiJBVEsiLCJyb2xlIjoiUk9MRV9VU0VSIiwiaWF0IjoxNjcyMjE5MjAxLCJleHAiOjE2NzIyMjEwMDF9.3awTgUnt2kEVmXK24uSp5ByhyA8ljtyFA7Z0yahSXYY";
-// "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJ1c2VyIiwic3ViIjoiQVRLIiwicm9sZSI6IlJPTEVfVVNFUiIsImlhdCI6MTY3MjIxMTkzMSwiZXhwIjoxNjcyMjEzNzMxfQ.OPHOAwRV9WAqiEEs3T1xnF3cxj3UyEYct2Dhvg_gd1g";
-
+    "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJBRE1JTiIsInN1YiI6IkFUSyIsInJvbGUiOiJST0xFX0FETUlOIiwiaWF0IjoxNjcyMzI0NjUyLCJleHAiOjE2NzIzMjY0NTJ9.8_TJanwE3M4b_4FW-fPSFbElzgxN-lvNNnvGFxTUUJA";
 // 댓글 추가
 const addComments = ({ data }) => {
     return baseURL.post(
