@@ -53,42 +53,47 @@ function AdminManage({
             </div>
         );
     if (error) return <h2>{error.message}</h2>;
+    console.log("data before filter in adminManage: ", data);
 
-    const filterComponent = (data) => {
-        data = data?.filter((row) => {
-            if (query === "") {
-                return row;
-            }
+    const filterData = (data) => {
+        data =
+            (Array.isArray(data) &&
+                data?.filter((row) => {
+                    if (query === "") {
+                        return row;
+                    }
 
-            if (
-                korPattern.test(query) &&
-                columns.some(
-                    (col) =>
-                        korPattern.test(row[col.field]) &&
-                        row[col.field].includes(query)
-                )
-            ) {
-                return row;
-            }
+                    if (
+                        korPattern.test(query) &&
+                        columns.some(
+                            (col) =>
+                                korPattern.test(row[col.field]) &&
+                                row[col.field].includes(query)
+                        )
+                    ) {
+                        return row;
+                    }
 
-            if (
-                engPattern.test(query) &&
-                columns.some((col) => {
-                    return (
-                        engPattern.test(row[col.field]) &&
-                        row[col.field]
-                            .toLowerCase()
-                            .includes(query.toLowerCase())
-                    );
-                })
-            ) {
-                return row;
-            }
-        });
+                    if (
+                        engPattern.test(query) &&
+                        columns.some((col) => {
+                            return (
+                                engPattern.test(row[col.field]) &&
+                                row[col.field]
+                                    .toLowerCase()
+                                    .includes(query.toLowerCase())
+                            );
+                        })
+                    ) {
+                        return row;
+                    }
+                })) ||
+            [];
         return data;
     };
 
-    const currentData = filterComponent(data).slice(firstIndex, lastIndex);
+    const currentData = filterData(data).slice(firstIndex, lastIndex);
+    console.log("data: ", currentData);
 
     return (
         <div>
@@ -110,6 +115,7 @@ function AdminManage({
                         columns={columns}
                         useEditData={useEditData}
                         useDeleteData={useDeleteData}
+                        title={title}
                     />
                 </form>
             ) : (

@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import AdminManageCategories from "@components/admin/dashboard/AdminManageCategories";
 import AdminManageProducts from "@components/admin/dashboard/AdminManageProducts";
 import AdminManageReports from "@components/admin/dashboard/AdminManageReports";
+import { CategoriesProvider } from "@context/CategoriesContext";
 
 function AdminDashBoard({ open }) {
     return (
@@ -11,12 +12,17 @@ function AdminDashBoard({ open }) {
                 open ? "sm:ml-64" : "sm:ml-20"
             }`}
         >
-            <Routes>
-                <Route path="/" element={<AdminManageCategories />} />
-                <Route path="/categories" element={<AdminManageCategories />} />
-                <Route path="/products" element={<AdminManageProducts />} />
-                <Route path="/reports" element={<AdminManageReports />} />
-            </Routes>
+            <CategoriesProvider>
+                <Routes>
+                    <Route path="/" element={<AdminManageCategories />} />
+                    <Route
+                        path="/categories"
+                        element={<AdminManageCategories />}
+                    />
+                    <Route path="/products" element={<AdminManageProducts />} />
+                    <Route path="/reports" element={<AdminManageReports />} />
+                </Routes>
+            </CategoriesProvider>
         </div>
     );
 }

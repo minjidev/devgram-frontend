@@ -13,7 +13,7 @@ function NavigationSub() {
                 </li>
                 <li className="btn btn-xs px-3 btn-ghost text-xs rounded-full">
                     <button>
-                        <Link to="/social/feed">FEED</Link>
+                        <a href="/social/feed">FEED</a>
                     </button>
                 </li>
                 <li className="ml-auto">

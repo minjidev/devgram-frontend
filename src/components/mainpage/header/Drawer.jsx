@@ -16,7 +16,7 @@ function Drawer() {
                             <Link to="/login">로그인</Link>
                         </button>
                         <button className="btn px-5 bg-point-blue w-1/2 border-0 whitespace-nowrap hover:bg-blue-500">
-                            <Link to="/mypage">마이페이지</Link>
+                            <Link to="/my">마이페이지</Link>
                         </button>
                     </div>
                 </li>
@@ -47,19 +47,20 @@ function Drawer() {
                         카테고리
                     </div>
                 </li>
+
                 {categoriesData.map((category) => (
                     <li
-                        key={category.id}
+                        key={category.category_Seq}
                         className="rounded hover:bg-gray-100 "
                     >
-                        <Link to={`/products/category=${category.name}`}>
+                        <Link to={`/products/detail/${category.category_Seq}`}>
                             {category.name}
                         </Link>
                     </li>
                 ))}
                 <hr />
                 <li>
-                    <Link to="/products/ranking">BEST</Link>
+                    <Link to="/products">PRODUCTS</Link>
                 </li>
                 <li>
                     <Link to="/social/feed">FEED</Link>

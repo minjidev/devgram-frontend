@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import { XMarkIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import { TextInput } from "@style";
 import { ModalContainer } from "@style";
+import { useCategories } from "@context/CategoriesContext";
 
 function AddModal({ visible, onClose, columns, useAddData }) {
     const init = {};
@@ -9,7 +10,8 @@ function AddModal({ visible, onClose, columns, useAddData }) {
         columns.map((col) => (init[col.field] = col.initialVal));
         return init;
     });
-
+    const [categorySelected, setCategorySelected] = useState("");
+    const categories = useCategories();
     const { mutate, isSuccess } = useAddData();
     if (!visible) return null;
 
@@ -20,15 +22,24 @@ function AddModal({ visible, onClose, columns, useAddData }) {
     };
 
     const handleSubmit = (e) => {
+        const newD = {};
         e.preventDefault();
         mutate({ data: data });
-        isSuccess &&
-            setData((prev) => {
-                columns.map((col) => (prev[col.field] = col.initialVal));
-                return data;
-            });
+
+        setData(() => {
+            columns.map((col) => (newD[col.field] = col.initialVal));
+            return newD;
+        });
     };
 
+    const handleCategoryClick = (e) => {
+        setCategorySelected(e.target.dataset.value);
+        setData({
+            ...data,
+            category_Seq: e.target.id,
+        });
+    };
+    console.log("data: ", data);
     const handleClose = (e) => {
         if (e.target.id === "wrapper") onClose();
     };
@@ -55,14 +66,49 @@ function AddModal({ visible, onClose, columns, useAddData }) {
                                 >
                                     {col.header}
                                 </label>
-                                <TextInput
-                                    type="text"
-                                    id={col.field}
-                                    name={col.field}
-                                    placeholder={`${col.header} 입력`}
-                                    onChange={(e) => getInputData(e)}
-                                    value={data[col.field]}
-                                />
+                                {/* 카테고리 드롭다운 */}
+                                {col.field === "category_Seq" ? (
+                                    <div className="dropdown">
+                                        <label
+                                            tabIndex={0}
+                                            className="text-sm m-1 "
+                                        >
+                                            {categorySelected === ""
+                                                ? "카테고리 선택"
+                                                : categorySelected}
+                                            <ChevronDownIcon className="w-4 h-4 inline-block mx-2" />
+                                        </label>
+                                        <ul
+                                            tabIndex={0}
+                                            className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 text-sm"
+                                        >
+                                            {categories.map((category) => (
+                                                <li key={category.category_Seq}>
+                                                    <div
+                                                        id={
+                                                            category.category_Seq
+                                                        }
+                                                        data-value={
+                                                            category.name
+                                                        }
+                                                        onClick={
+                                                            handleCategoryClick
+                                                        }
+                                                    >{`${category.category_Seq}. ${category.name}`}</div>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                ) : (
+                                    <TextInput
+                                        type="text"
+                                        id={col.field}
+                                        name={col.field}
+                                        placeholder={`${col.header} 입력`}
+                                        onChange={(e) => getInputData(e)}
+                                        value={data[col.field]}
+                                    />
+                                )}
                             </div>
                         ))}
 

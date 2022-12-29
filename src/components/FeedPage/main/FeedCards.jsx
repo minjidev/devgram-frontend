@@ -6,7 +6,7 @@ import FeedCard from "./ui/FeedCard";
 
 function FeedCards({ selectedTag, selectedSubTags }) {
     const { ref: targetRef, inView } = useInView();
-    const API_URL_FEED = "http://localhost:3000/feed";
+    const API_URL_FEED = "http://52.194.161.226:8080/api/boards";
     const {
         data: feedData,
         status,
@@ -22,6 +22,7 @@ function FeedCards({ selectedTag, selectedSubTags }) {
     }, [inView]);
 
     if (status === "error") return <div>Error...</div>;
+    console.log("feed data: ", feedData);
     // feed에 페이지된 데이터만 넘겨주기
     return (
         <>
@@ -31,7 +32,7 @@ function FeedCards({ selectedTag, selectedSubTags }) {
                 <>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 px-10 p-10">
                         {feedData?.pages?.map((page) =>
-                            page.map((feed) => (
+                            page.content.map((feed) => (
                                 <FeedCard feed={feed} key={feed.id} />
                             ))
                         )}
