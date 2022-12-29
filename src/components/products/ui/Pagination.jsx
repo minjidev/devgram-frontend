@@ -1,9 +1,12 @@
 import tw from "tailwind-styled-components"
 
-function Pagination({ total, limit, page, setPage }) {
+export default function Pagination({ total, limit, page, setPage }) {
   const numPages = Math.ceil(total / limit);
   const Nav = tw.nav`
-
+    justify-center items-center gap-1 m-4
+  `
+  const Button = tw.button`
+    border-0 rounded-lg p-2 m-0 
   `
   
   return (
