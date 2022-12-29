@@ -23,6 +23,7 @@ function AdminManageProducts(props) {
             invisible: true,
         },
         { field: "price", header: "가격", initialVal: 0 },
+        { field: "status", header: "상태", initialVal: 0 },
     ];
     return (
         <AdminManage

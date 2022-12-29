@@ -12,7 +12,7 @@ function Table({ currentData, columns, toggledTab }) {
     const handleClick = ({ id, toggledTab }) => {
         const API_URL_REPORTED = `${baseURL}/${
             toggledTab === 1
-                ? `review/accuse/detail?reviewSeq=${id}`
+                ? `review/accuse/detail/admin?reviewSeq=${id}`
                 : `comments/accuse/detail/admin?commentSeq=${id}`
         }`;
 
@@ -104,7 +104,7 @@ function Table({ currentData, columns, toggledTab }) {
                     </tbody>
                 )}
             </TableContainer>
-            {/* 모달을 댓글/리뷰 각각 만들어야하나..? */}
+
             <ReportModal
                 visible={showModal}
                 modalData={modalItem}

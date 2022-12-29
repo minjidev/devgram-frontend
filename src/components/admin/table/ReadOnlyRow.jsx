@@ -1,25 +1,35 @@
 import React from "react";
 import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
 
+import SelectProductStatus from "../ui/SelectProductStatus";
+
 function ReadOnlyRow({ data, columns, handleEditClick, useDeleteData, id }) {
     const { mutate } = useDeleteData();
     const handleDelete = () => {
         console.log("delete id: ", id);
         mutate({ id: id });
     };
-
+    console.log("data in row: ", data);
     return (
         <tr>
             {columns.map(
                 (col, index) =>
-                    !col.invisible && (
+                    !col.invisible &&
+                    (col.field === "status" ? (
+                        <td
+                            key={index}
+                            className="break-word whitespace-normal"
+                        >
+                            <SelectProductStatus data={data} />
+                        </td>
+                    ) : (
                         <td
                             key={index}
                             className="break-word whitespace-normal"
                         >
                             {data[col.field]}
                         </td>
-                    )
+                    ))
             )}
             <td>
                 <button type="button" onClick={() => handleEditClick(id)}>

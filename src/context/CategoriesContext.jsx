@@ -11,7 +11,6 @@ export function useCategories() {
 }
 
 export function CategoriesProvider({ children }) {
-    // const API_URL_CAT = "http://52.194.161.226:8080/api/categories";
     const { data: categoriesData, isLoading, error } = useCategoriesData();
     if (isLoading)
         return (

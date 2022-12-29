@@ -32,7 +32,7 @@ function EditableTable({
                 {currentData.map((data) => {
                     const dataID =
                         title === "상품" ? data.product_Seq : data.category_Seq;
-                    // console.log("id: ", title, dataID);
+
                     return (
                         <Fragment key={dataID}>
                             {editID === dataID ? (
