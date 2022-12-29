@@ -7,6 +7,8 @@ import MypageGoods from '@components/mypage/MyPageGoods'
 import MainReview from '@components/mypage/MyPageMainReview'
 import MypageFeed from '@components/mypage/MyPageSubFeed'
 
+import Navigation from '@components/mainpage/header/Navigation'
+
 import bird from '@image/bird.jpg'
 import styles from '../../index.css'
 
@@ -66,6 +68,7 @@ export default function MyPage() {
 
   return (
     <>
+    <Navigation />
       <div className='md:flex sm:block justify-between w-10/12 m-auto mt-12 text-black'>
         <div className='md:w-3/12 sm:w-full mb-12'>
         <div className="md:fixed md:w-[21%]">
