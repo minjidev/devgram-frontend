@@ -4,7 +4,12 @@ import { useParams, Link } from "react-router-dom";
 import { useFeedDetailData, useFeedCommentsData } from "@hooks/useFeedData";
 import Comments from "./Comments";
 import Loader from "@components/products/ui/Loader";
-import { useAddCommentsData } from "@hooks/useFeedData";
+import {
+    useAddCommentsData,
+    useFollowWriterData,
+    useDeleteFeedData,
+} from "@hooks/useFeedData";
+import { EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
 
 function FeedDetail(props) {
     const { id } = useParams();
@@ -13,7 +18,10 @@ function FeedDetail(props) {
     const handleClick = (e) => {
         setCommentValue(e.currentTarget.value);
     };
+
     const { mutate, isSuccess: isMutationDone } = useAddCommentsData();
+    const { mutate: followWriter } = useFollowWriterData();
+    const { mutate: deleteFeed } = useDeleteFeedData();
 
     useEffect(() => {
         if (inView && hasNextPage) {
@@ -83,19 +91,53 @@ function FeedDetail(props) {
             answer: `${feedData.last}`,
         },
     ];
+    console.log("feedDta: ", feedData);
+    const onFollowClick = () => {
+        console.log(feedData.createdBySeq);
+        followWriter(feedData.createdBySeq);
+    };
 
     if (isSuccess && isCommentsSuccess)
         return (
             <div className="px-10 lg:px-32 flex flex-col">
                 {/* 타이틀 영역 */}
-                <div className="flex justify-between text-3xl font-bold py-6">
-                    <h2 className="pr-20">{feedData.title}</h2>
-                    <button className="btn btn-sm text-white text-xs">
-                        팔로우
-                    </button>
+                <div className="flex justify-between text-3xl font-bold py-3">
+                    <div className="flex flex-col mt-5">
+                        <h2 className="pr-2">{feedData.title}</h2>
+                        <p>
+                            <span className="italic text-base">by </span>
+                            <span className="text-lg">
+                                {feedData.createdBy || "writer"}
+                            </span>
+                        </p>
+                    </div>
+                    <div className="flex flex-col items-end justify-start">
+                        {/* 피드 수정 & 삭제 */}
+                        <div className="dropdown">
+                            <label
+                                tabIndex={0}
+                                className="m-1 cursor-pointer relative -top-10"
+                            >
+                                <EllipsisHorizontalIcon className="w-5 h-5" />
+                            </label>
+                            <ul
+                                tabIndex={0}
+                                className="dropdown-content menu p-1 absolute top-5 shadow bg-base-100 rounded-box w-24 text-sm"
+                            >
+                                <li>
+                                    <button>수정</button>
+                                </li>
+                                <li>
+                                    <button>삭제</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 {/* 사용된 상품 영역 */}
-                <p className="text-sm">사용된 장비 {feedData.tagCount}개</p>
+                <p className="text-sm">
+                    사용된 장비 {feedData.productUsed.length}개
+                </p>
                 <div className="flex pb-3 pt-1">
                     {feedData.productUsed.map((product) => (
                         <div

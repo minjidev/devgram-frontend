@@ -13,7 +13,7 @@ const baseURL = axios.create({
 });
 
 const testAuth =
-    "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJBRE1JTiIsInN1YiI6IkFUSyIsInJvbGUiOiJST0xFX0FETUlOIiwiaWF0IjoxNjcyMjU0MjA4LCJleHAiOjE2NzIyNTYwMDh9.LQZbEYPRIjOWxkrEwLbo0ZTqBslWqfYSPRy3J9GG2hs";
+    "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJ0ZXN0VXNlckBuYXZlci5jb20iLCJzdWIiOiJBVEsiLCJyb2xlIjoiUk9MRV9VU0VSIiwiaWF0IjoxNjcyMjg4MjU2LCJleHAiOjE2NzIyOTAwNTZ9.o-vz1wNeorIFJyLHXFfUFUi1wyX2amHhlemsqrVdMOY";
 
 // 부모 댓글 추가
 const addComments = ({ data }) => {
@@ -87,6 +87,62 @@ const deleteComments = (id) => {
     return baseURL.delete(`/comments?commentSeq=${id}`, {
         headers: {
             Authorization: testAuth,
+        },
+    });
+};
+
+// 작성자 팔로우
+const followWriter = (followingUserSeq) => {
+    return baseURL.post(`/user/follow`, {
+        FollowDto: {
+            followingUserSeq: followingUserSeq,
+        },
+    });
+};
+
+// 피드 수정
+const editFeed = (data) => {
+    return baseURL.put(
+        `/boards`,
+        {
+            boardSeq: data.boardSeq,
+            title: data.title,
+            content: data.content,
+        },
+        {
+            headers: {
+                Authentication: testAuth,
+            },
+        }
+    );
+};
+
+// 피드 수정
+export const useEditFeedData = () => {
+    const queryClient = useQueryClient();
+    return useMutation(editComments, {
+        // mutation 이 성공하면 실행
+        onSuccess: () => {
+            queryClient.invalidateQueries("comments");
+        },
+    });
+};
+
+// 피드 삭제
+const deleteFeed = (id) => {
+    return baseURL.delete(`/boards/{id}`, {
+        headers: {
+            Authorization: testAuth,
+        },
+    });
+};
+
+export const useDeleteFeedData = () => {
+    const queryClient = useQueryClient();
+    return useMutation(deleteFeed, {
+        // mutation 이 성공하면 실행
+        onSuccess: () => {
+            queryClient.invalidateQueries("feed");
         },
     });
 };
@@ -224,6 +280,17 @@ export const useDeleteCommentsData = () => {
         // mutation 이 성공하면 실행
         onSuccess: () => {
             queryClient.invalidateQueries("comments");
+        },
+    });
+};
+
+// 팔로잉
+export const useFollowWriterData = () => {
+    const queryClient = useQueryClient();
+    return useMutation(followWriter, {
+        // mutation 이 성공하면 실행
+        onSuccess: () => {
+            queryClient.invalidateQueries("following");
         },
     });
 };
