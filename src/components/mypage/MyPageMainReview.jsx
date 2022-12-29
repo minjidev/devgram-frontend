@@ -38,7 +38,7 @@ export default function MainReview({title, star, review, name}) {
       <div className="rating mt-3 mb-1.5 text-sm">
           {stars}
       </div>
-      <p>{review.length > 200 ? `${review.substring(0, 200)}···` : review}</p>
+      <p>{review && review.length > 200 ? `${review.substring(0, 200)}···` : review}</p>
     </Item>
     </>
   )

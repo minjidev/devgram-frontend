@@ -3,7 +3,7 @@ import { PencilIcon } from '@heroicons/react/24/solid'
 import { useEffect } from 'react';
 import { useState } from 'react'
 
-export default function FeedWriteEquipment({title,guide, name, value, explain, target, Btn, setEquiModal, List}) {
+export default function FeedWriteEquipment({title, guide, name, value, explain, target, Btn, setEquiModal, List}) {
   const [open, setOpen] = useState(false);
   
   const onChangeAccount = (e) => {
