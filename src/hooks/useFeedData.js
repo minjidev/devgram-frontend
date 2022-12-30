@@ -9,10 +9,10 @@ import axios from "axios";
 /** 태그 **/
 /** baseURL **/
 const baseURL = axios.create({
-  baseURL: "http://52.194.161.226:8080/api",
+    baseURL: "http://52.194.161.226:8080/api",
 });
 
-const testAuth = localStorage.getItem("webAccessToken")
+const testAuth = localStorage.getItem("webAccessToken");
 
 // 댓글 추가
 const addComments = ({ data }) => {
@@ -113,12 +113,12 @@ const editFeed = ({ data, boardSeq }) => {
             bestProduct: data.bestProduct,
             otherProduct: data.otherProduct,
             // last: data.last,
+        },
+        {
+            headers: {
+                Authentication: testAuth,
+            },
         }
-        // {
-        //     headers: {
-        //         Authentication: testAuth,
-        //     },
-        // }
     );
 };
 
