@@ -10,7 +10,7 @@ function ProductsRecent() {
     );
 
     if (error) return <div>{error}</div>;
-    console.log("data in recent: ", data);
+
     if (isSuccess)
         return (
             <div className="flex flex-col py-3 px-10 lg:px-32">

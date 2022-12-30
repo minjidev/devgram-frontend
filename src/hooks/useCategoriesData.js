@@ -6,8 +6,8 @@ const baseURL = axios.create({
     baseURL: "http://52.194.161.226:8080/api",
 });
 
-const testAuth = localStorage.getItem("webAccessToken");
-// "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJBRE1JTiIsInN1YiI6IkFUSyIsInJvbGUiOiJST0xFX0FETUlOIiwiaWF0IjoxNjcyMzI0NjUyLCJleHAiOjE2NzIzMjY0NTJ9.8_TJanwE3M4b_4FW-fPSFbElzgxN-lvNNnvGFxTUUJA";
+
+const testAuth = localStorage.getItem("webAccessToken")
 
 const fetchData = (API_URL) => {
     return baseURL.get(API_URL).then((res) => res.data);
@@ -166,6 +166,10 @@ export const useCategoriesData = () => {
     return useQuery(["categories"], () => fetchDataAdmin("/categories/admin"));
 };
 
+export const useCategoriesDataAll = () => {
+    return useQuery(["categories"], () => fetchData("/categories"));
+};
+
 export const useAddCategoryData = () => {
     const queryClient = useQueryClient();
     return useMutation(addCategory, {
@@ -203,7 +207,7 @@ export const useProductsData = () => {
 };
 
 export const useProductsDataAll = () => {
-    return useQuery(["products-all"], () => fetchDataAdmin("/products/lists"));
+    return useQuery(["products-all"], () => fetchData("/products/lists"));
 };
 
 /** 캐러셀  **/
