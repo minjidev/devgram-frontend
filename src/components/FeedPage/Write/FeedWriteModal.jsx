@@ -1,8 +1,9 @@
 import tw from "tailwind-styled-components"
+import axios from 'axios';
 
 import { CheckCircleIcon } from '@heroicons/react/24/solid'
 
-export default function FeedWriteModal({setModalOpen}) {
+export default function FeedWriteModal({setModalOpen, file}) {
   const Btn = tw.button`
   text-center
   btn
@@ -16,7 +17,35 @@ export default function FeedWriteModal({setModalOpen}) {
   hover:bg-point-blue
   hover:border-point-blue
   `
-  function btn() {location.reload()}
+
+  function submitBtn() {
+    let formData = new FormData()
+    const obj = {};
+    const form = document.getElementById('form');
+
+    formData.append('file', file)
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+  
+      const payload = new FormData(form);
+      
+      payload.forEach((value, key) => obj[key] = value);
+      console.log(obj, "aa")
+      /* formData.append('board', new Blob([JSON.stringify(obj)], {type: 'application/json'})) */
+      formData.append("data", JSON.stringify(obj))
+    })
+    axios.post('http://localhost:3001/board', formData)
+    axios({
+      method: "POST",
+      url: `http://52.194.161.226:8080/api/boards`,
+      mode: "cors",
+      headers: {
+        "Content-Type": "multipart/form-data", 
+      },
+      data: formData,
+    });
+    /* location.reload() */
+  }
 
   return (
     <div id="container" className="fixed z-50 w-96 h-72 bg-white border-gray-200 border-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md">
@@ -31,7 +60,7 @@ export default function FeedWriteModal({setModalOpen}) {
 
       <div className="btn-box ml-3 mr-3 mt-6 flex flex-row-reverse">
         <Btn className="ml-1.5" onClick={() => setModalOpen(false)} type="button">취소</Btn>
-        <Btn type="submit" onClick={btn}>수락</Btn>
+        <Btn onClick={() => submitBtn()}>수락</Btn>
       </div>
     </div>
   )  

@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 
-export default function Login() {
+export default function Login({}) {
   useEffect(() => {
     const queryString = window.location.search 
     const urlParams = new URLSearchParams(queryString)
@@ -25,6 +25,9 @@ export default function Login() {
       }).then((response) => {
         return response.json()
       }).then((data) => {
+        console.log(data, "d")
+        localStorage.setItem("userId", data.id)
+        localStorage.setItem("username", data.username)
         fetch("http://52.194.161.226:8080/api/join", {
             method: "POST",
             headers: {

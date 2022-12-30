@@ -9,6 +9,7 @@ import MypageTitle from '@components/mypage/MyPageTitle';
 export default function MypageMyFeed() {
   const [feed, setFeed] = useState([])
   const [target, setTarget] = useState(null);
+  const [targetOn, setTargetOn] = useState(false);
   const [btnClick, setBtnClick] = useState(false)
   const [btn, setBtn] = useState()
 
@@ -31,12 +32,24 @@ export default function MypageMyFeed() {
   ]
   
   // 데이터 페칭 함수
-  // const page = 1;
-  const fetchData = async () => {
-    const response = await fetch(`http://localhost:3001/board`);
+  //http://52.194.161.226:8080/api/boards?page=${page}
+  // let page = 0;
+/*   const fetchData = async () => {
+    const response = await fetch(`http://52.194.161.226:8080/api/boards?page=${page}`);
     const data = await response.json();
-    setFeed((prev) => prev.concat(data));
-    // page++;
+    const data2 = await data.content
+    console.log(data2, "D")
+    if (data2.length === 0) {
+      setTargetOn(true)
+    } else {
+      setFeed((prev) => prev.concat(data2));
+      /* page++; */
+/*     }
+  };  */
+  const fetchData = async () => {
+    const response = await fetch(`http://localhost:3001/product`);
+    const data = await response.json();
+      setFeed((prev) => prev.concat(data2));
   };
 
   useEffect(() => {
@@ -106,7 +119,6 @@ export default function MypageMyFeed() {
 
     /* 피드 delete 요청 */
     function handlerDeleteBtn() {
-      console.log("12")
     for (let i = 0; i < deleteArr.length; i++) {
       document.getElementById(deleteArr[i]).remove()
       fetch(`http://localhost:3001/board/${deleteArr[i]}`, {
@@ -120,10 +132,9 @@ export default function MypageMyFeed() {
 
     /* link로 값 보내기 */
     const location = useLocation();
-    console.log()
 
   return (
-    <div className='w-10/12 m-auto'>
+    <div className='w-10/12 m-auto pb-6'>
       <div className='flex justify-between'>
         <MypageTitle title={location.state.name} />
         <div className='btnBox'>
@@ -134,16 +145,15 @@ export default function MypageMyFeed() {
 
       <div className='bg-white'>
         <ul className='flex justify-between flex-wrap gap-[1em] mt-6'>
-          {feed.map(f => (
+          {feed.map(feed => (
             <MypageSubFeed
-/*             key={f.id}  */
-            feed={f.feed}
-            on={btnClick}
+            id={feed.id}
+            img={feed.createdByImg}
             ></MypageSubFeed>
           ))}
         </ul>
       </div>
-      <img src={Load} ref={setTarget}/>
+      <img src={Load} ref={setTarget} className={`${targetOn ? "hidden" : null}`}/>
     </div>
   )
 }
