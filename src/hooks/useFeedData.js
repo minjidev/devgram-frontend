@@ -9,13 +9,12 @@ import axios from "axios";
 /** 태그 **/
 /** baseURL **/
 const baseURL = axios.create({
-
-// 부모 댓글 추가
+    // 부모 댓글 추가
     baseURL: "http://52.194.161.226:8080/api/",
 });
 
-const testAuth =
-    "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJBRE1JTiIsInN1YiI6IkFUSyIsInJvbGUiOiJST0xFX0FETUlOIiwiaWF0IjoxNjcyMzI0NjUyLCJleHAiOjE2NzIzMjY0NTJ9.8_TJanwE3M4b_4FW-fPSFbElzgxN-lvNNnvGFxTUUJA";
+const testAuth = localStorage.getItem("webAccessToken");
+// "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJBRE1JTiIsInN1YiI6IkFUSyIsInJvbGUiOiJST0xFX0FETUlOIiwiaWF0IjoxNjcyMzI0NjUyLCJleHAiOjE2NzIzMjY0NTJ9.8_TJanwE3M4b_4FW-fPSFbElzgxN-lvNNnvGFxTUUJA";
 // 댓글 추가
 const addComments = ({ data }) => {
     return baseURL.post(
@@ -26,7 +25,6 @@ const addComments = ({ data }) => {
 
             parentCommentSeq: data.parentCommentSeq,
             commentGroup: data.commentGroup,
-
         },
         {
             headers: {
@@ -66,7 +64,6 @@ const addReportedComments = ({ data }) => {
             headers: {
                 Authentication: testAuth,
             },
-
         }
     );
 };
@@ -78,7 +75,6 @@ const editComments = (data) => {
         {
             commentSeq: data.commentSeq,
             content: data.content,
-
         },
         {
             headers: {
@@ -135,7 +131,6 @@ const deleteFeed = (id) => {
         },
     });
 };
-
 
 /** custom hooks **/
 
@@ -211,9 +206,6 @@ export const useFeedCommentsData = (id, API_URL) => {
             fetchData(`${API_URL}?boardSeq=${id}&page=${pageParam}&size=5`),
         {
             getNextPageParam: (lastPage, allPages) => {
-
-                const maxPage = 10 / 5;
-
                 const maxPage = 20 / 5;
 
                 const nextPage = allPages.length + 1;
@@ -251,7 +243,6 @@ export const useAddReportedCommentsData = () => {
     return useMutation(addReportedComments, {
         // mutation 이 성공하면 실행
         onSuccess: () => {
-
             queryClient.invalidateQueries("reported-comments");
         },
     });
@@ -263,7 +254,6 @@ export const useEditCommentsData = () => {
     return useMutation(editComments, {
         // mutation 이 성공하면 실행
         onSuccess: () => {
-
             queryClient.invalidateQueries("comments");
         },
     });
@@ -279,7 +269,6 @@ export const useDeleteCommentsData = () => {
         },
     });
 };
-
 
 // 팔로잉
 export const useFollowWriterData = () => {
@@ -311,4 +300,3 @@ export const useDeleteFeedData = () => {
         },
     });
 };
-
