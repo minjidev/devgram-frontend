@@ -23,7 +23,7 @@ function Drawer() {
                 <hr />
 
                 {/* 사이드바 */}
-                <li>
+                {/* <li>
                     <div className="font-bold text-lg hover:bg-white cursor-default">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -46,9 +46,9 @@ function Drawer() {
                         </svg>
                         카테고리
                     </div>
-                </li>
+                </li> */}
 
-                {categoriesData.map((category) => (
+                {/* {categoriesData.map((category) => (
                     <li
                         key={category.category_Seq}
                         className="rounded hover:bg-gray-100 "
@@ -58,7 +58,7 @@ function Drawer() {
                         </Link>
                     </li>
                 ))}
-                <hr />
+                <hr /> */}
                 <li>
                     <Link to="/products">PRODUCTS</Link>
                 </li>

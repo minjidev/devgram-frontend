@@ -166,6 +166,10 @@ export const useCategoriesData = () => {
     return useQuery(["categories"], () => fetchDataAdmin("/categories/admin"));
 };
 
+export const useCategoriesDataAll = () => {
+    return useQuery(["categories"], () => fetchData("/categories"));
+};
+
 export const useAddCategoryData = () => {
     const queryClient = useQueryClient();
     return useMutation(addCategory, {
@@ -203,7 +207,7 @@ export const useProductsData = () => {
 };
 
 export const useProductsDataAll = () => {
-    return useQuery(["products-all"], () => fetchDataAdmin("/products/lists"));
+    return useQuery(["products-all"], () => fetchData("/products/lists"));
 };
 
 /** 캐러셀  **/
