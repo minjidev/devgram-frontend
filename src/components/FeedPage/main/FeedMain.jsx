@@ -9,6 +9,7 @@ function FeedMain(props) {
     const [selectedTag, setSelectedTag] = useState(null);
     const [selectedSubTags, setSelectedSubTags] = useState([]);
     const [showButton, setShowButton] = useState(false);
+    console.log("selectedTag: ", selectedTag);
     return (
         <div className="py-3 px-10 lg:px-32 flex flex-col items-center test">
             <FeedMainTags

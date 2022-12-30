@@ -9,12 +9,11 @@ import axios from "axios";
 /** 태그 **/
 /** baseURL **/
 const baseURL = axios.create({
-    // 부모 댓글 추가
-    baseURL: "http://52.194.161.226:8080/api/",
+    baseURL: "http://52.194.161.226:8080/api",
 });
 
 const testAuth =
-    "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJBRE1JTiIsInN1YiI6IkFUSyIsInJvbGUiOiJST0xFX0FETUlOIiwiaWF0IjoxNjcyMzY5Mjk0LCJleHAiOjE2NzIzNzEwOTR9.rGEEaG7gY66Y_ZmxYjNJ57Z7pc9K1yok3pUPl8CP-4w";
+    "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJBRE1JTiIsInN1YiI6IkFUSyIsInJvbGUiOiJST0xFX0FETUlOIiwiaWF0IjoxNjcyMzg2MzcyLCJleHAiOjE2NzIzOTM1NzJ9.KSLaUjU-20TJZ9f68T0_uPzahD_Xjkfy8mrpOCOqg8g";
 // 댓글 추가
 const addComments = ({ data }) => {
     return baseURL.post(
@@ -147,7 +146,7 @@ export const useFeedData = (API_URL, sort, subTags) => {
         return useInfiniteQuery(
             ["feed"],
             ({ pageParam = 1 }) => {
-                return fetchData(`${API_URL}?_page=${pageParam}&_limit=5`);
+                return fetchData(`${API_URL}?page=${pageParam}&limit=5`);
             },
             {
                 // 더 불러올 데이터 있는지 판단
@@ -162,7 +161,7 @@ export const useFeedData = (API_URL, sort, subTags) => {
         return useInfiniteQuery(
             [`feed-${sort}`],
             ({ pageParam = 1 }) =>
-                fetchData(`${baseURL}/${sort}?_page=${pageParam}&_limit=5`),
+                fetchData(`${API_URL}?sort=${sort}&page=${pageParam}&limit=5`),
             {
                 // 더 불러올 데이터 있는지 판단
                 getNextPageParam: (lastPage, allPages) => {
@@ -175,12 +174,12 @@ export const useFeedData = (API_URL, sort, subTags) => {
     } else if (subTags.length) {
         const set = new Set(subTags);
         const tagsString = [...set].join(",");
-
+        console.log("tagstring: ", tagsString);
         return useInfiniteQuery(
             [`feed-${subTags}`],
             ({ pageParam = 1 }) => {
                 return fetchData(
-                    `${baseURL}/${tagsString}?_page=${pageParam}&_limit=5`
+                    `${API_URL}?tagSeqList=${tagsString}&page=${pageParam}&limit=5`
                 );
             },
             {

@@ -7,7 +7,7 @@ const baseURL = axios.create({
 });
 
 const testAuth =
-    "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJBRE1JTiIsInN1YiI6IkFUSyIsInJvbGUiOiJST0xFX0FETUlOIiwiaWF0IjoxNjcyMzY5Mjk0LCJleHAiOjE2NzIzNzEwOTR9.rGEEaG7gY66Y_ZmxYjNJ57Z7pc9K1yok3pUPl8CP-4w";
+    "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJBRE1JTiIsInN1YiI6IkFUSyIsInJvbGUiOiJST0xFX0FETUlOIiwiaWF0IjoxNjcyMzg2MzcyLCJleHAiOjE2NzIzOTM1NzJ9.KSLaUjU-20TJZ9f68T0_uPzahD_Xjkfy8mrpOCOqg8g";
 
 const fetchData = (API_URL) => {
     return baseURL.get(API_URL).then((res) => res.data);
