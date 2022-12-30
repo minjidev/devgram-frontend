@@ -99,10 +99,8 @@ export default function Navigation() {
                                         {/* <button onClick={getUserData }>데이터 받기</button> */}
                                     </>
                                 ) : (
-                                    <button
-                                        className="btn btn-xs btn-outline rounded-full"
-                                        onClick={loginWithGithub}
-                                    >
+                                    <button className="btn btn-xs btn-outline rounded-full"
+                                        onClick={loginWithGithub}>
                                         로그인
                                     </button>
                                 )}

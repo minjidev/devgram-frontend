@@ -5,21 +5,26 @@ import MypageProfile from '@components/mypage/MyPageProfile'
 import MypageTitle from '@components/mypage/MyPageTitle'
 import MypageGoods from '@components/mypage/MyPageGoods'
 import MainReview from '@components/mypage/MyPageMainReview'
-import MypageFeed from '@components/mypage/MyPageSubFeed'
+import MypageSubFeed from '@components/mypage/MyPageSubFeed'
 
 import Navigation from '@components/mainpage/header/Navigation'
 
 import bird from '@image/bird.jpg'
 import styles from '../../index.css'
 
-export default function MyPage() {
+export default function MyPage({logint}) {
   /* 리뷰 - 좋아요 상품 - 나의 피드 순번 */
   const [reviews, setreviews] = useState([])
   const [likes, setLikes] = useState([])
   const [feeds, setFeeds] = useState([])
   const [innerWidth, setInnerWidth] = useState(window.innerWidth);
   const [limitApi, setLimitApi] = useState()
+  
+  const [reviews2, setreviews2] = useState([])
+  const [likes2, setLikes2] = useState([])
 
+  const webAccessToken = localStorage.getItem('webAccessToken')
+  
   /* 나의 리뷰 */
   useEffect(() => {
 		const fetchData = async() => {
@@ -31,8 +36,10 @@ export default function MyPage() {
         fetchData().then(res => setreviews(res));
     }, [limitApi]);
 
+    console.log(reviews2, "a")
+
     /* 좋아요 상품 */
-  useEffect(() => {
+/*      useEffect(() => {
 		const fetchData = async() => {
           const res = await fetch(`http://localhost:3001/product?_limit=${limitApi}`);
           const result = res.json();
@@ -40,10 +47,21 @@ export default function MyPage() {
         }	
         
         fetchData().then(res => setLikes(res));
-    }, [limitApi]);
+    }, [limitApi]); */
+
+    useEffect(() => {
+      fetch("http://52.194.161.226:8080/api/products/like/list", {
+          method: "GET",
+          headers: {
+            "Authentication" : webAccessToken
+          },
+        })
+        .then((response) => response.json())
+        .then((res) => setLikes(res))
+      }, []); 
 
     /* 나의 피드 */
-  useEffect(() => {
+/*   useEffect(() => {
 		const fetchData = async() => {
           const res = await fetch(`http://localhost:3001/board?_limit=${limitApi}`);
           const result = res.json();
@@ -51,7 +69,19 @@ export default function MyPage() {
         }	
         
         fetchData().then(res => setFeeds(res));
-    }, [limitApi]);
+    }, [limitApi]); */
+
+  useEffect(() => {
+		const fetchData = async() => {
+          const res = await fetch(`http://52.194.161.226:8080/api/boards?page=0`);
+          const result = res.json();
+          return result;
+        }	
+        
+        fetchData().then(res => setFeeds(res.content));
+    }, []);
+
+    console.log(feeds)
 
     /* 크기바뀜 체크 */
     useEffect(() => {
@@ -103,11 +133,11 @@ export default function MyPage() {
           <div className='feeds mt-12'>
             <MypageTitle title="나의 피드" btn={<Link to="/my/feed" state={{ name: "나의 피드" }}>더보기</Link>}/>
             <ul className='flex justify-between flex-wrap gap-[1em] mt-6'>
-              {feeds.map(f => (
-                <MypageFeed
-                user={f.user}
-                feed={f.feed}
-                ></MypageFeed>
+              {feeds.slice(0, 3).map(feed => (
+                <MypageSubFeed
+                id={feed.id}
+                img={feed.createdByImg}
+                ></MypageSubFeed>
               ))}
             </ul>
           </div>

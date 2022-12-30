@@ -3,24 +3,15 @@ import { ChevronDownIcon } from '@heroicons/react/24/solid'
 import { PencilIcon } from '@heroicons/react/24/solid'
 import { useEffect } from 'react';
 
-export default function FeedWriteFile({title, mandatory = false, guide, name, value, explain, target}) {
+export default function FeedWriteFile({title, mandatory = false, guide, name, value, explain, target, setfileImg}) {
   const [open, setOpen] = useState(false);
-  const [img, setImg] = useState([])
   const [preview, setPreview] = useState([])
 
   const [imgInput, setImgInput] = useState(false)
   const [textInput, setTextInput] = useState(false)
 
-  
-
   function imgChange(file) {
-    let formData = new FormData();
-    console.log(file)
-    if (file) {
-      setImgInput(true)
-      formData.append('file', file)
-      setImg(formData)
-    }
+    setfileImg(file)
   }
 
   useEffect(() => {
@@ -70,8 +61,9 @@ export default function FeedWriteFile({title, mandatory = false, guide, name, va
             (e) => imgChange(e.target.files[0])
           } 
             id="file"
-          accept="image/jpeg, image/png"/>
-          <input type="hidden" name="introImg" value={img}/>
+          accept="image/jpeg, image/png"
+          multiple="multiple"
+          />
         </div>
       <label htmlFor={name + "Input"} className='absolute w-px h-px -m-px overflow-hidden'>
         {explain} 적는 곳
