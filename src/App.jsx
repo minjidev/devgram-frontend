@@ -54,15 +54,13 @@ function App() {
                             path="/products/detail/:id"
                             element={<ProductsDatailPage />}
                         />
-                        <Route path="/search" element={<Search />} />
+                        {/* <Route path="/search" element={<Search />} /> */}
 
                         {/* protected routes */}
-                        <Route
-                            element={<RequireAdminAuth allowedRole="ADMIN" />}
-                        >
-                            <Route path="/admin/*" element={<AdminPage />} />
-                        </Route>
+
                         <Route element={<RequireAuth />}>
+                            <Route path="/admin/*" element={<AdminPage />} />
+
                             <Route
                                 path="/social/feed/write"
                                 element={<FeedWritePage />}

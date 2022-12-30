@@ -10,7 +10,12 @@ const RequireAuth = () => {
     return userId ? (
         <Outlet />
     ) : (
-        <Navigate to="/login/callback" state={{ from: location }} replace />
+        // <Navigate to="/login/callback" state={{ from: location }} replace />
+
+        window.location.assign(
+            `https://github.com/login/oauth/authorize?client_id=` +
+                "64f8af2227721d1a29ea"
+        )
     );
 };
 

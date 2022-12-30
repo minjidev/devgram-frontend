@@ -89,9 +89,7 @@ export default function Navigation() {
                                         <button
                                             className="btn btn-xs btn-outline rounded-full"
                                             onClick={() => {
-                                                localStorage.removeItem(
-                                                    "accessToken"
-                                                );
+                                                localStorage.clear();
                                                 logout();
                                                 location.reload();
                                             }}
