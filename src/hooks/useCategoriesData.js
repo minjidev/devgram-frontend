@@ -6,8 +6,8 @@ const baseURL = axios.create({
     baseURL: "http://52.194.161.226:8080/api",
 });
 
-const testAuth =
-    "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJBRE1JTiIsInN1YiI6IkFUSyIsInJvbGUiOiJST0xFX0FETUlOIiwiaWF0IjoxNjcyMzI0NjUyLCJleHAiOjE2NzIzMjY0NTJ9.8_TJanwE3M4b_4FW-fPSFbElzgxN-lvNNnvGFxTUUJA";
+const testAuth = localStorage.getItem("webAccessToken");
+// "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJBRE1JTiIsInN1YiI6IkFUSyIsInJvbGUiOiJST0xFX0FETUlOIiwiaWF0IjoxNjcyMzI0NjUyLCJleHAiOjE2NzIzMjY0NTJ9.8_TJanwE3M4b_4FW-fPSFbElzgxN-lvNNnvGFxTUUJA";
 
 const fetchData = (API_URL) => {
     return baseURL.get(API_URL).then((res) => res.data);

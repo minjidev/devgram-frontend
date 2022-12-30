@@ -26,12 +26,12 @@ function ProductsBestTop({ data }) {
                         <p className="mb-2 text-md sm:text-xl font-medium tracking-tight text-gray-900 dark:text-white">
                             {card.title}
                         </p>
-                        {/* <span
-                            className={`text-white text-xs sm:text-sm font-medium mr-2 px-2.5 py-0.5 rounded-full opacity-80`}
-                            style={{ backgroundColor: `${card.color}` }}
+                        <span
+                            className={`text-black text-xs sm:text-sm font-bold mr-2 px-2.5 py-0.5 rounded-full opacity-80`}
+                            style={{ backgroundColor: `${card.categoryColor}` }}
                         >
-                            {card.category}
-                        </span> */}
+                            {card.categoryName}
+                        </span>
                     </div>
                 </div>
             ))}
