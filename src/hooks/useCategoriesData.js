@@ -3,68 +3,167 @@ import axios from "axios";
 
 /** baseURL **/
 const baseURL = axios.create({
-    baseURL: "http://localhost:3000",
+    baseURL: "http://52.194.161.226:8080/api",
 });
+
+const testAuth =
+    "eyJqd3QiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJnaXRodWJBRE1JTiIsInN1YiI6IkFUSyIsInJvbGUiOiJST0xFX0FETUlOIiwiaWF0IjoxNjcyMzI0NjUyLCJleHAiOjE2NzIzMjY0NTJ9.8_TJanwE3M4b_4FW-fPSFbElzgxN-lvNNnvGFxTUUJA";
 
 const fetchData = (API_URL) => {
     return baseURL.get(API_URL).then((res) => res.data);
 };
 
+const fetchDataAdmin = (API_URL) => {
+    return baseURL
+        .get(API_URL, {
+            headers: {
+                Authentication: testAuth,
+            },
+        })
+        .then((res) => res.data);
+};
+
 /** 카테고리 추가,수정,삭제 **/
 const addCategory = ({ data }) => {
-    return baseURL.post("/category", { name: data.name, color: data.color });
+    return baseURL.post(
+        "/categories/admin",
+        { name: data.name, color: data.color },
+        {
+            headers: {
+                Authentication: testAuth,
+            },
+        }
+    );
 };
 
 const updateCategory = ({ id, editedData }) => {
-    return baseURL.put(`/category/${id}`, {
-        name: editedData.name,
-        color: editedData.color,
-    });
+    return baseURL.post(
+        `/categories/update/admin`,
+        {
+            category_Seq: id,
+            name: editedData.name,
+            color: editedData.color,
+        },
+        {
+            headers: {
+                Authentication: testAuth,
+            },
+        }
+    );
 };
 
 const deleteCategory = ({ id }) => {
-    return baseURL.delete(`/category/${id}`, id);
+    return baseURL.post(
+        `/categories/delete/admin`,
+        {
+            category_Seq: id,
+        },
+        {
+            headers: {
+                Authentication: testAuth,
+            },
+        }
+    );
 };
 
 /** 상품 추가,수정,삭제 **/
 const addProduct = ({ data }) => {
-    return baseURL.post("/product", {
+    return baseURL.post("/products", {
+        category_Seq: data.category_Seq,
         title: data.title,
         content: data.content,
-        hits: data.hits,
-        rating: data.rating,
-        like_count: data.like_count,
         price: data.price,
     });
 };
 
 const updateProduct = ({ id, editedData }) => {
-    return baseURL.put(`/product/${id}`, {
-        title: editedData.title,
-        content: editedData.content,
-        price: editedData.price,
-    });
+    return baseURL.post(
+        `/products/update/admin`,
+        {
+            product_Seq: id,
+            category_Seq: editedData.category_Seq,
+            title: editedData.title,
+            content: editedData.content,
+            price: editedData.price,
+            status: editedData.status,
+        },
+        {
+            headers: {
+                Authentication: testAuth,
+            },
+        }
+    );
+};
+
+// 상품 상태 업데이트
+const editProductStatus = ({ data, status }) => {
+    return baseURL.post(
+        `/products/update/admin`,
+        {
+            product_Seq: data.product_Seq,
+            category_Seq: data.category_Seq,
+            price: data.price,
+            title: data.title,
+            content: data.content,
+            status: status,
+        },
+        {
+            headers: {
+                Authentication: testAuth,
+            },
+        }
+    );
 };
 
 const deleteProduct = ({ id }) => {
-    return baseURL.delete(`/product/${id}`, id);
+    return baseURL.post(
+        `/products/delete/admin`,
+        {
+            product_Seq: id,
+        },
+        {
+            headers: {
+                Authentication: testAuth,
+            },
+        }
+    );
 };
 
-/** 신고 수정 **/
+/** 댓글 신고 수정 **/
 const updateReportedComment = ({ id, status }) => {
-    return baseURL.patch(`report/${id}`, {
-        status: status,
-    });
+    return baseURL.put(
+        `/comments/status/admin`,
+        {
+            commentSeq: id,
+            commentStatus: status,
+        },
+        {
+            headers: {
+                Authentication: testAuth,
+            },
+        }
+    );
 };
+
+/** 리뷰 수정 **/
 const updateReportedReviews = ({ id, status }) => {
-    return baseURL.patch(`reportreviews/${id}`, {
-        status: status,
-    });
+    return baseURL.post(
+        `/review/accuse/statusUpdate/admin`,
+        {
+            reviewSeq: id,
+            status: status,
+        },
+        {
+            headers: {
+                Authentication: testAuth,
+            },
+        }
+    );
 };
 
 /* custom hooks */
 export const useCategoriesData = () => {
-    return useQuery(["categories"], () => fetchData("/category"));
+    return useQuery(["categories"], () => fetchDataAdmin("/categories/admin"));
 };
 
 export const useAddCategoryData = () => {
@@ -100,7 +199,16 @@ export const useDeletecategoryData = () => {
 };
 
 export const useProductsData = () => {
-    return useQuery(["products"], () => fetchData("product"));
+    return useQuery(["products"], () => fetchDataAdmin("/products/admin"));
+};
+
+export const useProductsDataAll = () => {
+    return useQuery(["products-all"], () => fetchDataAdmin("/products/lists"));
+};
+
+/** 캐러셀  **/
+export const useProductsCarouselData = (API_URL) => {
+    return useQuery(["products-carousel"], () => fetchData(API_URL));
 };
 
 export const useAddProductData = () => {
@@ -120,6 +228,16 @@ export const useEditProductData = () => {
         },
     });
 };
+// 상품 상태 수정
+export const useEditProductsStatusData = () => {
+    const queryClient = useQueryClient();
+    return useMutation(editProductStatus, {
+        onSuccess: () => {
+            queryClient.invalidateQueries("products-status");
+        },
+    });
+};
+
 export const useDeleteProductData = () => {
     const queryClient = useQueryClient();
     return useMutation(deleteProduct, {
@@ -129,8 +247,11 @@ export const useDeleteProductData = () => {
     });
 };
 
+/** 신고 댓글 **/
 export const useReportedCommentsData = () => {
-    return useQuery(["reported-comments"], () => fetchData("/report"));
+    return useQuery(["reported-comments"], () =>
+        fetchDataAdmin("/comments/accuse/admin")
+    );
 };
 
 export const useEditReportedCommentsData = () => {
@@ -142,13 +263,10 @@ export const useEditReportedCommentsData = () => {
     });
 };
 
-// export const useReportedCommentsDataDetail = (API_URL) => {
-//     return useQuery(["reported-comments-detail"], () => fetchData(API_URL));
-// };
-
+/** 신고 리뷰 **/
 export const useReportedReivewsData = () => {
-    return useQuery(["reported-reviews-detail"], () =>
-        fetchData("/reportreviews")
+    return useQuery(["reported-reviews"], () =>
+        fetchDataAdmin("/review/accuse/list/admin")
     );
 };
 

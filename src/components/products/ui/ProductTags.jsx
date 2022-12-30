@@ -1,46 +1,62 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TagLabel } from "@style";
 import { useProducts } from "@context/ProductsContext";
 import ProductsCards from "./ProductsCards";
 import ProductsAll from "../ProductsAll";
+import ProductAddButton from "./ProductAddButton";
 
 function ProductTags({ categories }) {
+    // 클릭한 카테고리(카테고리명)에 해당하는 상품(카테고리 id -> 카테고리 이름)만 보여주기
     const init = {};
+    // 카테고리 id 각각 false로 기본 상태 지정
     const [checkedItems, setCheckedItems] = useState(() => {
-        categories.map((ctg) => (init[ctg.name] = false));
+        categories.forEach((ctg) => (init[ctg.category_Seq] = false));
         return init;
     });
+    const [categoriesChecked, setCategoriesChecked] = useState([]);
+    const [productsFiltered, setProductsFiltered] = useState([]);
     const productsAll = useProducts();
 
-    // 해당 카테고리에 checked인지 저장
+    // 해당 카테고리 id가 checked인지 저장
     const checkClicked = (e) => {
-        const { name, checked } = e.target;
-        setCheckedItems({ ...checkedItems, [name]: checked });
+        const { id, checked } = e.target;
+        setCheckedItems({ ...checkedItems, [id]: checked });
     };
-
-    // 상품의 카테고리가 checked된 카테고리에 해당하면 보여주기
-    const categoriesChecked = Object.keys(checkedItems).filter(
-        (category) => checkedItems[category]
-    );
-    const productsFiltered = productsAll.filter((product) =>
-        categoriesChecked.includes(product.category)
-    );
+    // 카테고리 선택하면 선택된 카테고리 업데이트
+    useEffect(() => {
+        setCategoriesChecked(() =>
+            Object.keys(checkedItems).filter(
+                (category) => checkedItems[category]
+            )
+        );
+    }, [checkedItems]);
+    // 카테고리 업데이트 시 해당 카테고리 상품 필터링
+    useEffect(() => {
+        setProductsFiltered(() =>
+            productsAll.filter(
+                (product) => Number(categoriesChecked) === product.category_Seq
+            )
+        );
+    }, [categoriesChecked]);
 
     return (
         <>
             <ul className="flex justify-center p-5 flex-wrap">
                 {categories.map((category) => (
-                    <li key={category.id}>
+                    <li key={category.category_Seq}>
                         <input
                             className="sr-only peer"
                             type="checkbox"
                             value={category.name}
                             name={category.name}
-                            id={category.id}
+                            id={category.category_Seq}
                             onChange={checkClicked}
                         />
 
-                        <TagLabel key={category.id} htmlFor={category.id}>
+                        <TagLabel
+                            key={category.category_Seq}
+                            htmlFor={category.category_Seq}
+                        >
                             {category.name}
                         </TagLabel>
                     </li>
@@ -51,6 +67,7 @@ function ProductTags({ categories }) {
             ) : (
                 <ProductsAll />
             )}
+            <ProductAddButton />
         </>
     );
 }

@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
     html,
     body {
@@ -15,8 +14,7 @@
     z-index: 1;
 }
 
-.table td {
-    min-width: 60px;
+.table td:not(:nth-last-child(-n + 2)) {
+    min-width: 140px;
     max-width: 500px;
 }
-

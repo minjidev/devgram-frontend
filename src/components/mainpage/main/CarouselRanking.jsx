@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useProductsCarouselData } from "@hooks/useAdminData";
+import { useProductsCarouselData } from "@hooks/useCategoriesData";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 
 function PrevBtn({ slickPrev }) {
@@ -29,7 +29,7 @@ function NextBtn({ slickNext }) {
 }
 
 function CarouselRanking() {
-    const API_URL_CAROUSEL = "http://localhost:3000/best";
+    const API_URL_CAROUSEL = "http://52.194.161.226:8080/api/products/popular";
     const { data, error, isSuccess } =
         useProductsCarouselData(API_URL_CAROUSEL);
     const slider = useRef(null);
@@ -61,23 +61,26 @@ function CarouselRanking() {
                 <Slider ref={slider} {...settings}>
                     {data.map((d) => (
                         <div
-                            key={d.id}
+                            key={d.product_Seq}
                             className="h-[65vw] md:h-[35vw] lg:h-[25vw] overflow-hidden"
                         >
-                            {/* api에서 구분 id 아닌 고유한 product_id 사용 필요 */}
-                            <Link to={`products/${d.id}`}>
+                            <Link to={`products/detail/${d.product_Seq}`}>
                                 <img
-                                    src={d.img_url}
-                                    alt={d.name}
+                                    src={
+                                        d.img_url ||
+                                        "https://cdn.pixabay.com/photo/2016/03/27/07/12/apple-1282241_1280.jpg"
+                                    }
+                                    alt={d.title}
                                     className="relative opacity-80 min-w-full min-h-full object-cover lg:-top-64"
+                                    // className="relative opacity-80 h-full mx-auto"
                                 />
                             </Link>
                             <div className="absolute px-14 top-10 sm:px-32 sm:top-20 left-0">
                                 <h3 className="text-2xl mb-2 sm:text-2xl md:text-4xl text-black font-bold break-all">
-                                    {d.name}
+                                    {d.title}
                                 </h3>
                                 <h4 className="text-md sm:text-md md:text-xl text-black break-all">
-                                    {d.description}
+                                    {d.content}
                                 </h4>
                             </div>
                         </div>

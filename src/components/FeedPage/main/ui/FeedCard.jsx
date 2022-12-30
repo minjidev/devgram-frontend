@@ -30,13 +30,13 @@ function FeedCard({ feed }) {
                         <span className="mr-1 flex">
                             <HeartIcon className="w-5 h-5" />
                         </span>
-                        {feed.like_count}
+                        {feed.likeCount}
                     </p>
                     <p className="flex items-center mb-3 font-normal text-gray-700 dark:text-gray-400">
                         <span className="mr-1 flex">
                             <ChatBubbleBottomCenterTextIcon className="w-5 h-5" />
                         </span>
-                        {feed.comments}
+                        {feed.commentsCount}
                     </p>
                 </div>
                 {/* 관련 상품 */}

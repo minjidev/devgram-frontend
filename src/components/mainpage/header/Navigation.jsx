@@ -47,7 +47,7 @@ export default function Navigation() {
     }
 
     return (
-        <div className="h-full">
+        <div>
             <nav className="w-full navbar bg-white">
                 <div className="flex-none sm:hidden">
                     <label
@@ -77,6 +77,7 @@ export default function Navigation() {
                     <div className="flex-none hidden sm:block">
                         <ul className="flex flex-row p-4">
                             <li className="mr-3">
+
                                 {localStorage.getItem('accessToken') ?
                                 <>
                                     <button
