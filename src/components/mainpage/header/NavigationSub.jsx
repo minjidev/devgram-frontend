@@ -16,9 +16,9 @@ function NavigationSub() {
                         <a href="/social/feed">FEED</a>
                     </button>
                 </li>
-                <li className="ml-auto">
+                {/* <li className="ml-auto">
                     <SearchBar />
-                </li>
+                </li> */}
             </ul>
             <hr className="h-px bg-gray-100 border-0 dark:bg-gray-600" />
         </div>

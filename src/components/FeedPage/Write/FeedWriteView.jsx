@@ -1,18 +1,18 @@
-import { useEffect, useState } from 'react'
-import tw from "tailwind-styled-components"
+import { useEffect, useState } from "react";
+import tw from "tailwind-styled-components";
 
-import Navigation from '@components/MainPage/Header/Navigation'
-import FeedWriteList from '@components/FeedPage/Write/FeedWriteList'
-import FeedWriteQue from '@components/FeedPage/Write/FeedWriteQue'
-import FeedWriteFile from '@components/FeedPage/Write/FeedWriteFile'
-import FeedWriteEquipment from '@components/FeedPage/Write/FeedWriteEquipment'
+import Navigation from "@components/MainPage/Header/Navigation";
+import FeedWriteList from "@components/FeedPage/Write/FeedWriteList";
+import FeedWriteQue from "@components/FeedPage/Write/FeedWriteQue";
+import FeedWriteFile from "@components/FeedPage/Write/FeedWriteFile";
+import FeedWriteEquipment from "@components/FeedPage/Write/FeedWriteEquipment";
 
-import FeedWriteModal from '@components/FeedPage/Write/FeedWriteModal'
-import EquipmentModal from '@components/FeedPage/Write/Modal/EquipmentModal'
+import FeedWriteModal from "@components/FeedPage/Write/FeedWriteModal";
+import EquipmentModal from "@components/FeedPage/Write/Modal/EquipmentModal";
 
 /* 피드 작성페이지 뷰 */
 export default function FeedWriteView() {
-  const Btn = tw.button`
+    const Btn = tw.button`
   text-center
   btn
   md:w-22 
@@ -24,7 +24,7 @@ export default function FeedWriteView() {
   hover:bg-point-blue
   hover:border-point-blue
   `
-
+  
   const [atest, setatest] = useState([])
 
   useEffect(() => {
@@ -44,10 +44,10 @@ export default function FeedWriteView() {
   /* 폼데이터로 보낼 이미지 파일 */
   const [fileImg, setfileImg] = useState()
 
-  /* 필수질문 관리 */
-  const [target1, setTarget1] = useState(false)
-  const [target2, setTarget2] = useState(false)
-  const [tmpEquiArr, settmpEquiArr] = useState([])
+    /* 필수질문 관리 */
+    const [target1, setTarget1] = useState(false);
+    const [target2, setTarget2] = useState(false);
+    const [tmpEquiArr, settmpEquiArr] = useState([]);
 
   const [tagList, settagList] = useState([])
 
@@ -57,8 +57,7 @@ export default function FeedWriteView() {
     }
     else {
       setModalOpen(!modalOpen)
-    } */
-    setModalOpen(!modalOpen)
+    } 
   }
 
   /* 태그 보내는 함수 */
@@ -75,16 +74,15 @@ export default function FeedWriteView() {
     }
   }
 
-  useEffect(() => {
-		const fetchData = async() => {
-          const res = await fetch(`http://localhost:3001/product`);
-          const result = res.json();
-          return result;
-        }	
-        
-        fetchData().then(res => setproducts(res));
+    useEffect(() => {
+        const fetchData = async () => {
+            const res = await fetch(`http://localhost:3001/product`);
+            const result = res.json();
+            return result;
+        };
+
+        fetchData().then((res) => setproducts(res));
     }, []);
-    console.log(fileImg)
   return (
     <dlv>
     {modalOpen || EquiModal ? <div className="fixed w-full h-full bg-black z-40 opacity-70"></div> : null}
@@ -185,9 +183,5 @@ export default function FeedWriteView() {
           /> 
           : null}
         </div>
-        </form>
-      </div>
-    </div>
-    </dlv>
-  )  
+    );
 }

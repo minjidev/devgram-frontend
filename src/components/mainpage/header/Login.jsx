@@ -1,4 +1,9 @@
 import { useState, useEffect, useContext } from "react"
+import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
+
 
 export default function Login({}) {
   useEffect(() => {
@@ -47,11 +52,11 @@ export default function Login({}) {
       })
     }
 
-    getAccessToken()
+            getAccessToken();
 
-    setTimeout(() => {
-      history.back()
-    }, [1500])
-  }
-  }, [])
+            setTimeout(() => {
+                history.back();
+            }, [1500]);
+        }
+    }, []);
 }
